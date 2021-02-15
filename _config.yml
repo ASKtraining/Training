@@ -2,7 +2,7 @@
 title               : ASKtraining
 description         : >-
                       A Generator to create a trainings plan
-baseurl             : "Training/"
+baseurl             : "/Training"
 theme               : minima
 
 ### Plugins ###
