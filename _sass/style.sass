@@ -33,12 +33,16 @@ ul
     width: 0
     line-height: 0
 
+.float-left
+    float: left
+
+.float-right
+    float: right
 
 #content
     max-width: 900px
     margin: 0 auto
     padding: 0 20px 0 370px
-
 
 #sidebar
     max-width:350px
@@ -75,6 +79,15 @@ ul
     display: block
     float: left
     margin-right: 10px
+
+.button
+    display: block
+    width: 150px
+    padding: 10px 20px
+    margin: 20px 0
+    text-align: center
+    background: $color-element-background
+    color: $color-element-font
 
 
 a.info,
@@ -129,3 +142,34 @@ a.help
         border-top: 1px $color-general-borders solid
         background-color: #fff
         width: 100%
+
+.add-modules-breaks
+    display: block
+    width: 100%
+    padding: 40px 0
+    margin: 20px 0
+    text-align: center
+    border: 1px $color-general-borders dotted
+
+    a.button
+        display: none
+
+.resource-overview
+    table
+        width: 100%
+        th
+            text-align: left
+        .quantity
+            width: 10%
+            input
+                width: 70%
+                padding: 3px 0
+                text-align: center
+        .resource-name
+            width: 70%
+        .material-costs
+            width: 20%
+            text-align: right
+        .result
+            text-align: right
+            font-weight: bold

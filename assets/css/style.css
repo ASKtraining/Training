@@ -29,6 +29,14 @@ ul {
   line-height: 0;
 }
 
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
 #content {
   max-width: 900px;
   margin: 0 auto;
@@ -70,6 +78,16 @@ ul {
   display: block;
   float: left;
   margin-right: 10px;
+}
+
+.button {
+  display: block;
+  width: 150px;
+  padding: 10px 20px;
+  margin: 20px 0;
+  text-align: center;
+  background: #4b4b80;
+  color: #fff;
 }
 
 a.info,
@@ -130,4 +148,42 @@ a.help {
   border-top: 1px #000 solid;
   background-color: #fff;
   width: 100%;
+}
+
+.add-modules-breaks {
+  display: block;
+  width: 100%;
+  padding: 40px 0;
+  margin: 20px 0;
+  text-align: center;
+  border: 1px #000 dotted;
+}
+.add-modules-breaks a.button {
+  display: none;
+}
+
+.resource-overview table {
+  width: 100%;
+}
+.resource-overview table th {
+  text-align: left;
+}
+.resource-overview table .quantity {
+  width: 10%;
+}
+.resource-overview table .quantity input {
+  width: 70%;
+  padding: 3px 0;
+  text-align: center;
+}
+.resource-overview table .resource-name {
+  width: 70%;
+}
+.resource-overview table .material-costs {
+  width: 20%;
+  text-align: right;
+}
+.resource-overview table .result {
+  text-align: right;
+  font-weight: bold;
 }
