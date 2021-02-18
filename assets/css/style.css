@@ -90,8 +90,8 @@ ul {
   color: #fff;
 }
 
-a.info,
-a.help {
+a .info,
+a .help {
   padding: 5px 17px;
   border-radius: 100%;
   background: #4b4b80;
@@ -100,13 +100,11 @@ a.help {
   cursor: pointer;
   font-weight: bold;
 }
-
-a.info {
+a .info {
   float: right;
   margin-top: 5px;
 }
-
-a.help {
+a .help {
   float: left;
   margin: 10px 20px 0 0;
 }
@@ -160,6 +158,20 @@ a.help {
 }
 .add-modules-breaks a.button {
   display: none;
+}
+
+.summary {
+  background: #4b4b80;
+  color: #fff;
+  padding: 20px;
+}
+.summary h2 {
+  text-align: center;
+  margin-top: 0;
+}
+.summary .duration {
+  text-align: right;
+  font-size: 2em;
 }
 
 .resource-overview table {

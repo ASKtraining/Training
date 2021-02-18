@@ -90,23 +90,22 @@ ul
     color: $color-element-font
 
 
-a.info,
-a.help
-    padding: 5px 17px
-    border-radius: 100%
-    background: $color-element-background
-    color: $color-element-font
-    font-size: 1.3em
-    cursor: pointer
-    font-weight: bold
-
-a.info
-    float: right
-    margin-top: 5px
-
-a.help
-    float: left
-    margin: 10px 20px 0 0
+a
+    .info,
+    .help
+        padding: 5px 17px
+        border-radius: 100%
+        background: $color-element-background
+        color: $color-element-font
+        font-size: 1.3em
+        cursor: pointer
+        font-weight: bold
+    .info
+        float: right
+        margin-top: 5px
+    .help
+        float: left
+        margin: 10px 20px 0 0
 
 .module
     border-top: 1px $color-general-borders solid
@@ -153,6 +152,17 @@ a.help
 
     a.button
         display: none
+
+.summary
+    background: $color-element-background
+    color: $color-element-font
+    padding: 20px
+    h2
+        text-align: center
+        margin-top: 0
+    .duration
+        text-align: right
+        font-size: 2em
 
 .resource-overview
     table
