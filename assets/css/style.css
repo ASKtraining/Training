@@ -149,6 +149,7 @@ a.help {
 
 .time {
   width: 150px;
+  position: relative;
   float: left;
   font-size: 0.8em;
   padding: 3px 0;
@@ -159,6 +160,61 @@ a.help {
 .time span {
   margin-top: -2px;
   font-weight: bold;
+}
+.time a:hover ~ .edit-time {
+  opacity: 1;
+}
+.time .edit-time {
+  position: absolute;
+  opacity: 0;
+  top: 25px;
+  left: 40px;
+  display: block;
+  width: 300px;
+  background: #fff;
+  border: 1px #000 solid;
+  z-index: 10000;
+  padding: 5px 10px;
+}
+.time .edit-time:before {
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: -21px;
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid black;
+}
+.time .edit-time span,
+.time .edit-time label {
+  float: left;
+  margin: 6px;
+  font-weight: normal;
+}
+.time .edit-time input {
+  display: inline;
+  padding: 5px;
+  text-align: center;
+  font-size: 1.4em;
+  float: left;
+}
+.time .edit-time input.start-time {
+  width: 52px;
+}
+.time .edit-time input.duration {
+  width: 20px;
+}
+.time .edit-time input.title {
+  width: 250px;
+}
+.time .edit-time input.submit {
+  width: auto;
+  font-size: 1em;
+  float: right;
+  margin: 3px 0 0 0;
 }
 
 .options {
@@ -273,6 +329,12 @@ a.help {
 .trainingstart .options {
   top: 8px;
   right: 20px;
+}
+.timebreak .time .edit-time,
+.daybreak .time .edit-time,
+.trainingstart .time .edit-time {
+  width: 650px;
+  top: -11px;
 }
 
 .timebreak {

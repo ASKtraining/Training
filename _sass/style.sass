@@ -139,6 +139,7 @@ a.help
 
 .time
     width: 150px
+    position: relative
     float: left
     font-size: 0.8em
     padding: 3px 0
@@ -147,7 +148,52 @@ a.help
     span
         margin-top: -2px
         font-weight: bold
-
+    a:hover~.edit-time
+        opacity: 1    
+    .edit-time
+        position: absolute
+        opacity: 0
+        top: 25px
+        left: 40px
+        display: block
+        width: 300px
+        background: #fff
+        border: 1px $color-general-borders solid
+        z-index: 10000
+        padding:5px 10px
+        &:before
+            display: block
+            position: absolute
+            top: 2px
+            left: -21px
+            content: ""
+            width: 0
+            height: 0
+            border-top: 20px solid transparent
+            border-bottom: 20px solid transparent
+            border-right: 20px solid black
+        span,
+        label
+            float: left
+            margin: 6px
+            font-weight: normal
+        input
+            display: inline
+            padding: 5px
+            text-align: center
+            font-size: 1.4em
+            float: left
+        input.start-time
+            width: 52px
+        input.duration
+            width: 20px
+        input.title
+            width: 250px
+        input.submit
+            width: auto
+            font-size: 1em
+            float: right
+            margin:3px 0 0 0
 .options
     position: absolute
     top: 0px
@@ -237,6 +283,10 @@ a.help
     .options
         top: 8px
         right: 20px
+    .time
+        .edit-time
+            width: 650px
+            top: -11px
 .timebreak
     border-top: 1px $color-general-borders dotted
     border-bottom: 1px $color-general-borders dotted
