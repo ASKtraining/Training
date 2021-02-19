@@ -43,17 +43,44 @@ ul
     max-width: 900px
     margin: 0 auto
     padding: 0 20px 0 370px
+    .resources
+        .sidebar
+            display: none
 
 #sidebar
     max-width:350px
     position: fixed
     height: 100%
     border-right: 1px $color-general-borders solid
-
-#sidebar
     .module-list
         overflow: auto
         height: calc(100% - 266px)
+        .module
+            border-top: 1px $color-general-borders solid
+            padding: 0 5px
+    .resource-list
+        display: none
+    .time
+        display: none
+    .module 
+        .content
+            width: 100%
+            float: none
+            display: block
+            border: none
+            padding: 0
+            .intro
+                display: none
+            h4
+                display: none
+    .footer
+        position: absolute
+        bottom: 24px
+        left: 0
+        margin-top: -100px
+        border-top: 1px $color-general-borders solid
+        background-color: #fff
+        width: 100%
 
 .tags 
     ul 
@@ -90,63 +117,108 @@ ul
     color: $color-element-font
 
 
-a
-    .info,
-    .help
-        padding: 5px 17px
-        border-radius: 100%
-        background: $color-element-background
-        color: $color-element-font
-        font-size: 1.3em
-        cursor: pointer
+a.info,
+a.help
+    padding: 5px 17px
+    border-radius: 100%
+    background: $color-element-background
+    color: $color-element-font
+    font-size: 1.3em
+    cursor: pointer
+    font-weight: bold
+a.info
+    float: right
+    margin-top: 5px
+a.help
+    float: left
+    margin: 10px 20px 0 0
+
+
+.time
+    width: 150px
+    float: left
+    font-size: 0.8em
+    padding: 3px 0
+    i
+        font-size: 1.4em
+    span
+        margin-top: -2px
         font-weight: bold
-    .info
-        float: right
-        margin-top: 5px
-    .help
-        float: left
-        margin: 10px 20px 0 0
 
 .module
-    border-top: 1px $color-general-borders solid
-    padding: 0 5px
+    clear: both
+    margin: 20px 0
     h2
         font-size: 1.1em
         margin: 6px 0
+    h4
+        margin: 20px 0 0 160px
+    .time
+        padding-top: 39px
+    .content
+        width: calc(100% - 172px)
+        float: left
+        display: block
+        border: 1px $color-general-borders solid
+        padding: 0 0 10px 10px
 
-.resource
+.resource-list
     clear: both
-
-.brakes
+    margin-left: -160px
+    .resource
+        clear: both
+        padding: 8px 0
+        display: block
+    .time
+        padding-top: 3px
+    .content
+        border: 0
+        padding: 0 0 0 10px
+        .button
+            float: right
+            padding: 3px 0
+            width: 80px
+            font-size: 0.8em
+            margin: 0
+        
+.breaks
     text-align: center
     position: absolute
     bottom: 75px
     background-color: #fff
-    width: 100%
-
-.brakes 
+    width: 100% 
     div
         padding: 10px
         display: block
         border-top:1px $color-general-borders solid
         cursor: pointer
         font-weight: bold
-
-#sidebar 
-    .footer
-        position: absolute
-        bottom: 24px
-        left: 0
-        margin-top: -100px
-        border-top: 1px $color-general-borders solid
-        background-color: #fff
-        width: 100%
+.timebreak,
+.daybreak,
+.trainingstart
+    background: #fff
+    
+    display: block
+    padding: 12px 0 10px 0
+    margin: 10px -1px 10px 0
+    p
+        text-align: center
+        font-weight: bold
+.timebreak
+    border-top: 1px $color-general-borders dotted
+    border-bottom: 1px $color-general-borders dotted
+    border-right: 1px #fff solid
+.daybreak,
+.trainingstart
+    border-top: 3px $color-general-borders solid
+    border-bottom: 3px $color-general-borders solid
 
 .add-modules-breaks
     display: block
+    clear: both
     width: 100%
     padding: 40px 0
-    margin: 20px 0
+    margin: 10px 0 20px 0
     text-align: center
     border: 1px $color-general-borders dotted
 
