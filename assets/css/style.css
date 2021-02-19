@@ -190,6 +190,17 @@ a.help {
   top: 3px;
   right: 10px;
 }
+.module .content .intro {
+  margin-bottom: 15px;
+}
+.module .content .module-meta i {
+  width: 25px;
+}
+.module .content .module-meta .duration i,
+.module .content .module-meta .material-costs i {
+  padding-left: 5px;
+  width: 20px;
+}
 
 .resource-list {
   clear: both;
