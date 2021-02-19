@@ -44,6 +44,7 @@ ul
     max-width: 900px
     margin: 0 auto
     padding: 0 20px 0 370px
+    z-index: 1
     .edit
         position: absolute
         top: 0px
@@ -59,6 +60,7 @@ ul
     position: fixed
     height: 100%
     border-right: 1px $color-general-borders solid
+    z-index: 2
     .module-list
         overflow: auto
         height: calc(100% - 266px)
@@ -149,13 +151,12 @@ a.help
         margin-top: -2px
         font-weight: bold
     a:hover~.edit-time
-        opacity: 1    
+        display: block
     .edit-time
         position: absolute
-        opacity: 0
         top: 25px
         left: 40px
-        display: block
+        display: none
         width: 300px
         background: #fff
         border: 1px $color-general-borders solid

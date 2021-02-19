@@ -42,6 +42,7 @@ ul {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 20px 0 370px;
+  z-index: 1;
 }
 #content .edit {
   position: absolute;
@@ -59,6 +60,7 @@ ul {
   position: fixed;
   height: 100%;
   border-right: 1px #000 solid;
+  z-index: 2;
 }
 #sidebar .module-list {
   overflow: auto;
@@ -162,14 +164,13 @@ a.help {
   font-weight: bold;
 }
 .time a:hover ~ .edit-time {
-  opacity: 1;
+  display: block;
 }
 .time .edit-time {
   position: absolute;
-  opacity: 0;
   top: 25px;
   left: 40px;
-  display: block;
+  display: none;
   width: 300px;
   background: #fff;
   border: 1px #000 solid;
