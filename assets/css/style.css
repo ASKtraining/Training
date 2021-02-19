@@ -79,6 +79,9 @@ ul {
 #sidebar .module .content h4 {
   display: none;
 }
+#sidebar .module .content .options a.trash {
+  display: none;
+}
 #sidebar .footer {
   position: absolute;
   bottom: 24px;
@@ -124,7 +127,6 @@ ul {
   color: #fff;
 }
 
-a.info,
 a.help {
   padding: 5px 17px;
   border-radius: 100%;
@@ -133,14 +135,6 @@ a.help {
   font-size: 1.3em;
   cursor: pointer;
   font-weight: bold;
-}
-
-a.info {
-  float: right;
-  margin-top: 5px;
-}
-
-a.help {
   float: left;
   margin: 10px 20px 0 0;
 }
@@ -159,6 +153,17 @@ a.help {
   font-weight: bold;
 }
 
+.options {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 1.2em;
+}
+.options a {
+  color: #4b4b80;
+  margin-left: 5px;
+}
+
 .module {
   clear: both;
   margin: 20px 0;
@@ -174,11 +179,16 @@ a.help {
   padding-top: 39px;
 }
 .module .content {
+  position: relative;
   width: calc(100% - 172px);
   float: left;
   display: block;
   border: 1px #000 solid;
   padding: 0 0 10px 10px;
+}
+.module .content .options {
+  top: 3px;
+  right: 10px;
 }
 
 .resource-list {
@@ -204,6 +214,10 @@ a.help {
   font-size: 0.8em;
   margin: 0;
 }
+.resource-list .timebreak .options {
+  top: -3px;
+  right: -3px;
+}
 
 .breaks {
   text-align: center;
@@ -224,6 +238,7 @@ a.help {
 .daybreak,
 .trainingstart {
   background: #fff;
+  position: relative;
   display: block;
   padding: 12px 0 10px 0;
   margin: 10px -1px 10px 0;
@@ -233,6 +248,12 @@ a.help {
 .trainingstart p {
   text-align: center;
   font-weight: bold;
+}
+.timebreak .options,
+.daybreak .options,
+.trainingstart .options {
+  top: 8px;
+  right: 20px;
 }
 
 .timebreak {

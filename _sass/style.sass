@@ -73,6 +73,9 @@ ul
                 display: none
             h4
                 display: none
+            .options
+                a.trash
+                    display: none
     .footer
         position: absolute
         bottom: 24px
@@ -116,8 +119,6 @@ ul
     background: $color-element-background
     color: $color-element-font
 
-
-a.info,
 a.help
     padding: 5px 17px
     border-radius: 100%
@@ -126,13 +127,8 @@ a.help
     font-size: 1.3em
     cursor: pointer
     font-weight: bold
-a.info
-    float: right
-    margin-top: 5px
-a.help
     float: left
     margin: 10px 20px 0 0
-
 
 .time
     width: 150px
@@ -145,6 +141,15 @@ a.help
         margin-top: -2px
         font-weight: bold
 
+.options
+    position: absolute
+    top: 0px
+    right: 0px
+    font-size: 1.2em
+    a
+        color: $color-element-background
+        margin-left: 5px
+
 .module
     clear: both
     margin: 20px 0
@@ -156,11 +161,15 @@ a.help
     .time
         padding-top: 39px
     .content
+        position: relative
         width: calc(100% - 172px)
         float: left
         display: block
         border: 1px $color-general-borders solid
         padding: 0 0 10px 10px
+        .options
+            top: 3px
+            right: 10px
 
 .resource-list
     clear: both
@@ -180,6 +189,10 @@ a.help
             width: 80px
             font-size: 0.8em
             margin: 0
+    .timebreak
+        .options
+            top: -3px
+            right: -3px
         
 .breaks
     text-align: center
@@ -197,13 +210,16 @@ a.help
 .daybreak,
 .trainingstart
     background: #fff
-    
+    position: relative
     display: block
     padding: 12px 0 10px 0
     margin: 10px -1px 10px 0
     p
         text-align: center
         font-weight: bold
+    .options
+        top: 8px
+        right: 20px
 .timebreak
     border-top: 1px $color-general-borders dotted
     border-bottom: 1px $color-general-borders dotted
