@@ -7,7 +7,7 @@ permalink: /
     <div id="sidebar">
         <div class="tags">
             <ul id="wordcloud">
-                <li id="show-all-categories">all</li>
+                <li id="show-all-modules">all</li>
                 <li class="selected">battery</li>
                 <li>charging</li>
                 <li>electronics</li>
@@ -18,8 +18,8 @@ permalink: /
             </ul>
         </div>
         <div class="clearer"></div>
-        <ul id="side-bar-module-list" class="module-list StackedList StackedList--hasScroll">
-            <div class="module StackedListItem--isDraggable battery">
+        <ul id="module-list-side-bar" class="module-draggable-list">
+            <li class="module battery">
                 <div class="time">
                     <i class="far fa-clock"></i> <span>03:00pm - 03:45pm</span>
                 </div>
@@ -39,9 +39,9 @@ permalink: /
                     </div>
                     <div class="resources">
                         <p class="sidebar">Resources included: <a href="#">Open Documentation Guide</a> | <a href="#">Wind Turbine</a></p>
-                        <ul class="resource-list StackedList StackedList--hasScroll">
+                        <ul class="resource-list">
                             <h4>Resources:</h4>
-                            <div class="resource resource-1 StackedListItem--isDraggable">
+                            <li class="resource resource-1">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span></span>
                                 </div>
@@ -50,8 +50,8 @@ permalink: /
                                     <div>Open Documentation Guide | medium | 0 minutes | 1 $</div>
                                 </div>
                                 <div class="clearer"></div>
-                            </div>
-                            <div class="resource resource-2 StackedListItem--isDraggable">
+                            </li>
+                            <li class="resource resource-2">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span>03:45pm - 05:15pm</span>
                                 </div>
@@ -60,12 +60,12 @@ permalink: /
                                     <div>Wind Turbine | medium | 90 minutes | 60 $</div>
                                 </div>
                                 <div class="clearer"></div>
-                            </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="clearer"></div>
-            </div>
+            </li>
         </ul>
 
         <div class="breaks">
@@ -91,8 +91,8 @@ permalink: /
         <p>Short description about the training.</p>
         <p>Short description about the training.</p>
         <p>Short description about the training.</p>
-        <ul class="training-list StackedList StackedList--hasScroll">
-            <div class="trainingstart StackedListItem">
+        <ul id="module-list-training" class="training-list">
+            <div class="trainingstart">
                 <div class="time">
                     <a href="#"><i class="far fa-clock"></i> <span>10:00am - 10:20pm</span></a>
                     <div class="edit-time">
@@ -112,7 +112,7 @@ permalink: /
                 </div>
                 <div class="clearer"></div>
             </div>
-            <div class="module StackedListItem--isDraggable solar">
+            <li class="module solar">
                 <div class="time">
                     <a href="#"><i class="far fa-clock"></i> <span>10:20am - 12:30am</span></a>
                     <div class="edit-time">
@@ -138,9 +138,9 @@ permalink: /
                     </div>
                     <div class="resources">
                         <p class="sidebar">Resources included: <a href="#">LED Lamp</a> | <a href="#">Battery Charger</a> | <a href="#">Solar Charger</a></p>
-                        <ul class="resource-list StackedList StackedList--hasScroll">
+                        <ul class="resource-list">
                             <h4>Resources:</h4>
-                            <div class="resource resource-1 StackedListItem--isDraggable">
+                            <li class="resource resource-1">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span></span>
                                 </div>
@@ -149,8 +149,8 @@ permalink: /
                                     <div>Open Hardware Guide | easy | 0 minutes | 1 $</div>
                                 </div>
                                 <div class="clearer"></div>
-                            </div>
-                            <div class="timebreak StackedListItem--isDraggable">
+                            </li>
+                            <li class="timebreak">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span>12:30am - 12:45pm</span>
                                 </div>
@@ -161,8 +161,8 @@ permalink: /
                                     <p>Time Break</p>
                                 </div>
                                 <div class="clearer"></div>
-                            </div>
-                            <div class="resource resource-2 StackedListItem--isDraggable">
+                            </li>
+                            <li class="resource resource-2">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span>12:45am - 01:30pm</span>
                                 </div>
@@ -171,8 +171,8 @@ permalink: /
                                     <div>LED Lamp | medium | 45 minutes | 5 $</div>
                                 </div>
                                 <div class="clearer"></div>
-                            </div>
-                            <div class="resource resource-3 StackedListItem--isDraggable">
+                            </li>
+                            <li class="resource resource-3">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span>01:30am - 03:00pm</span>
                                 </div>
@@ -181,13 +181,13 @@ permalink: /
                                     <div>Solar Charger | advanced | 90 minutes | 40 $</div>
                                 </div>
                                 <div class="clearer"></div>
-                            </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="clearer"></div>
-            </div>
-            <div class="daybreak StackedListItem--isDraggable">
+            </li>
+            <li class="daybreak">
                 <div class="time">
                     <i class="far fa-clock"></i> <span>09:00am - 09:20am</span>
                 </div>
@@ -198,7 +198,7 @@ permalink: /
                     <p>Day Break</p>
                 </div>
                 <div class="clearer"></div>
-            </div>
+            </li>
         </ul>
         <div class="clearer"></div>
         <div class="add-modules-breaks">
