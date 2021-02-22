@@ -48,6 +48,12 @@ function initiateSortable(){
                     const isTimeBreak = chosenClassName.includes('timebreak');
                     const isDayBreak = chosenClassName.includes('daybreak');
                     return isResource || isTimeBreak || isDayBreak;
+                },
+                pull: function(){
+                    const chosenClassName = document.getElementsByClassName('sortable-chosen')[0].className;
+                    const isTimeBreak = chosenClassName.includes('timebreak');
+                    const isDayBreak = chosenClassName.includes('daybreak');
+                    return isTimeBreak || isDayBreak;
                 }
             },
             fallbackOnBody: true,
