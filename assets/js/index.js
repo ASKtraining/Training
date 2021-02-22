@@ -16,13 +16,7 @@ function initiateSortable(){
     Sortable.create(module_list_training, {
         group: {
             name: 'module_list_training',
-            put: function(){
-                const chosenClassName = document.getElementsByClassName('sortable-chosen')[0].className;
-                const isModule = chosenClassName.includes('module');
-                const isTimeBreak = chosenClassName.includes('timebreak');
-                const isDayBreak = chosenClassName.includes('daybreak');
-                return isModule || isTimeBreak || isDayBreak;
-            }
+            put: true
         },
         fallbackOnBody: true,
 		swapThreshold: 0.2,
@@ -33,7 +27,16 @@ function initiateSortable(){
     let moduleListSideBar = document.getElementById(ID_MODULE_LIST_SIDE_BAR);
     Sortable.create(moduleListSideBar, {
         group: ID_MODULE_LIST_SIDE_BAR,
-        animation: 100
+    });
+
+    let breakListSideBar = document.getElementById('break-list-side-bar');
+    Sortable.create(breakListSideBar, {
+        group: {
+            name: 'break-list-side-bar',
+            pull: 'clone'
+        },
+        sort: false,
+        onEnd: initiateTrashButton // we need this because on duplication the onclick event isn't copied
     });
 
     let index = 0;
@@ -83,6 +86,7 @@ function onClickDeleteOrMoveListElement(){
         moduleListSideBar.appendChild(currentElement);
         return;
     }
+    debugger;
     currentElement.remove();
 }
 
