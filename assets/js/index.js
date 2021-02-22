@@ -86,7 +86,6 @@ function onClickDeleteOrMoveListElement(){
         moduleListSideBar.appendChild(currentElement);
         return;
     }
-    debugger;
     currentElement.remove();
 }
 
