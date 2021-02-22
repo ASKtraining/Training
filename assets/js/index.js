@@ -1,4 +1,4 @@
-const MODULE_LIST_SIDE_BAR = 'module-list-side-bar';
+const ID_MODULE_LIST_SIDE_BAR = 'module-list-side-bar';
 
 window.onload = function(){
     initiateSortable();
@@ -12,6 +12,30 @@ window.onload = function(){
  */
 
 function initiateSortable(){
+    let module_list_training = document.getElementById('module-list-training');
+    Sortable.create(module_list_training, {
+        group: {
+            name: 'module_list_training',
+            put: function(){
+                const chosenClassName = document.getElementsByClassName('sortable-chosen')[0].className;
+                const isModule = chosenClassName.includes('module');
+                const isTimeBreak = chosenClassName.includes('timebreak');
+                const isDayBreak = chosenClassName.includes('daybreak');
+                return isModule || isTimeBreak || isDayBreak;
+            }
+        },
+        fallbackOnBody: true,
+		swapThreshold: 0.2,
+        animation: 100,
+        oneEnd: updateTimeBreaks
+    });
+
+    let moduleListSideBar = document.getElementById(ID_MODULE_LIST_SIDE_BAR);
+    Sortable.create(moduleListSideBar, {
+        group: ID_MODULE_LIST_SIDE_BAR,
+        animation: 100
+    });
+
     let index = 0;
     let resource_list_lists = document.getElementsByClassName('resource-list');
     for(ul of resource_list_lists){
@@ -33,29 +57,27 @@ function initiateSortable(){
         index++;
     }
 
-    let module_list_training = document.getElementById('module-list-training');
-    Sortable.create(module_list_training, {
-        group: {
-            name: 'module_list_training',
-            put: function(){
-                const chosenClassName = document.getElementsByClassName('sortable-chosen')[0].className;
-                const isModule = chosenClassName.includes('module');
-                const isTimeBreak = chosenClassName.includes('timebreak');
-                const isDayBreak = chosenClassName.includes('daybreak');
-                return isModule || isTimeBreak || isDayBreak;
-            }
-        },
-        fallbackOnBody: true,
-		swapThreshold: 0.2,
-        animation: 100,
-        oneEnd: updateTimeBreaks
-    });
+    initiateTrashButton();
+}
 
-    let module_list_side_bar = document.getElementById(MODULE_LIST_SIDE_BAR);
-    Sortable.create(module_list_side_bar, {
-        group: MODULE_LIST_SIDE_BAR,
-        animation: 100
-    });
+function initiateTrashButton(){
+    let trashButtons = document.getElementsByClassName('trash');
+    for(btn of trashButtons){
+        btn.onclick = onClickDeleteOrMoveListElement
+    }
+}
+
+function onClickDeleteOrMoveListElement(){
+    let currentElement = this;
+    while(currentElement.tagName !== 'LI'){
+        currentElement = currentElement.parentNode;
+    }
+    if(currentElement.className.includes('module')){
+        let moduleListSideBar = document.getElementById(ID_MODULE_LIST_SIDE_BAR);
+        moduleListSideBar.appendChild(currentElement);
+        return;
+    }
+    currentElement.remove();
 }
 
 /**
@@ -93,7 +115,7 @@ function addTimeBreakAfter(){
 }
 
 /**
- * Wordcloud Filter
+ * Word Cloud Filter
  */
 
 const CLASS_SELECTED = 'selected';
@@ -145,7 +167,7 @@ function unselectAllCategories(){
 
 function showAllModules(){
     unselectAllCategories()
-    const sideBarModules = Array.from(document.getElementById(MODULE_LIST_SIDE_BAR).getElementsByClassName('module'));
+    const sideBarModules = Array.from(document.getElementById(ID_MODULE_LIST_SIDE_BAR).getElementsByClassName('module'));
     for(mod of sideBarModules){
         mod.style.display = '';
     }
@@ -153,7 +175,7 @@ function showAllModules(){
 
 function hideAllModules(){
     unselectAllCategories()
-    const sideBarModules = Array.from(document.getElementById(MODULE_LIST_SIDE_BAR).getElementsByClassName('module'));
+    const sideBarModules = Array.from(document.getElementById(ID_MODULE_LIST_SIDE_BAR).getElementsByClassName('module'));
     for(mod of sideBarModules){
         mod.style.display = 'none';
     }
@@ -164,7 +186,7 @@ function updateSelectableModulesList(){
     const wordcloudSelectedCategories = wordcloud.filter(li => li.className.includes(CLASS_SELECTED));
     const selectedCategories = wordcloudSelectedCategories.map(li => li.textContent);
 
-    const sideBarModules = Array.from(document.getElementById(MODULE_LIST_SIDE_BAR).getElementsByClassName('module'));
+    const sideBarModules = Array.from(document.getElementById(ID_MODULE_LIST_SIDE_BAR).getElementsByClassName('module'));
 
     let showAllModulesCategory = document.getElementById(ID_SHOW_ALL_CATEGORIES)
     const showAllModulesCategoryClasses = showAllModulesCategory.className.split(' ');
