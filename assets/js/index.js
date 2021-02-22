@@ -1,8 +1,9 @@
 const MODULE_LIST_SIDE_BAR = 'module-list-side-bar';
 
 window.onload = function(){
-    intiateDraggable();
-    intitiateWordcloudFilter();
+    initiateSortable();
+    initiateWordcloudFilter();
+    initiateTimeBreaks()
 }
 
 
@@ -10,7 +11,7 @@ window.onload = function(){
  * Drag & Drop
  */
 
-function intiateDraggable(){
+function initiateSortable(){
     let index = 0;
     let resource_list_lists = document.getElementsByClassName('resource-list');
     for(ul of resource_list_lists){
@@ -21,11 +22,13 @@ function intiateDraggable(){
                     const chosenClassName = document.getElementsByClassName('sortable-chosen')[0].className;
                     const isResource = chosenClassName.includes('resource');
                     const isTimeBreak = chosenClassName.includes('timebreak');
-                    return isResource || isTimeBreak;
+                    const isDayBreak = chosenClassName.includes('daybreak');
+                    return isResource || isTimeBreak || isDayBreak;
                 }
             },
             fallbackOnBody: true,
-            animation: 100
+            animation: 100,
+            oneEnd: updateTimeBreaks
         });
         index++;
     }
@@ -38,12 +41,14 @@ function intiateDraggable(){
                 const chosenClassName = document.getElementsByClassName('sortable-chosen')[0].className;
                 const isModule = chosenClassName.includes('module');
                 const isTimeBreak = chosenClassName.includes('timebreak');
-                return isModule || isTimeBreak;
+                const isDayBreak = chosenClassName.includes('daybreak');
+                return isModule || isTimeBreak || isDayBreak;
             }
         },
         fallbackOnBody: true,
 		swapThreshold: 0.2,
-        animation: 100
+        animation: 100,
+        oneEnd: updateTimeBreaks
     });
 
     let module_list_side_bar = document.getElementById(MODULE_LIST_SIDE_BAR);
@@ -53,7 +58,39 @@ function intiateDraggable(){
     });
 }
 
+/**
+ * Time Breaks
+ */
 
+const timeBreak = `
+<li class="timebreak">
+    <div class="time">
+        <i class="far fa-clock"></i> <span>12:30am - 12:45pm</span>
+    </div>
+    <div class="content">
+        <div class="options">
+            <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a> 
+        </div>
+        <p>Time Break</p>
+    </div>
+    <div class="clearer"></div>
+</li>`;
+
+function initiateTimeBreaks(){
+
+}
+
+function updateTimeBreaks(){
+
+}
+
+function addTimeBreakBefore(){
+
+}
+
+function addTimeBreakAfter(){
+
+}
 
 /**
  * Wordcloud Filter
@@ -63,7 +100,7 @@ const CLASS_SELECTED = 'selected';
 const ID_WORDCLOUD = 'wordcloud';
 const ID_SHOW_ALL_CATEGORIES = 'show-all-modules';
 
-function intitiateWordcloudFilter(){
+function initiateWordcloudFilter(){
     const wordcloud = document.getElementById(ID_WORDCLOUD).getElementsByTagName('li');
     for(li of wordcloud){
         li.onclick = updateWordcloudFilter;
