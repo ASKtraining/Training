@@ -109,7 +109,7 @@ function calculateTime(){
     let totalTime = 0;
     let moduleTime = 0;
     for(mod of moduleList){
-        
+        let resources = document.querySelectorAll(`#${mod.id} .resource`);
     }
 }
 
@@ -131,13 +131,13 @@ function initiateTimeBreaks(){
     }
 }
 
-function insertTimeBreaks(module){
+function insertTimeBreaks(mod){
     let moduleList = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
     moduleList = moduleList.filter(el => el.nodeName.includes('LI') && el.className.includes('module'));
-    const isLastModule = moduleList[moduleList.length - 1] === module;
+    const isLastModule = moduleList[moduleList.length - 1] === mod;
 
     let durationSum = 0;
-    let resources = document.querySelectorAll(`#${module.id} .resource`);
+    let resources = document.querySelectorAll(`#${mod.id} .resource`);
     for(resource of resources){
         const duration = parseInt(resource.dataset.duration);
         const isLastResource = resources[resources.length - 1] === resource;
