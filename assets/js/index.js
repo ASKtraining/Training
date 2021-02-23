@@ -1,10 +1,5 @@
 const ID_MODULE_LIST_SIDE_BAR = 'module-list-side-bar';
-
-window.onload = function(){
-    initiateSortable();
-    initiateWordcloudFilter();
-    initiateTimeBreaks()
-}
+const ID_MODULE_LIST_TRAINING = 'module-list-training';
 
 
 /**
@@ -12,8 +7,8 @@ window.onload = function(){
  */
 
 function initiateSortable(){
-    let module_list_training = document.getElementById('module-list-training');
-    Sortable.create(module_list_training, {
+    let moduleListTraining = document.getElementById(ID_MODULE_LIST_TRAINING);
+    Sortable.create(moduleListTraining, {
         group: {
             name: 'module_list_training',
             put: true
@@ -21,12 +16,13 @@ function initiateSortable(){
         fallbackOnBody: true,
 		swapThreshold: 0.2,
         animation: 100,
-        oneEnd: updateTimeBreaks
+        onAdd: runDynamicCalculations,
+        onUpdate: runDynamicCalculations
     });
 
     let moduleListSideBar = document.getElementById(ID_MODULE_LIST_SIDE_BAR);
     Sortable.create(moduleListSideBar, {
-        group: ID_MODULE_LIST_SIDE_BAR,
+        group: ID_MODULE_LIST_SIDE_BAR
     });
 
     let breakListSideBar = document.getElementById('break-list-side-bar');
@@ -40,8 +36,8 @@ function initiateSortable(){
     });
 
     let index = 0;
-    let resource_list_lists = document.getElementsByClassName('resource-list');
-    for(ul of resource_list_lists){
+    let resourceListLists = document.getElementsByClassName('resource-list');
+    for(ul of resourceListLists){
         Sortable.create(ul, {
             group: {
                 name: `resource-list-${index}`,
@@ -60,8 +56,7 @@ function initiateSortable(){
                 }
             },
             fallbackOnBody: true,
-            animation: 100,
-            oneEnd: updateTimeBreaks
+            animation: 100
         });
         index++;
     }
@@ -76,7 +71,7 @@ function initiateTrashButton(){
     }
 }
 
-function onClickDeleteOrMoveListElement(){
+function onClickDeleteOrMoveListElement(){    
     let currentElement = this;
     while(currentElement.tagName !== 'LI'){
         currentElement = currentElement.parentNode;
@@ -90,37 +85,79 @@ function onClickDeleteOrMoveListElement(){
 }
 
 /**
+ * Dynamic Calculations
+ */
+
+function runDynamicCalculations(evt){
+    let mod = evt.item;
+    insertTimeBreaks(mod, moduleListTraining);
+    calculateTime();
+    calculateSummary();
+}
+
+function calculateTime(){
+    // TODO
+}
+
+function calculateSummary(){
+    // TODO
+}
+
+/**
  * Time Breaks
  */
 
-const timeBreak = `
-<li class="timebreak">
-    <div class="time">
-        <i class="far fa-clock"></i> <span>12:30am - 12:45pm</span>
-    </div>
-    <div class="content">
-        <div class="options">
-            <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a> 
-        </div>
-        <p>Time Break</p>
-    </div>
-    <div class="clearer"></div>
-</li>`;
+const BREAK_INTERVAL = 90;
 
 function initiateTimeBreaks(){
-
+    let moduleListTraining = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
+    moduleListTraining = moduleListTraining.filter(el => el.nodeName.includes('LI') && el.className.includes('module'));
+    for(mod of moduleListTraining){
+        insertTimeBreaks(mod);
+    }
 }
 
-function updateTimeBreaks(){
+function insertTimeBreaks(module){
+    let moduleList = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
+    moduleList = moduleListTraining.filter(el => el.nodeName.includes('LI') && el.className.includes('module'));
+    const isLastModule = moduleList[moduleList.length - 1] === module;
 
+    let durationSum = 0;
+    let resources = document.querySelectorAll(`#${module.id} .resource`);
+    for(resource of resources){
+        const duration = parseInt(resource.dataset.duration);
+        const isLastResource = resources[resources.length - 1] === resource;
+        let hasBreakAfter = false;
+        let searchBreak = true;
+        let currentElement = resource;
+        while(searchBreak){ // we do it this way of some strange html (nodeName: '#text') siblings appear on the rendered side inbetween the list elems
+            currentElement = currentElement.nextSibling;
+            if(currentElement != null && currentElement.nodeName === 'LI'&& (currentElement.className.includes('timebreak') || currentElement.className.includes('resource'))){
+                if(currentElement.className.includes('timebreak')){
+                    hasBreakAfter = true;
+                    searchBreak = false;
+                } 
+                searchBreak = false;
+            }
+            if(currentElement === null){
+                searchBreak = false;
+            }
+        }
+
+        if(!isNaN(duration)){
+            durationSum += duration;
+        }
+        if(duration >= BREAK_INTERVAL && !(isLastModule && isLastResource) && !hasBreakAfter){
+            addTimeBreakAfter(resource);
+            durationSum = 0;
+        }
+    }
 }
 
-function addTimeBreakBefore(){
-
-}
-
-function addTimeBreakAfter(){
-
+function addTimeBreakAfter(resource){
+    const MODULE_TIME_BREAK = document.getElementsByClassName('timebreak')[0].cloneNode(true);
+    resource.parentNode.insertBefore(MODULE_TIME_BREAK, resource.nextSibling);
+    initiateTrashButton();
 }
 
 /**
@@ -218,4 +255,15 @@ function updateSelectableModulesList(){
             }
         }
     }
+}
+
+/**
+ * and here we go
+ */
+window.onload = function(){
+    initiateSortable();
+    initiateWordcloudFilter();
+    initiateTimeBreaks();
+    calculateTime();
+    calculateSummary();
 }
