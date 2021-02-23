@@ -90,13 +90,15 @@ function onClickDeleteOrMoveListElement(){
 
 function runDynamicCalculations(evt){
     let mod = evt.item;
-    insertTimeBreaks(mod, moduleListTraining);
+    insertTimeBreaks(mod);
     calculateTime();
     calculateSummary();
 }
 
 function calculateTime(){
-    // TODO
+    let moduleList = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
+    moduleList = moduleList.filter(el => el.nodeName.includes('LI'));
+    //debugger;
 }
 
 function calculateSummary(){
@@ -119,7 +121,7 @@ function initiateTimeBreaks(){
 
 function insertTimeBreaks(module){
     let moduleList = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
-    moduleList = moduleListTraining.filter(el => el.nodeName.includes('LI') && el.className.includes('module'));
+    moduleList = moduleList.filter(el => el.nodeName.includes('LI') && el.className.includes('module'));
     const isLastModule = moduleList[moduleList.length - 1] === module;
 
     let durationSum = 0;
