@@ -16,8 +16,8 @@ function initiateSortable(){
         fallbackOnBody: true,
 		swapThreshold: 0.2,
         animation: 100,
-        onAdd: runDynamicCalculations,
-        onUpdate: runDynamicCalculations
+        onAdd: runDynamicCalculationsOnAdd,
+        onUpdate: runDynamicCalculationsOnUpdate
     });
 
     let moduleListSideBar = document.getElementById(ID_MODULE_LIST_SIDE_BAR);
@@ -56,7 +56,9 @@ function initiateSortable(){
                 }
             },
             fallbackOnBody: true,
-            animation: 100
+            animation: 100,
+            onAdd: calculateTime,
+            onUpdate: calculateTime
         });
         index++;
     }
@@ -88,7 +90,12 @@ function onClickDeleteOrMoveListElement(){
  * Dynamic Calculations
  */
 
-function runDynamicCalculations(evt){
+function runDynamicCalculationsOnUpdate(){
+    calculateTime();
+    calculateSummary();
+}
+
+function runDynamicCalculationsOnAdd(evt){
     let mod = evt.item;
     insertTimeBreaks(mod);
     calculateTime();
@@ -98,7 +105,12 @@ function runDynamicCalculations(evt){
 function calculateTime(){
     let moduleList = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
     moduleList = moduleList.filter(el => el.nodeName.includes('LI'));
-    //debugger;
+
+    let totalTime = 0;
+    let moduleTime = 0;
+    for(mod of moduleList){
+        
+    }
 }
 
 function calculateSummary(){
