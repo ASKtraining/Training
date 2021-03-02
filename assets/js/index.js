@@ -109,7 +109,9 @@ function calculateTime(){
     let totalTime = 0;
     let moduleTime = 0;
     for(mod of moduleList){
-        let resources = document.querySelectorAll(`#${mod.id} .resource`);
+        if(mod.className.includes('module')){
+            let resources = document.querySelectorAll(`#${mod.id} .resource`);
+        }
     }
 }
 
