@@ -5,24 +5,27 @@ const ID_MODULE_LIST_TRAINING = 'module-list-training';
 /**
  * Drag & Drop
  */
+const ANIMATION_SPEED = 85;
 
 function initiateSortable() {
     let moduleListTraining = document.getElementById(ID_MODULE_LIST_TRAINING);
     Sortable.create(moduleListTraining, {
+        filter: '.trainingstart',
         group: {
             name: 'module_list_training',
             put: true
         },
         fallbackOnBody: true,
         swapThreshold: 0.2,
-        animation: 100,
+        animation: ANIMATION_SPEED,
         onAdd: runDynamicCalculationsOnAdd,
         onUpdate: runDynamicCalculationsOnUpdate
     });
 
     let moduleListSideBar = document.getElementById(ID_MODULE_LIST_SIDE_BAR);
     Sortable.create(moduleListSideBar, {
-        group: ID_MODULE_LIST_SIDE_BAR
+        group: ID_MODULE_LIST_SIDE_BAR,
+        animation: ANIMATION_SPEED
     });
 
     let breakListSideBar = document.getElementById('break-list-side-bar');
@@ -56,7 +59,7 @@ function initiateSortable() {
                 }
             },
             fallbackOnBody: true,
-            animation: 100,
+            animation: ANIMATION_SPEED,
             onAdd: calculateTime,
             onUpdate: calculateTime
         });
@@ -84,6 +87,7 @@ function onClickDeleteOrMoveListElement() {
         return;
     }
     currentElement.remove();
+    calculateTime();
 }
 
 /**
@@ -108,20 +112,35 @@ function calculateTime() {
 
     let totalTime = 0;
     let clockTime = new Date();
+    let startTime = null;
+    let endTime = null;
     for (mod of moduleList) {
         if (mod.className.includes('module')) {
-            let resources = document.querySelectorAll(`#${mod.id} .resource`);
-            // TODO
+            let resources = document.querySelectorAll(`#${mod.id} li`);
+            let moduleStartTime = clockTime;
+            let moduleEndTime = null;
+            for(let el of resources){
+                const duration = parseInt(el.dataset.duration);
+                clockTime = insertClockTime(clockTime, duration, el);
+                endTime = clockTime;
+                moduleEndTime = clockTime;
+                totalTime+=duration;
+            }
+            insertClockTime(moduleStartTime, (moduleEndTime-moduleStartTime)/1000/60, mod);
         } else if (mod.className.includes('timebreak')) {
-            let duration = parseInt(mod.dataset.duration);
-            // TODO
+            const duration = parseInt(mod.dataset.duration);
+            clockTime = insertClockTime(clockTime, duration, mod);
+            endTime = clockTime;
+            totalTime+=duration;
         } else if(mod.className.includes('daybreak')){
             let duration = parseInt(mod.dataset.duration);
             // TODO
         } else if (mod.className.includes('trainingstart')) {
             const duration = parseInt(mod.dataset.duration);
             clockTime = parseDatefromString(clockTime, mod.dataset.start);
+            startTime = clockTime;
             clockTime = insertClockTime(clockTime, duration, mod);
+            endTime = clockTime;
             totalTime+=duration;
         }
     }
@@ -135,11 +154,15 @@ function parseDatefromString(clockTime, daytime) {
 }
 
 function insertClockTime(clockTime, duration, mod) {
+    let clockTimeSpan = getChildByClassName(mod, 'clock-time');
+    if(clockTimeSpan == null){
+        return clockTime;
+    }
     const oldClockTime = new Date(clockTime);
     clockTime = new Date(clockTime.getTime() + duration * 60 * 1000);
     const clockTimeString = `${convertTimeToString(oldClockTime)} - ${convertTimeToString(clockTime)}`;
-    let clockTimeSpan = getChildByClassName(mod, 'clock-time');
     clockTimeSpan.innerText = clockTimeString;
+    return clockTime;
 }
 
 function convertTimeToString(clockTime) {
@@ -193,6 +216,9 @@ function initiateTimeBreaks() {
 }
 
 function insertTimeBreaks(mod) {
+    if(!mod.className.includes('module')) {
+        return;
+    }
     let moduleList = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
     moduleList = moduleList.filter(el => el.nodeName.includes('LI') && el.className.includes('module'));
     const isLastModule = moduleList[moduleList.length - 1] === mod;
