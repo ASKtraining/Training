@@ -284,7 +284,6 @@ function initiateWordcloudFilter() {
     for (li of wordcloud) {
         li.onclick = updateWordcloudFilter;
     }
-    updateSelectableModulesList();
 }
 
 function updateWordcloudFilter() {
