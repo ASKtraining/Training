@@ -116,9 +116,15 @@ permalink: /
                     <div class="edit-time">
                         <form>
                             <label>Start-Time:</label>
-                            <input class="start-time" placeholder="10:00">
+                            <input class="hours" placeholder="09" min="0" max="12">
+                            <span>:</span>
+                            <input class="minutes" placeholder="00" min="0" max="59">
+                            <select>
+                                <option value=””>am</option>
+                                <option value=””>pm</option>
+                                </select>
                             <label>Duration:</label>
-                            <input class="duration" placeholder="10">
+                            <input class="duration" placeholder="10" min="0" max="59">
                             <span>minutes</span>
                             <input class="title" placeholder="Introduction into the training">
                             <input class="submit button" type="submit" class="button">
@@ -136,7 +142,7 @@ permalink: /
                     <div class="edit-time">
                         <form>
                             <label>Duration:</label>
-                            <input class="duration" placeholder="20">
+                            <input class="duration" placeholder="10" min="0" max="59">
                             <span>minutes</span>
                             <input class="submit button" type="submit" class="button">
                         </form>

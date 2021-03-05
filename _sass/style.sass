@@ -4,6 +4,9 @@ $color-general-borders: #000
 $color-element-background: rgb(75, 75, 128)
 $color-element-font: #fff
 
+$breakpoint-tablet: 768px
+$breakpoint-smartphone: 600px
+
 body
     font-family: Noto Sans JP
     font-weight: 100
@@ -178,14 +181,18 @@ a.help
             float: left
             margin: 6px
             font-weight: normal
-        input
+        input,
+        select
             display: inline
             padding: 5px
             text-align: center
             font-size: 1.4em
             float: left
-        input.start-time
-            width: 52px
+        select
+            margin-left: 5px
+        input.hours,
+        input.minutes
+            width: 20px
         input.duration
             width: 20px
         input.title
@@ -286,7 +293,7 @@ a.help
         right: 20px
     .time
         .edit-time
-            width: 650px
+            width: 750px
             top: -11px
 .timebreak
     border-top: 1px $color-general-borders dotted

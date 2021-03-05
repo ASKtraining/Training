@@ -195,15 +195,20 @@ a.help {
   margin: 6px;
   font-weight: normal;
 }
-.time .edit-time input {
+.time .edit-time input,
+.time .edit-time select {
   display: inline;
   padding: 5px;
   text-align: center;
   font-size: 1.4em;
   float: left;
 }
-.time .edit-time input.start-time {
-  width: 52px;
+.time .edit-time select {
+  margin-left: 5px;
+}
+.time .edit-time input.hours,
+.time .edit-time input.minutes {
+  width: 20px;
 }
 .time .edit-time input.duration {
   width: 20px;
@@ -334,7 +339,7 @@ a.help {
 .timebreak .time .edit-time,
 .daybreak .time .edit-time,
 .trainingstart .time .edit-time {
-  width: 650px;
+  width: 750px;
   top: -11px;
 }
 
