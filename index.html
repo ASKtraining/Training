@@ -19,7 +19,7 @@ permalink: /
         </div>
         <div class="clearer"></div>
         <ul id="module-list-side-bar" class="module-draggable-list">
-            <li id="module-2" class="module battery">
+            <li id="module-2" class="module battery" data-duration="15">
                 <div class="time">
                     <i class="far fa-clock"></i> <span class='clock-time'>03:00pm - 03:45pm</span>
                 </div>
@@ -110,13 +110,13 @@ permalink: /
         <p>Short description about the training.</p>
         <p>Short description about the training.</p>
         <ul id="module-list-training" class="training-list">
-            <li class="trainingstart" data-duration="15" data-start="09:00">
+            <div id="trainingstart" class="trainingstart" data-duration="15" data-start="09:00">
                 <div class="time">
                     <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:00am - 10:20pm</span></a>
                     <div class="edit-time">
                         <form>
                             <label>Start-Time:</label>
-                            <input type="number" class="hours" placeholder="09" min="0" max="12">
+                            <input type="number" class="hours" placeholder="09" min="1" max="12">
                             <span>:</span>
                             <input type="number" class="minutes" placeholder="00" min="0" max="59">
                             <select>
@@ -135,8 +135,8 @@ permalink: /
                     <p>Introduction into the training</p>
                 </div>
                 <div class="clearer"></div>
-            </li>
-            <li id="module-1" class="module solar">
+            </div>
+            <li id="module-1" class="module solar" data-duration="15">
                 <div class="time">
                     <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:20am - 12:30am</span></a>
                     <div class="edit-time">

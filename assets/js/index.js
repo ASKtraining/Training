@@ -111,17 +111,25 @@ function runDynamicCalculationsOnAdd(evt) {
 }
 
 function calculateTime() {
-    let moduleList = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
-    moduleList = moduleList.filter(el => el.nodeName.includes('LI'));
-
     let totalTime = 0;
     let clockTime = new Date();
-    let startTime = null;
-    let endTime = null;
+
+    let trainingstart = document.getElementById('trainingstart');
+    const duration = parseInt(trainingstart.dataset.duration);
+    clockTime = parseDatefromString(clockTime, trainingstart.dataset.start);
+    startTime = clockTime;
+    clockTime = insertClockTime(clockTime, duration, trainingstart);
+    totalTime+=duration;
+
+    let moduleList = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
+    moduleList = moduleList.filter(el => el.nodeName.includes('LI'));
     for (mod of moduleList) {
         if (mod.className.includes(CLASS_MODULE)) {
+            const duration = parseInt(mod.dataset.duration);
+            clockTime = insertClockTime(clockTime, duration, mod);
+            totalTime+=duration;
+
             let resources = document.querySelectorAll(`#${mod.id} li`);
-            let moduleStartTime = clockTime;
             let moduleEndTime = null;
             for(let el of resources){
                 if(el.className.includes(CLASS_DAYBREAK)){
@@ -129,30 +137,22 @@ function calculateTime() {
                 }
                 const duration = parseInt(el.dataset.duration);
                 clockTime = insertClockTime(clockTime, duration, el);
-                endTime = clockTime;
                 moduleEndTime = clockTime;
                 totalTime+=duration;
             }
-            insertClockTime(moduleStartTime, (moduleEndTime-moduleStartTime)/1000/60, mod);
+
         } else if (mod.className.includes(CLASS_TIMEBREAK)) {
             const duration = parseInt(mod.dataset.duration);
             clockTime = insertClockTime(clockTime, duration, mod);
-            endTime = clockTime;
             totalTime+=duration;
+
         } else if(mod.className.includes(CLASS_DAYBREAK)){
             let duration = parseInt(mod.dataset.duration);
             clockTime = parseDatefromString(clockTime, mod.dataset.start);
             clockTime = insertClockTime(clockTime, duration, mod);
-            endTime = clockTime;
             totalTime+=duration;
-        } else if (mod.className.includes('trainingstart')) {
-            const duration = parseInt(mod.dataset.duration);
-            clockTime = parseDatefromString(clockTime, mod.dataset.start);
-            startTime = clockTime;
-            clockTime = insertClockTime(clockTime, duration, mod);
-            endTime = clockTime;
-            totalTime+=duration;
-        }
+
+        } 
     }
 }
 
