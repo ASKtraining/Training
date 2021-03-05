@@ -391,9 +391,43 @@ a.help {
   text-align: center;
   margin-top: 0;
 }
-.summary .duration {
-  text-align: right;
+.summary ul {
   font-size: 2em;
+  padding: 10px 0;
+}
+.summary ul li {
+  float: left;
+  text-align: center;
+  width: 25%;
+  margin-bottom: 20px;
+  display: block;
+}
+.summary ul li .label {
+  font-size: 0.5em;
+  display: block;
+}
+.summary ul li i {
+  display: block;
+}
+.summary ul li.time-icon {
+  padding-top: 17px;
+  font-size: 1.3em;
+}
+.summary .duration {
+  padding-bottom: 0;
+}
+.summary .duration li {
+  margin-bottom: 0;
+}
+.summary p {
+  font-size: 1em;
+  text-align: center;
+  margin: 0;
+}
+.summary .separator {
+  clear: both;
+  border-bottom: 1px #fff solid;
+  margin: 10px 0 30px 0;
 }
 
 .resource-overview table {
