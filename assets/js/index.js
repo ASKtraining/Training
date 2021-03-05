@@ -4,6 +4,7 @@ const CLASS_DAYBREAK = 'daybreak';
 const CLASS_TIMEBREAK = 'timebreak';
 const CLASS_MODULE = 'module';
 const CLASS_RESOURCE = 'resource';
+const CLASS_TRAININGSTART = 'trainingstart';
 
 
 /**
@@ -69,8 +70,6 @@ function initiateSortable() {
         });
         index++;
     }
-
-    initiateTrashButton();
 }
 
 function initiateTrashButton() {
@@ -94,6 +93,43 @@ function onClickDeleteOrMoveListElement() {
     calculateTime();
 }
 
+function initiateTimeEdit(){
+    intiateTrainigstartTimeButton();
+    intiateDaybreakTimeButton();
+    intiateDaybreakModuleButton();
+}
+
+function intiateTrainigstartTimeButton(){
+    let trainingstartClock = document.querySelectorAll(`.${CLASS_TRAININGSTART} .fa-clock`)[0];
+    trainingstartClock.onclick = toggleTimeEditWindow;
+}
+
+function toggleTimeEditWindow(){
+    let timeEdit = getChildByClassName(this.parentNode.parentNode, 'edit-time');
+    if(timeEdit == null){
+        return;
+    }
+    if(timeEdit.style.display == 'block'){
+        timeEdit.style.display = '';
+    } else {
+        timeEdit.style.display = 'block';
+    }
+}
+
+function intiateDaybreakTimeButton(){
+    let trainingstartClock = document.querySelectorAll(`.${CLASS_DAYBREAK} .fa-clock`);
+    for(let clock of trainingstartClock){
+        clock.onclick = toggleTimeEditWindow;
+    }
+}
+
+function intiateDaybreakTimeButton(){
+    let trainingstartClock = document.querySelectorAll(`.${CLASS_MODULE} .fa-clock`);
+    for(let clock of trainingstartClock){
+        clock.onclick = toggleTimeEditWindow;
+    }
+}
+
 /**
  * Dynamic Calculations
  */
@@ -114,7 +150,7 @@ function calculateTime() {
     let totalTime = 0;
     let clockTime = new Date();
 
-    let trainingstart = document.getElementById('trainingstart');
+    let trainingstart = document.getElementById(CLASS_TRAININGSTART);
     const duration = parseInt(trainingstart.dataset.duration);
     clockTime = parseDatefromString(clockTime, trainingstart.dataset.start);
     startTime = clockTime;
@@ -374,6 +410,8 @@ window.onload = function () {
     initiateSortable();
     initiateWordcloudFilter();
     initiateTimeBreaks();
+    initiateTrashButton();
+    initiateTimeEdit();
     calculateTime();
     calculateSummary();
 }
