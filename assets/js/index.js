@@ -1,5 +1,9 @@
 const ID_MODULE_LIST_SIDE_BAR = 'module-list-side-bar';
 const ID_MODULE_LIST_TRAINING = 'module-list-training';
+const CLASS_DAYBREAK = 'daybreak';
+const CLASS_TIMEBREAK = 'timebreak';
+const CLASS_MODULE = 'module';
+const CLASS_RESOURCE = 'resource';
 
 
 /**
@@ -46,15 +50,15 @@ function initiateSortable() {
                 name: `resource-list-${index}`,
                 put: function () {
                     const chosenClassName = document.getElementsByClassName('sortable-chosen')[0].className;
-                    const isResource = chosenClassName.includes('resource');
-                    const isTimeBreak = chosenClassName.includes('timebreak');
-                    const isDayBreak = chosenClassName.includes('daybreak');
+                    const isResource = chosenClassName.includes(CLASS_RESOURCE);
+                    const isTimeBreak = chosenClassName.includes(CLASS_TIMEBREAK);
+                    const isDayBreak = chosenClassName.includes(CLASS_DAYBREAK);
                     return isResource || isTimeBreak || isDayBreak;
                 },
                 pull: function () {
                     const chosenClassName = document.getElementsByClassName('sortable-chosen')[0].className;
-                    const isTimeBreak = chosenClassName.includes('timebreak');
-                    const isDayBreak = chosenClassName.includes('daybreak');
+                    const isTimeBreak = chosenClassName.includes(CLASS_TIMEBREAK);
+                    const isDayBreak = chosenClassName.includes(CLASS_DAYBREAK);
                     return isTimeBreak || isDayBreak;
                 }
             },
@@ -81,7 +85,7 @@ function onClickDeleteOrMoveListElement() {
     while (currentElement.tagName !== 'LI') {
         currentElement = currentElement.parentNode;
     }
-    if (currentElement.className.includes('module')) {
+    if (currentElement.className.includes(CLASS_MODULE)) {
         let moduleListSideBar = document.getElementById(ID_MODULE_LIST_SIDE_BAR);
         moduleListSideBar.appendChild(currentElement);
         return;
@@ -115,11 +119,14 @@ function calculateTime() {
     let startTime = null;
     let endTime = null;
     for (mod of moduleList) {
-        if (mod.className.includes('module')) {
+        if (mod.className.includes(CLASS_MODULE)) {
             let resources = document.querySelectorAll(`#${mod.id} li`);
             let moduleStartTime = clockTime;
             let moduleEndTime = null;
             for(let el of resources){
+                if(el.className.includes(CLASS_DAYBREAK)){
+                    clockTime = parseDatefromString(clockTime, el.dataset.start);
+                }
                 const duration = parseInt(el.dataset.duration);
                 clockTime = insertClockTime(clockTime, duration, el);
                 endTime = clockTime;
@@ -127,14 +134,17 @@ function calculateTime() {
                 totalTime+=duration;
             }
             insertClockTime(moduleStartTime, (moduleEndTime-moduleStartTime)/1000/60, mod);
-        } else if (mod.className.includes('timebreak')) {
+        } else if (mod.className.includes(CLASS_TIMEBREAK)) {
             const duration = parseInt(mod.dataset.duration);
             clockTime = insertClockTime(clockTime, duration, mod);
             endTime = clockTime;
             totalTime+=duration;
-        } else if(mod.className.includes('daybreak')){
+        } else if(mod.className.includes(CLASS_DAYBREAK)){
             let duration = parseInt(mod.dataset.duration);
-            // TODO
+            clockTime = parseDatefromString(clockTime, mod.dataset.start);
+            clockTime = insertClockTime(clockTime, duration, mod);
+            endTime = clockTime;
+            totalTime+=duration;
         } else if (mod.className.includes('trainingstart')) {
             const duration = parseInt(mod.dataset.duration);
             clockTime = parseDatefromString(clockTime, mod.dataset.start);
@@ -209,22 +219,22 @@ const BREAK_INTERVAL = 90;
 
 function initiateTimeBreaks() {
     let moduleListTraining = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
-    moduleListTraining = moduleListTraining.filter(el => el.nodeName.includes('LI') && el.className.includes('module'));
+    moduleListTraining = moduleListTraining.filter(el => el.nodeName.includes('LI') && el.className.includes(CLASS_MODULE));
     for (mod of moduleListTraining) {
         insertTimeBreaks(mod);
     }
 }
 
 function insertTimeBreaks(mod) {
-    if(!mod.className.includes('module')) {
+    if(!mod.className.includes(CLASS_MODULE)) {
         return;
     }
     let moduleList = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
-    moduleList = moduleList.filter(el => el.nodeName.includes('LI') && el.className.includes('module'));
+    moduleList = moduleList.filter(el => el.nodeName.includes('LI') && el.className.includes(CLASS_MODULE));
     const isLastModule = moduleList[moduleList.length - 1] === mod;
 
     let durationSum = 0;
-    let resources = document.querySelectorAll(`#${mod.id} .resource`);
+    let resources = document.querySelectorAll(`#${mod.id} .${CLASS_RESOURCE}`);
     for (resource of resources) {
         const duration = parseInt(resource.dataset.duration);
         const isLastResource = resources[resources.length - 1] === resource;
@@ -233,8 +243,8 @@ function insertTimeBreaks(mod) {
         let currentElement = resource;
         while (searchBreak) { // we do it this way of some strange html (nodeName: '#text') siblings appear on the rendered side inbetween the list elems
             currentElement = currentElement.nextSibling;
-            if (currentElement != null && currentElement.nodeName === 'LI' && (currentElement.className.includes('timebreak') || currentElement.className.includes('resource'))) {
-                if (currentElement.className.includes('timebreak')) {
+            if (currentElement != null && currentElement.nodeName === 'LI' && (currentElement.className.includes(CLASS_TIMEBREAK) || currentElement.className.includes(CLASS_RESOURCE))) {
+                if (currentElement.className.includes(CLASS_TIMEBREAK)) {
                     hasBreakAfter = true;
                     searchBreak = false;
                 }
@@ -256,7 +266,7 @@ function insertTimeBreaks(mod) {
 }
 
 function addTimeBreakAfter(resource) {
-    const MODULE_TIME_BREAK = document.getElementsByClassName('timebreak')[0].cloneNode(true);
+    const MODULE_TIME_BREAK = document.getElementsByClassName(CLASS_TIMEBREAK)[0].cloneNode(true);
     resource.parentNode.insertBefore(MODULE_TIME_BREAK, resource.nextSibling);
     initiateTrashButton();
 }
@@ -314,7 +324,7 @@ function unselectAllCategories() {
 
 function showAllModules() {
     unselectAllCategories()
-    const sideBarModules = Array.from(document.getElementById(ID_MODULE_LIST_SIDE_BAR).getElementsByClassName('module'));
+    const sideBarModules = Array.from(document.getElementById(ID_MODULE_LIST_SIDE_BAR).getElementsByClassName(CLASS_MODULE));
     for (mod of sideBarModules) {
         mod.style.display = '';
     }
@@ -322,7 +332,7 @@ function showAllModules() {
 
 function hideAllModules() {
     unselectAllCategories()
-    const sideBarModules = Array.from(document.getElementById(ID_MODULE_LIST_SIDE_BAR).getElementsByClassName('module'));
+    const sideBarModules = Array.from(document.getElementById(ID_MODULE_LIST_SIDE_BAR).getElementsByClassName(CLASS_MODULE));
     for (mod of sideBarModules) {
         mod.style.display = 'none';
     }
@@ -333,7 +343,7 @@ function updateSelectableModulesList() {
     const wordcloudSelectedCategories = wordcloud.filter(li => li.className.includes(CLASS_SELECTED));
     const selectedCategories = wordcloudSelectedCategories.map(li => li.textContent);
 
-    const sideBarModules = Array.from(document.getElementById(ID_MODULE_LIST_SIDE_BAR).getElementsByClassName('module'));
+    const sideBarModules = Array.from(document.getElementById(ID_MODULE_LIST_SIDE_BAR).getElementsByClassName(CLASS_MODULE));
 
     let showAllModulesCategory = document.getElementById(ID_SHOW_ALL_CATEGORIES)
     const showAllModulesCategoryClasses = showAllModulesCategory.className.split(' ');
