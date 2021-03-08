@@ -5,6 +5,7 @@ const CLASS_TIMEBREAK = 'timebreak';
 const CLASS_MODULE = 'module';
 const CLASS_RESOURCE = 'resource';
 const CLASS_TRAININGSTART = 'trainingstart';
+const CLASS_SUBMITTIME = "submit";
 
 
 /**
@@ -94,12 +95,13 @@ function onClickDeleteOrMoveListElement() {
 }
 
 function initiateTimeEdit(){
-    intiateTrainigstartTimeButton();
-    intiateDaybreakTimeButton();
-    intiateDaybreakModuleButton();
+    initiateTrainigstartTimeButton();
+    initiateDaybreakTimeButton();
+    initiateModuleTimeButton();
+    initiateSubmitTimeButton();
 }
 
-function intiateTrainigstartTimeButton(){
+function initiateTrainigstartTimeButton(){
     let trainingstartClock = document.querySelectorAll(`.${CLASS_TRAININGSTART} .fa-clock`)[0];
     trainingstartClock.onclick = toggleTimeEditWindow;
 }
@@ -116,18 +118,51 @@ function toggleTimeEditWindow(){
     }
 }
 
-function intiateDaybreakTimeButton(){
+function initiateDaybreakTimeButton(){
     let trainingstartClock = document.querySelectorAll(`.${CLASS_DAYBREAK} .fa-clock`);
     for(let clock of trainingstartClock){
         clock.onclick = toggleTimeEditWindow;
     }
 }
 
-function intiateDaybreakTimeButton(){
+function initiateModuleTimeButton(){
     let trainingstartClock = document.querySelectorAll(`.${CLASS_MODULE} .fa-clock`);
     for(let clock of trainingstartClock){
         clock.onclick = toggleTimeEditWindow;
     }
+}
+
+function initiateSubmitTimeButton(){
+    let submitTimeButtons = document.querySelectorAll(`.${CLASS_SUBMITTIME}`);
+    for(let button of submitTimeButtons){
+        button.onclick = submitTime;
+    }
+}
+
+function submitTime(){
+    const form = this.parentNode;
+    const hours = getChildByClassName(form, 'hours').value;
+    const minutes = getChildByClassName(form, 'minutes').value;
+    const start = `${hours}:${minutes}`;
+    const duration = getChildByClassName(form, 'duration').value;
+
+    let currentElement = this;
+    let runLoop = true;
+    while(runLoop){
+        if(currentElement.className.includes(CLASS_MODULE) 
+        || currentElement.className.includes(CLASS_TRAININGSTART) 
+        || currentElement.className.includes(CLASS_DAYBREAK)){
+            currentElement.dataset.duration = duration;
+            if(currentElement.className.includes(CLASS_TRAININGSTART)
+            || currentElement.className.includes(CLASS_DAYBREAK)){
+                currentElement.dataset.start = start;
+            }
+            runLoop = false;
+        }
+        currentElement = currentElement.parentNode;
+    }
+    
+    calculateTime()
 }
 
 /**
