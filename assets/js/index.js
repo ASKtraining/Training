@@ -5,7 +5,8 @@ const CLASS_TIMEBREAK = 'timebreak';
 const CLASS_MODULE = 'module';
 const CLASS_RESOURCE = 'resource';
 const CLASS_TRAININGSTART = 'trainingstart';
-const CLASS_SUBMITTIME = "submit";
+const CLASS_SUBMITTIME = 'submit';
+const CLASS_CLOSETIME = 'close'
 const CLASS_EDITTIME = 'edit-time';
 
 
@@ -103,6 +104,16 @@ function initiateTimeEdit(){
     let classesWithTimeButton = [CLASS_MODULE, CLASS_TRAININGSTART, CLASS_TIMEBREAK, CLASS_DAYBREAK]
     initiateTimeButton(classesWithTimeButton);
     initiateSubmitTimeButton();
+    initiateCloseButton();
+}
+
+function initiateTimeButton(classes){
+    for(clazz of classes){
+        let trainingstartClock = document.querySelectorAll(`.${clazz} .fa-clock`);
+        for(let clock of trainingstartClock){
+            clock.onclick = toggleTimeEditWindow;
+        }
+    }
 }
 
 function toggleTimeEditWindow(){
@@ -118,15 +129,6 @@ function toggleTimeEditWindow(){
             editor.style.display = '';
         }
         timeEdit.style.display = 'block';
-    }
-}
-
-function initiateTimeButton(classes){
-    for(clazz of classes){
-        let trainingstartClock = document.querySelectorAll(`.${clazz} .fa-clock`);
-        for(let clock of trainingstartClock){
-            clock.onclick = toggleTimeEditWindow;
-        }
     }
 }
 
@@ -162,6 +164,17 @@ function submitTime(){
     
     form.parentNode.style.display = '';
     calculateTime()
+}
+
+function initiateCloseButton(){
+    let closeTimeButtons = document.querySelectorAll(`.${CLASS_CLOSETIME}`);
+    for(let button of closeTimeButtons){
+        button.onclick = closeTime;
+    }
+}
+
+function closeTime(){
+    this.parentNode.parentNode.style.display = '';
 }
 
 /**
