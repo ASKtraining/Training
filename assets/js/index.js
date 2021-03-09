@@ -8,7 +8,7 @@ const CLASS_TRAININGSTART = 'trainingstart';
 const CLASS_SUBMITTIME = 'submit';
 const CLASS_CLOSETIME = 'close'
 const CLASS_EDITTIME = 'edit-time';
-
+const CLASS_MODULEDURATION = 'module-duration';
 
 /**
  * Drag & Drop
@@ -141,10 +141,16 @@ function initiateSubmitTimeButton(){
 
 function submitTime(){
     const form = this.parentNode;
-    const hours = getChildByClassName(form, 'hours').value;
-    const minutes = getChildByClassName(form, 'minutes').value;
-    const start = `${hours}:${minutes}`;
-    const duration = getChildByClassName(form, 'duration').value;
+    const hoursEl = getChildByClassName(form, 'hours');
+    const minutesEl = getChildByClassName(form, 'minutes');
+    let start = '9:00'
+    if(hoursEl != null && minutesEl != null){
+        start = `${hours}:${minutes}`;
+    }
+    let duration = getChildByClassName(form, 'duration').value;
+    if(duration === ''){
+        duration = '15';
+    }
 
     let currentElement = this;
     let runLoop = true;
@@ -209,6 +215,7 @@ function calculateTime() {
     for (mod of moduleList) {
         if (mod.className.includes(CLASS_MODULE)) {
             const duration = parseInt(mod.dataset.duration);
+            let moduleStartTime = clockTime;
             clockTime = insertClockTime(clockTime, duration, mod);
             totalTime+=duration;
 
@@ -224,12 +231,21 @@ function calculateTime() {
                 totalTime+=duration;
             }
 
+            let moduleDurationEl = getChildByClassName(mod, CLASS_MODULEDURATION);
+            const durationSplit = getDurationSplit(moduleEndTime - moduleStartTime)
+            if(durationSplit.days != 0){
+                moduleDurationEl.innerHTML = `${durationSplit.days} days ${durationSplit.hours} hours ${durationSplit.minutes} minutes`;
+            } else {
+                moduleDurationEl.innerHTML = `${durationSplit.hours} hours ${durationSplit.minutes} minutes`;
+            }
+
         } else if (mod.className.includes(CLASS_TIMEBREAK)) {
             const duration = parseInt(mod.dataset.duration);
             clockTime = insertClockTime(clockTime, duration, mod);
             totalTime+=duration;
 
         } else if(mod.className.includes(CLASS_DAYBREAK)){
+            clockTime = addDays(clockTime, 1);
             let duration = parseInt(mod.dataset.duration);
             clockTime = parseDatefromString(clockTime, mod.dataset.start);
             clockTime = insertClockTime(clockTime, duration, mod);
@@ -237,6 +253,31 @@ function calculateTime() {
 
         } 
     }
+
+    let summaryDuration = getDurationSplit(totalTime*60*1000);
+    document.querySelector('#summary-days').innerText = summaryDuration.days;
+    document.querySelector('#summary-hours').innerText = summaryDuration.hours;
+    document.querySelector('#summary-minutes').innerText = summaryDuration.minutes;
+
+}
+
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+}
+
+// duration in ms
+function getDurationSplit(duration){
+    const daysDiv = 1000 * 60 * 60 * 24
+    const days = Math.floor(duration / daysDiv);
+    duration = duration - days * daysDiv;
+    const hoursDiv = 1000 * 60 * 60;
+    const hours = Math.floor(duration / hoursDiv);
+    duration = duration - hours * hoursDiv;
+    const minutesDiv = 1000 * 60;
+    const minutes = Math.floor(duration / minutesDiv);
+    return {'days': days, 'hours': hours, 'minutes': minutes};
 }
 
 function parseDatefromString(clockTime, daytime) {
@@ -261,7 +302,6 @@ function insertClockTime(clockTime, duration, mod) {
 function convertTimeToString(clockTime) {
     let hour = clockTime.getHours();
     let minute = clockTime.getMinutes();
-    let second = clockTime.getSeconds();
     let temp = '' + ((hour > 12) ? hour - 12 : hour);
     if (hour == 0)
         temp = '12';
