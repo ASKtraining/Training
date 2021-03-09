@@ -157,7 +157,8 @@ function submitTime(){
     while(runLoop){
         if(currentElement.className.includes(CLASS_MODULE) 
         || currentElement.className.includes(CLASS_TRAININGSTART) 
-        || currentElement.className.includes(CLASS_DAYBREAK)){
+        || currentElement.className.includes(CLASS_DAYBREAK)
+        || currentElement.className.includes(CLASS_TIMEBREAK)){
             currentElement.dataset.duration = duration;
             if(currentElement.className.includes(CLASS_TRAININGSTART)
             || currentElement.className.includes(CLASS_DAYBREAK)){
