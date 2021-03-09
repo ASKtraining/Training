@@ -6,6 +6,7 @@ const CLASS_MODULE = 'module';
 const CLASS_RESOURCE = 'resource';
 const CLASS_TRAININGSTART = 'trainingstart';
 const CLASS_SUBMITTIME = "submit";
+const CLASS_EDITTIME = 'edit-time';
 
 
 /**
@@ -73,6 +74,10 @@ function initiateSortable() {
     }
 }
 
+/**
+ * Button onclick initialisations
+ */
+
 function initiateTrashButton() {
     let trashButtons = document.getElementsByClassName('trash');
     for (btn of trashButtons) {
@@ -95,40 +100,33 @@ function onClickDeleteOrMoveListElement() {
 }
 
 function initiateTimeEdit(){
-    initiateTrainigstartTimeButton();
-    initiateDaybreakTimeButton();
-    initiateModuleTimeButton();
+    let classesWithTimeButton = [CLASS_MODULE, CLASS_TRAININGSTART, CLASS_TIMEBREAK, CLASS_DAYBREAK]
+    initiateTimeButton(classesWithTimeButton);
     initiateSubmitTimeButton();
 }
 
-function initiateTrainigstartTimeButton(){
-    let trainingstartClock = document.querySelectorAll(`.${CLASS_TRAININGSTART} .fa-clock`)[0];
-    trainingstartClock.onclick = toggleTimeEditWindow;
-}
-
 function toggleTimeEditWindow(){
-    let timeEdit = getChildByClassName(this.parentNode.parentNode, 'edit-time');
+    let timeEdit = getChildByClassName(this.parentNode.parentNode, CLASS_EDITTIME);
     if(timeEdit == null){
         return;
     }
     if(timeEdit.style.display == 'block'){
         timeEdit.style.display = '';
     } else {
+        let allTimeEditors = document.querySelectorAll(`.${CLASS_EDITTIME}`);
+        for(let editor of allTimeEditors){
+            editor.style.display = '';
+        }
         timeEdit.style.display = 'block';
     }
 }
 
-function initiateDaybreakTimeButton(){
-    let trainingstartClock = document.querySelectorAll(`.${CLASS_DAYBREAK} .fa-clock`);
-    for(let clock of trainingstartClock){
-        clock.onclick = toggleTimeEditWindow;
-    }
-}
-
-function initiateModuleTimeButton(){
-    let trainingstartClock = document.querySelectorAll(`.${CLASS_MODULE} .fa-clock`);
-    for(let clock of trainingstartClock){
-        clock.onclick = toggleTimeEditWindow;
+function initiateTimeButton(classes){
+    for(clazz of classes){
+        let trainingstartClock = document.querySelectorAll(`.${clazz} .fa-clock`);
+        for(let clock of trainingstartClock){
+            clock.onclick = toggleTimeEditWindow;
+        }
     }
 }
 
@@ -162,6 +160,7 @@ function submitTime(){
         currentElement = currentElement.parentNode;
     }
     
+    form.parentNode.style.display = '';
     calculateTime()
 }
 
