@@ -143,9 +143,16 @@ function submitTime(){
     const form = this.parentNode;
     const hoursEl = getChildByClassName(form, 'hours');
     const minutesEl = getChildByClassName(form, 'minutes');
+    const amOrPm = getChildByClassName(form, 'am-or-pm').value;
     let start = '9:00'
     if(hoursEl != null && minutesEl != null){
-        start = `${hours}:${minutes}`;
+        if(amOrPm === 'am'){
+            start = `${hoursEl.value}:${minutesEl.value}`;
+        } else if(amOrPm === 'pm'){
+            let hours = parseInt(hoursEl.value) + 12;
+            hours = hours === 24 ? 0 : hours;
+            start = `${hours}:${minutesEl.value}`;
+        }
     }
     let duration = getChildByClassName(form, 'duration').value;
     if(duration === ''){
@@ -188,7 +195,9 @@ function closeTime(){
  * Dynamic Calculations
  */
 
-function runDynamicCalculationsOnUpdate() {
+function runDynamicCalculationsOnUpdate(evt) {
+    let mod = evt.item;
+    insertTimeBreaks(mod);
     calculateTime();
     calculateSummary();
 }
@@ -393,6 +402,7 @@ function addTimeBreakAfter(resource) {
     const MODULE_TIME_BREAK = document.getElementsByClassName(CLASS_TIMEBREAK)[0].cloneNode(true);
     resource.parentNode.insertBefore(MODULE_TIME_BREAK, resource.nextSibling);
     initiateTrashButton();
+    initiateTimeEdit();
 }
 
 /**
