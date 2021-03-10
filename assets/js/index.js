@@ -377,16 +377,59 @@ function calculateSummary() {
     let space = 0;
     let internet = 'no';
     let power = 'no';
+    let materialCost = [];
     for(resource of resourceList){
         let d = resource.dataset;
         space = parseInt(d.space) > space ? parseInt(d.space) : space;
         if(d.internet === 'yes') internet = 'yes';
-        if(d.power === 'yes') power = 'yes'; 
+        if(d.power === 'yes') power = 'yes';
+
+        if(alreadyInCostList(materialCost, d.name)){
+            updateCostList(materialCost, d.name);
+        } else {
+            let newResource = {'name': d.name, 'cost': parseInt(d.cost), 'count': 1};
+            materialCost.push(newResource);
+        }
     }
+    updateResourceCostList(materialCost);
     document.querySelector('#training-space').innerText = space + 'm2';
     document.querySelector('#internet-needed').innerText = internet;
     document.querySelector('#power-needed').innerText = power;
     document.querySelector('#number-of-resources').innerText = resourceList.length;
+}
+
+function alreadyInCostList(l, name){
+    return l.map(el => el['name']).includes(name);
+}
+
+function updateCostList(l, name){
+    let currEl = l.filter(el => el['name'] == name)[0];
+    currEl['count']+=1;
+}
+
+function updateResourceCostList(l){
+    let resourceTable = document.querySelector('#resource-table');
+    let costSum = 0;
+    resourceTable.innerHTML = `
+    <tr>
+        <th class="quantity">Quantity</th>
+        <th class="resource-name">Name of the resource</th>
+        <th class="material-costs">Material Costs</th>
+    </tr>`;
+    l.forEach(el => {
+        resourceTable.innerHTML+=`
+        <tr>
+            <th class="quantity"><input value="${el['count']}"></input></th>
+            <th class="resource-name">${el['name']}</th>
+            <th class="material-costs">${el['count'] * el['cost']}</th>
+        </tr>`;
+        costSum += el['count'] * el['cost'];
+    });
+    resourceTable.innerHTML+=`
+    <tr class="result">
+        <td colspan="2" class="label">Result:</td>
+        <td class="total-price">${costSum} $</td>
+    </tr>`;
 }
 
 /**
