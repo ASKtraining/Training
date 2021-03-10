@@ -94,10 +94,13 @@ function onClickDeleteOrMoveListElement() {
     if (currentElement.className.includes(CLASS_MODULE)) {
         let moduleListSideBar = document.getElementById(ID_MODULE_LIST_SIDE_BAR);
         moduleListSideBar.appendChild(currentElement);
+        calculateTime();
+        calculateSummary();
         return;
     }
     currentElement.remove();
     calculateTime();
+    calculateSummary();
 }
 
 function initiateTimeEdit(){
@@ -143,12 +146,15 @@ function submitTime(){
     const form = this.parentNode;
     const hoursEl = getChildByClassName(form, 'hours');
     const minutesEl = getChildByClassName(form, 'minutes');
-    const amOrPm = getChildByClassName(form, 'am-or-pm').value;
+    const amOrPm = getChildByClassName(form, 'am-or-pm');
     let start = '9:00'
     if(hoursEl != null && minutesEl != null){
-        if(amOrPm === 'am'){
+        if(minutesEl.value === ''){
+            minutesEl.value = '0';
+        }
+        if(amOrPm.value === 'am'){
             start = `${hoursEl.value}:${minutesEl.value}`;
-        } else if(amOrPm === 'pm'){
+        } else if(amOrPm.value === 'pm'){
             let hours = parseInt(hoursEl.value) + 12;
             hours = hours === 24 ? 0 : hours;
             start = `${hours}:${minutesEl.value}`;
@@ -264,11 +270,14 @@ function calculateTime() {
         } 
     }
 
+    updateSummaryDuration(totalTime)
+}
+
+function updateSummaryDuration(totalTime){
     let summaryDuration = getDurationSplit(totalTime*60*1000);
     document.querySelector('#summary-days').innerText = summaryDuration.days;
     document.querySelector('#summary-hours').innerText = summaryDuration.hours;
     document.querySelector('#summary-minutes').innerText = summaryDuration.minutes;
-
 }
 
 function addDays(date, days) {
@@ -340,8 +349,44 @@ function getChildByClassName(el, className){
     }
 }
 
+const difficultyLevels= {
+    1: 'low',
+    2: 'low-medium',
+    3: 'medium',
+    4: 'medium-high',
+    5: 'high'
+};
+
 function calculateSummary() {
-    // TODO
+    let moduleListTraining = document.querySelectorAll(`#${ID_MODULE_LIST_TRAINING} .${CLASS_MODULE}`);
+    let difficulty = 0;
+    let participants = Number.MAX_VALUE;
+    let trainer = 0;
+    for(mod of moduleListTraining){
+        let d = mod.dataset;
+        difficulty = parseInt(d.difficulty) > difficulty ? parseInt(d.difficulty) : difficulty;
+        participants = parseInt(d.participants) < participants ? parseInt(d.participants) : participants;
+        trainer = parseInt(d.trainer) > trainer ? parseInt(d.trainer) : trainer;
+    }
+    document.querySelector('#number-of-modules').innerText = moduleListTraining.length;
+    document.querySelector('#max-participants').innerText = participants;
+    document.querySelector('#min-trainers').innerText = trainer;
+    document.querySelector('#difficulty').innerText = difficultyLevels[difficulty];
+
+    let resourceList = document.querySelectorAll(`#${ID_MODULE_LIST_TRAINING} .${CLASS_MODULE} .${CLASS_RESOURCE}`);
+    let space = 0;
+    let internet = 'no';
+    let power = 'no';
+    for(resource of resourceList){
+        let d = resource.dataset;
+        space = parseInt(d.space) > space ? parseInt(d.space) : space;
+        if(d.internet === 'yes') internet = 'yes';
+        if(d.power === 'yes') power = 'yes'; 
+    }
+    document.querySelector('#training-space').innerText = space + 'm2';
+    document.querySelector('#internet-needed').innerText = internet;
+    document.querySelector('#power-needed').innerText = power;
+    document.querySelector('#number-of-resources').innerText = resourceList.length;
 }
 
 /**

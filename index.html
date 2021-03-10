@@ -19,7 +19,7 @@ permalink: /
         </div>
         <div class="clearer"></div>
         <ul id="module-list-side-bar" class="module-draggable-list">
-            <li id="Wind-Turbine" class="module battery" data-duration="15">
+            <li id="Wind-Turbine" class="module battery" data-duration="15" data-participants="10" data-trainer="2" data-difficulty="3">
                 <div class="time">
                     <i class="far fa-clock"></i> <span class='clock-time'>03:00pm - 03:45pm</span>
                 </div>
@@ -41,7 +41,7 @@ permalink: /
                         <p class="sidebar">Resources included: <a href="#" target="_blank">Open Documentation Guide</a> | <a href="#" target="_blank">Wind Turbine</a></p>
                         <ul class="resource-list">
                             <h4>Resources:</h4>
-                            <li class="resource resource-1" data-duration="0">
+                            <li class="resource resource-1" data-duration="0" data-name="Open Documentation Guide" data-cost="1" data-space="20" data-internet="no" data-power="no">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span></span>
                                 </div>
@@ -51,7 +51,7 @@ permalink: /
                                 </div>
                                 <div class="clearer"></div>
                             </li>
-                            <li class="resource resource-2" data-duration="90">
+                            <li class="resource resource-2" data-duration="90" data-name="Wind Turbine" data-cost="60" data-space="20" data-internet="no" data-power="no">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span class='clock-time'>03:45pm - 05:15pm</span>
                                 </div>
@@ -164,7 +164,7 @@ permalink: /
                 </div>
                 <div class="clearer"></div>
             </div>
-            <li id="Solar-Charger" class="module solar" data-duration="15">
+            <li id="Solar-Charger" class="module solar" data-duration="15" data-participants="25" data-trainer="5" data-difficulty="1">
                 <div class="time">
                     <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:20am - 12:30am</span></a>
                     <div class="edit-time">
@@ -193,7 +193,7 @@ permalink: /
                         <p class="sidebar">Resources included: <a href="#">LED Lamp</a> | <a href="#">Battery Charger</a> | <a href="#">Solar Charger</a></p>
                         <ul class="resource-list">
                             <h4>Resources:</h4>
-                            <li class="resource resource-1" data-duration="0">
+                            <li class="resource" data-duration="0" data-name="Open Hardware Guide" data-cost="1" data-space="20" data-internet="yes" data-power="yes">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span></span>
                                 </div>
@@ -224,7 +224,7 @@ permalink: /
                                 </div>
                                 <div class="clearer"></div>
                             </li>
-                            <li class="resource resource-2" data-duration="45">
+                            <li class="resource resource-2" data-duration="45" data-name="LED Lamp" data-cost="5" data-space="20" data-internet="no" data-power="no">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span class='clock-time'>12:45am - 01:30pm</span>
                                 </div>
@@ -234,7 +234,7 @@ permalink: /
                                 </div>
                                 <div class="clearer"></div>
                             </li>
-                            <li class="resource resource-3" data-duration="90">
+                            <li class="resource resource-3" data-duration="90" data-name="LED Lamp" data-cost="40" data-space="20" data-internet="no" data-power="no">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span class='clock-time'>01:30am - 03:00pm</span>
                                 </div>
@@ -299,15 +299,15 @@ permalink: /
             <p>total time of your training</p>
             <div class="separator"></div>
             <ul class="informations">
-                <li><i class="fas fa-cubes"></i>4<span class="label">Number of modules</span></li>
-                <li><i class="fas fa-users"></i>10<span class="label">Max. participants</span></li>
-                <li><i class="fas fa-chalkboard-teacher"></i>2<span class="label">Min. trainers</span></li>
-                <li><i class="fas fa-graduation-cap"></i>medium<span class="label">Difficulty level for trainers</span></li>
+                <li><i class="fas fa-cubes"></i><span id="number-of-modules"></span><span class="label">Number of modules</span></li>
+                <li><i class="fas fa-users"></i><span id="max-participants"></span><span class="label">Max. participants</span></li>
+                <li><i class="fas fa-chalkboard-teacher"></i><span id="min-trainers"></span><span class="label">Min. trainers</span></li>
+                <li><i class="fas fa-graduation-cap"></i><span id="difficulty"></span><span class="label">Difficulty level for trainers</span></li>
                 <div class="separator"></div>
-                <li><i class="fas fa-cube"></i>12<span class="label">Number of resources</span></li>
-                <li><i class="fas fa-ruler-combined"></i>30 m2<span class="label">Minimum training space</span></li>
-                <li><i class="fas fa-globe-europe"></i>yes<span class="label">Internet needed</span></li>
-                <li><i class="fas fa-plug"></i>yes<span class="label">Power supply needed</span></li>
+                <li><i class="fas fa-cube"></i><span id="number-of-resources"></span><span class="label">Number of resources</span></li>
+                <li><i class="fas fa-ruler-combined"></i><span id="training-space"></span><span class="label">Minimum training space</span></li>
+                <li><i class="fas fa-globe-europe"></i><span id="internet-needed"></span><span class="label">Internet needed</span></li>
+                <li><i class="fas fa-plug"></i><span id="power-needed"></span><span class="label">Power supply needed</span></li>
                 <div class="clearer"></div>
             </ul>
         </div>
