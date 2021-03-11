@@ -572,7 +572,9 @@ function updateSelectableModulesList() {
     showAllModulesCategory.className = showAllModulesCategoryClassesWithoutSelected.join(' ');
 
     if (selectedCategories.length == 0) {
-        hideAllModules();
+        showAllModules();
+        let all = document.getElementById('show-all-modules');
+        all.className = all.className.concat(CLASS_SELECTED);
         return;
     }
 
