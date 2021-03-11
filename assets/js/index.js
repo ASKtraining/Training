@@ -211,6 +211,55 @@ function closeTime(){
 }
 
 /**
+ * Mobile button initialisations
+ */
+
+function initiateMobileButtons(){
+    initiateAddModule();
+    initiateCloseSidebar();
+    initiateAddTimebreak();
+    initiateAddDaybreak();
+}
+
+function initiateAddModule(){
+    let addModule = document.getElementById('add-module-mobile');
+    addModule.onclick = showSidebar;
+}
+
+function showSidebar(){
+    let el = document.getElementById('MultipleContainers');
+    if(!el.className.includes('open-sidebar')){
+        el.className = el.className.concat('open-sidebar');
+    }
+}
+
+function initiateCloseSidebar(){
+    let closeSidebarButton = document.getElementById('close-sidebar-mobile');
+    closeSidebarButton.onclick = closeSidebar;
+}
+
+function closeSidebar(){
+    let el = document.getElementById('MultipleContainers');
+    const elClasses = el.className.split(' ');
+    const elClassesWithoutSidebar = elClasses.filter(className => className != 'open-sidebar');
+    el.className = elClassesWithoutSidebar.join(' ');
+}
+
+function initiateAddTimebreak(){
+    let addTimebreak = document.getElementById('add-module-mobile');
+    //TODO
+    calculateTime();
+    calculateSummary();
+}
+
+function initiateAddDaybreak(){
+    let addDaybreak = document.getElementById('add-module-mobile');
+    //TODO
+    calculateTime();
+    calculateSummary();
+}
+
+/**
  * Dynamic Calculations
  */
 
@@ -613,6 +662,7 @@ window.onload = function () {
     initiateTimeBreaks();
     initiateTrashButton();
     initiateTimeEdit();
+    initiateMobileButtons();
     calculateTime();
     calculateSummary();
 }
