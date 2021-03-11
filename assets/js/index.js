@@ -215,13 +215,14 @@ function closeTime(){
  */
 
 function initiateMobileButtons(){
+    initiateShowSidebar();
     initiateAddModule();
     initiateCloseSidebar();
     initiateAddTimebreak();
     initiateAddDaybreak();
 }
 
-function initiateAddModule(){
+function initiateShowSidebar(){
     let addModule = document.getElementById('add-module-mobile');
     addModule.onclick = showSidebar;
 }
@@ -230,7 +231,31 @@ function showSidebar(){
     let el = document.getElementById('MultipleContainers');
     if(!el.className.includes('open-sidebar')){
         el.className = el.className.concat('open-sidebar');
+
+        const sideBarModules = document.getElementById(ID_MODULE_LIST_SIDE_BAR).getElementsByClassName(CLASS_MODULE);
+        for(let mod of sideBarModules){
+            mod.draggable = false;
+        }
     }
+}
+
+function initiateAddModule(){
+    let addButtons = document.querySelectorAll(`.${CLASS_MODULE} .add-module`);
+    for(let btn of addButtons){
+        btn.onclick = addModule;
+    }
+}
+
+function addModule(){
+    let currEl = this.parentNode; // start with parentNode because this className already includes "module" => don't use the component names in class names
+    while(!currEl.className.includes(CLASS_MODULE)){
+        currEl = currEl.parentNode;
+    }
+    let moduleList = document.getElementById(ID_MODULE_LIST_TRAINING);
+    moduleList.appendChild(currEl);
+    calculateTime();
+    calculateSummary();
+    closeSidebar();
 }
 
 function initiateCloseSidebar(){
@@ -240,9 +265,16 @@ function initiateCloseSidebar(){
 
 function closeSidebar(){
     let el = document.getElementById('MultipleContainers');
-    const elClasses = el.className.split(' ');
-    const elClassesWithoutSidebar = elClasses.filter(className => className != 'open-sidebar');
-    el.className = elClassesWithoutSidebar.join(' ');
+    if(el.className.includes('open-sidebar')){
+        const elClasses = el.className.split(' ');
+        const elClassesWithoutSidebar = elClasses.filter(className => className != 'open-sidebar');
+        el.className = elClassesWithoutSidebar.join(' ');
+
+        const sideBarModules = document.getElementById(ID_MODULE_LIST_SIDE_BAR).getElementsByClassName(CLASS_MODULE);
+        for(let mod of sideBarModules){
+            mod.draggable = true;
+        }
+    }
 }
 
 function initiateAddTimebreak(){
