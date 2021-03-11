@@ -61,14 +61,22 @@ ul {
   height: 100%;
   border-right: 1px #000 solid;
   z-index: 2;
+  background: #fff;
 }
-#sidebar .module-list {
+#sidebar .header {
+  background: #999999;
+  border-bottom: 1px #000 solid;
+  text-align: right;
+  padding: 10px;
+  display: none;
+}
+#sidebar #module-list-side-bar {
   overflow: auto;
   height: calc(100% - 266px);
 }
-#sidebar .module-list .module {
+#sidebar #module-list-side-bar li {
   border-top: 1px #000 solid;
-  padding: 0 5px;
+  padding: 0 10px;
 }
 #sidebar .resource-list {
   display: none;
@@ -192,9 +200,6 @@ a.help {
   margin-top: -2px;
   font-weight: bold;
 }
-.time a:hover ~ .edit-time {
-  display: block;
-}
 .time .edit-time {
   position: absolute;
   top: 25px;
@@ -237,10 +242,10 @@ a.help {
 }
 .time .edit-time input.hours,
 .time .edit-time input.minutes {
-  width: 20px;
+  width: 40px;
 }
 .time .edit-time input.duration {
-  width: 20px;
+  width: 40px;
 }
 .time .edit-time input.title {
   width: 250px;
@@ -288,6 +293,11 @@ a.help {
 .module .content .options {
   top: 3px;
   right: 10px;
+}
+.module .content .options a.add-module {
+  display: none;
+  color: #fff;
+  font-size: 0.8em;
 }
 .module .content .intro {
   margin-bottom: 15px;
@@ -454,4 +464,61 @@ a.help {
 .resource-overview table .result {
   text-align: right;
   font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  #sidebar {
+    position: absolute;
+    max-width: 100%;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    left: 0;
+    top: -100%;
+    height: 100%;
+    display: block;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    border-right: none;
+  }
+  #sidebar .header {
+    display: block;
+  }
+  #sidebar .breaks,
+#sidebar .footer {
+    display: none;
+  }
+
+  .module .content .options a.add-module {
+    display: inline;
+  }
+
+  .open-sidebar #sidebar {
+    top: 0;
+    left: 0;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+  .open-sidebar #content {
+    display: none;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+
+  #content {
+    padding: 0 10px;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+
+  .add-modules-breaks p {
+    display: none;
+  }
+  .add-modules-breaks a.button {
+    display: inline;
+  }
+
+  .summary ul li {
+    width: 50%;
+  }
 }

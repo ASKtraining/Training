@@ -64,12 +64,19 @@ ul
     height: 100%
     border-right: 1px $color-general-borders solid
     z-index: 2
-    .module-list
+    background: #fff
+    .header
+        background: #999999
+        border-bottom: 1px #000 solid
+        text-align: right
+        padding: 10px
+        display: none
+    #module-list-side-bar
         overflow: auto
         height: calc(100% - 266px)
-        .module
+        li
             border-top: 1px $color-general-borders solid
-            padding: 0 5px
+            padding: 0 10px
     .resource-list
         display: none
     .time
@@ -213,9 +220,9 @@ a.help
             margin-left: 5px
         input.hours,
         input.minutes
-            width: 20px
+            width: 40px
         input.duration
-            width: 20px
+            width: 40px
         input.title
             width: 250px
         input.submit
@@ -252,6 +259,10 @@ a.help
         .options
             top: 3px
             right: 10px
+            a.add-module
+                display: none
+                color: #fff
+                font-size: 0.8em
         .intro
             margin-bottom: 15px
         .module-meta
@@ -378,3 +389,46 @@ a.help
         .result
             text-align: right
             font-weight: bold
+
+@media only screen and (max-width: 600px)
+    #sidebar
+        position: absolute
+        max-width: 100%
+        appearance: none
+        left: 0
+        top: -100%
+        height: 100%
+        display: block
+        transition: all 500ms ease
+        border-right: none
+        .header
+            display: block
+        .breaks,
+        .footer
+            display: none
+    .module
+        .content
+            .options
+                a.add-module
+                    display: inline
+    .open-sidebar 
+        #sidebar
+            top: 0
+            left: 0
+            transition: all 500ms ease
+        #content
+            display: none
+            transition: all 500ms ease
+
+    #content
+        padding: 0 10px
+        transition: all 500ms ease
+    .add-modules-breaks
+        p
+            display: none
+        a.button
+            display: inline
+    .summary 
+        ul
+            li
+                width: 50%
