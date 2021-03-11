@@ -278,15 +278,29 @@ function closeSidebar(){
 }
 
 function initiateAddTimebreak(){
-    let addTimebreak = document.getElementById('add-module-mobile');
-    //TODO
+    let addTimebreakButton = document.getElementById('add-timebreak-mobile');
+    addTimebreakButton.onclick = addTimebreak;
+}
+
+function addTimebreak(){
+    const timeBreak = document.getElementsByClassName(CLASS_TIMEBREAK)[0].cloneNode(true);
+    let moduleList = document.getElementById(ID_MODULE_LIST_TRAINING);
+    moduleList.appendChild(timeBreak);
+    initiateTrashButton();
     calculateTime();
     calculateSummary();
 }
 
 function initiateAddDaybreak(){
-    let addDaybreak = document.getElementById('add-module-mobile');
-    //TODO
+    let addDaybreakButton = document.getElementById('add-daybreak-mobile');
+    addDaybreakButton.onclick = addDaybreak;
+}
+
+function addDaybreak(){
+    const dayBreak = document.getElementsByClassName(CLASS_DAYBREAK)[0].cloneNode(true);
+    let moduleList = document.getElementById(ID_MODULE_LIST_TRAINING);
+    moduleList.appendChild(dayBreak);
+    initiateTrashButton();
     calculateTime();
     calculateSummary();
 }
