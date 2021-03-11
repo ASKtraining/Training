@@ -142,16 +142,11 @@ function initiateSubmitTimeButton(){
     }
 }
 
-function submitTime(){
-    const form = this.parentNode;
-    const hoursEl = getChildByClassName(form, 'hours');
-    const minutesEl = getChildByClassName(form, 'minutes');
-    const amOrPm = getChildByClassName(form, 'am-or-pm');
+function getStartTime(hoursEl, minutesEl, amOrPm){
     let start = '9:00'
     if(hoursEl != null && minutesEl != null){
-        if(minutesEl.value === ''){
-            minutesEl.value = '0';
-        }
+        if(hoursEl.value === '') hoursEl.value ='9';
+        if(minutesEl.value === '') minutesEl.value = '0';
         if(amOrPm.value === 'am'){
             start = `${hoursEl.value}:${minutesEl.value}`;
         } else if(amOrPm.value === 'pm'){
@@ -160,10 +155,24 @@ function submitTime(){
             start = `${hours}:${minutesEl.value}`;
         }
     }
+    return start;
+}
+
+function submitTime(){
+    const form = this.parentNode;
+
+    const hoursEl = getChildByClassName(form, 'hours');
+    const minutesEl = getChildByClassName(form, 'minutes');
+    const amOrPm = getChildByClassName(form, 'am-or-pm');
+    let start = getStartTime(hoursEl, minutesEl, amOrPm);
+    
     let duration = getChildByClassName(form, 'duration').value;
     if(duration === ''){
         duration = '15';
     }
+
+    const titleEl = getChildByClassName(form, 'title');
+    
 
     let currentElement = this;
     let runLoop = true;
@@ -176,6 +185,10 @@ function submitTime(){
             if(currentElement.className.includes(CLASS_TRAININGSTART)
             || currentElement.className.includes(CLASS_DAYBREAK)){
                 currentElement.dataset.start = start;
+                if(titleEl != null && titleEl.value != ''){
+                    let titleNode = getChildByClassName(currentElement, 'break-title');
+                    titleNode.innerText = titleEl.value;
+                }
             }
             runLoop = false;
         }
