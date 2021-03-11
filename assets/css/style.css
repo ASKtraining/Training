@@ -54,6 +54,9 @@ ul {
 #content .resources .sidebar {
   display: none;
 }
+#content .print {
+  float: right;
+}
 
 #sidebar {
   max-width: 350px;
@@ -466,7 +469,7 @@ a.help {
   font-weight: bold;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   #sidebar {
     position: absolute;
     max-width: 100%;
@@ -517,7 +520,8 @@ a.help {
   .add-modules-breaks a.button {
     display: inline;
   }
-
+}
+@media only screen and (max-width: 600px) {
   .summary ul li {
     width: 50%;
   }
