@@ -94,10 +94,13 @@ function onClickDeleteOrMoveListElement() {
     if (currentElement.className.includes(CLASS_MODULE)) {
         let moduleListSideBar = document.getElementById(ID_MODULE_LIST_SIDE_BAR);
         moduleListSideBar.appendChild(currentElement);
+        calculateTime();
+        calculateSummary();
         return;
     }
     currentElement.remove();
     calculateTime();
+    calculateSummary();
 }
 
 function initiateTimeEdit(){
@@ -143,9 +146,19 @@ function submitTime(){
     const form = this.parentNode;
     const hoursEl = getChildByClassName(form, 'hours');
     const minutesEl = getChildByClassName(form, 'minutes');
+    const amOrPm = getChildByClassName(form, 'am-or-pm');
     let start = '9:00'
     if(hoursEl != null && minutesEl != null){
-        start = `${hours}:${minutes}`;
+        if(minutesEl.value === ''){
+            minutesEl.value = '0';
+        }
+        if(amOrPm.value === 'am'){
+            start = `${hoursEl.value}:${minutesEl.value}`;
+        } else if(amOrPm.value === 'pm'){
+            let hours = parseInt(hoursEl.value) + 12;
+            hours = hours === 24 ? 0 : hours;
+            start = `${hours}:${minutesEl.value}`;
+        }
     }
     let duration = getChildByClassName(form, 'duration').value;
     if(duration === ''){
@@ -188,7 +201,9 @@ function closeTime(){
  * Dynamic Calculations
  */
 
-function runDynamicCalculationsOnUpdate() {
+function runDynamicCalculationsOnUpdate(evt) {
+    let mod = evt.item;
+    insertTimeBreaks(mod);
     calculateTime();
     calculateSummary();
 }
@@ -255,11 +270,14 @@ function calculateTime() {
         } 
     }
 
+    updateSummaryDuration(totalTime)
+}
+
+function updateSummaryDuration(totalTime){
     let summaryDuration = getDurationSplit(totalTime*60*1000);
     document.querySelector('#summary-days').innerText = summaryDuration.days;
     document.querySelector('#summary-hours').innerText = summaryDuration.hours;
     document.querySelector('#summary-minutes').innerText = summaryDuration.minutes;
-
 }
 
 function addDays(date, days) {
@@ -331,8 +349,87 @@ function getChildByClassName(el, className){
     }
 }
 
+const difficultyLevels= {
+    1: 'low',
+    2: 'low-medium',
+    3: 'medium',
+    4: 'medium-high',
+    5: 'high'
+};
+
 function calculateSummary() {
-    // TODO
+    let moduleListTraining = document.querySelectorAll(`#${ID_MODULE_LIST_TRAINING} .${CLASS_MODULE}`);
+    let difficulty = 0;
+    let participants = Number.MAX_VALUE;
+    let trainer = 0;
+    for(mod of moduleListTraining){
+        let d = mod.dataset;
+        difficulty = parseInt(d.difficulty) > difficulty ? parseInt(d.difficulty) : difficulty;
+        participants = parseInt(d.participants) < participants ? parseInt(d.participants) : participants;
+        trainer = parseInt(d.trainer) > trainer ? parseInt(d.trainer) : trainer;
+    }
+    document.querySelector('#number-of-modules').innerText = moduleListTraining.length;
+    document.querySelector('#max-participants').innerText = participants;
+    document.querySelector('#min-trainers').innerText = trainer;
+    document.querySelector('#difficulty').innerText = difficultyLevels[difficulty];
+
+    let resourceList = document.querySelectorAll(`#${ID_MODULE_LIST_TRAINING} .${CLASS_MODULE} .${CLASS_RESOURCE}`);
+    let space = 0;
+    let internet = 'no';
+    let power = 'no';
+    let materialCost = [];
+    for(resource of resourceList){
+        let d = resource.dataset;
+        space = parseInt(d.space) > space ? parseInt(d.space) : space;
+        if(d.internet === 'yes') internet = 'yes';
+        if(d.power === 'yes') power = 'yes';
+
+        if(alreadyInCostList(materialCost, d.name)){
+            updateCostList(materialCost, d.name);
+        } else {
+            let newResource = {'name': d.name, 'cost': parseInt(d.cost), 'count': 1};
+            materialCost.push(newResource);
+        }
+    }
+    updateResourceCostList(materialCost);
+    document.querySelector('#training-space').innerText = space + 'm2';
+    document.querySelector('#internet-needed').innerText = internet;
+    document.querySelector('#power-needed').innerText = power;
+    document.querySelector('#number-of-resources').innerText = resourceList.length;
+}
+
+function alreadyInCostList(l, name){
+    return l.map(el => el['name']).includes(name);
+}
+
+function updateCostList(l, name){
+    let currEl = l.filter(el => el['name'] == name)[0];
+    currEl['count']+=1;
+}
+
+function updateResourceCostList(l){
+    let resourceTable = document.querySelector('#resource-table');
+    let costSum = 0;
+    resourceTable.innerHTML = `
+    <tr>
+        <th class="quantity">Quantity</th>
+        <th class="resource-name">Name of the resource</th>
+        <th class="material-costs">Material Costs</th>
+    </tr>`;
+    l.forEach(el => {
+        resourceTable.innerHTML+=`
+        <tr>
+            <th class="quantity"><input value="${el['count']}"></input></th>
+            <th class="resource-name">${el['name']}</th>
+            <th class="material-costs">${el['count'] * el['cost']}</th>
+        </tr>`;
+        costSum += el['count'] * el['cost'];
+    });
+    resourceTable.innerHTML+=`
+    <tr class="result">
+        <td colspan="2" class="label">Result:</td>
+        <td class="total-price">${costSum} $</td>
+    </tr>`;
 }
 
 /**
@@ -393,6 +490,7 @@ function addTimeBreakAfter(resource) {
     const MODULE_TIME_BREAK = document.getElementsByClassName(CLASS_TIMEBREAK)[0].cloneNode(true);
     resource.parentNode.insertBefore(MODULE_TIME_BREAK, resource.nextSibling);
     initiateTrashButton();
+    initiateTimeEdit();
 }
 
 /**
