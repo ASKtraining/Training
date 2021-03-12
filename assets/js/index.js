@@ -382,6 +382,7 @@ function runDynamicCalculationsOnAdd(evt) {
 function calculateTime() {
     let totalTime = 0;
     let clockTime = new Date();
+    let days = 0;
 
     let trainingstart = document.getElementById(CLASS_TRAININGSTART);
     const duration = parseInt(trainingstart.dataset.duration);
@@ -389,6 +390,7 @@ function calculateTime() {
     startTime = clockTime;
     clockTime = insertClockTime(clockTime, duration, trainingstart);
     totalTime+=duration;
+    days+=1;
 
     let moduleList = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
     moduleList = moduleList.filter(el => el.nodeName.includes('LI'));
@@ -430,16 +432,16 @@ function calculateTime() {
             clockTime = parseDatefromString(clockTime, mod.dataset.start);
             clockTime = insertClockTime(clockTime, duration, mod);
             totalTime+=duration;
-
+            days+=1;
         } 
     }
 
-    updateSummaryDuration(totalTime)
+    updateSummaryDuration(days, totalTime)
 }
 
-function updateSummaryDuration(totalTime){
+function updateSummaryDuration(days, totalTime){
     let summaryDuration = getDurationSplit(totalTime*60*1000);
-    document.querySelector('#summary-days').innerText = summaryDuration.days;
+    document.querySelector('#summary-days').innerText = days;
     document.querySelector('#summary-hours').innerText = summaryDuration.hours;
     document.querySelector('#summary-minutes').innerText = summaryDuration.minutes;
 }
@@ -452,15 +454,12 @@ function addDays(date, days) {
 
 // duration in ms
 function getDurationSplit(duration){
-    const daysDiv = 1000 * 60 * 60 * 24
-    const days = Math.floor(duration / daysDiv);
-    duration = duration - days * daysDiv;
     const hoursDiv = 1000 * 60 * 60;
     const hours = Math.floor(duration / hoursDiv);
     duration = duration - hours * hoursDiv;
     const minutesDiv = 1000 * 60;
     const minutes = Math.floor(duration / minutesDiv);
-    return {'days': days, 'hours': hours, 'minutes': minutes};
+    return {'hours': hours, 'minutes': minutes};
 }
 
 function parseDatefromString(clockTime, daytime) {
