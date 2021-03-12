@@ -173,14 +173,14 @@ function submitTime(){
 
     const titleEl = getChildByClassName(form, 'title');
     
-
     let currentElement = this;
     let runLoop = true;
     while(runLoop){
         if(currentElement.className.includes(CLASS_MODULE) 
         || currentElement.className.includes(CLASS_TRAININGSTART) 
         || currentElement.className.includes(CLASS_DAYBREAK)
-        || currentElement.className.includes(CLASS_TIMEBREAK)){
+        || currentElement.className.includes(CLASS_TIMEBREAK)
+        || currentElement.className.includes(CLASS_RESOURCE)){
             currentElement.dataset.duration = duration;
             if(currentElement.className.includes(CLASS_TRAININGSTART)
             || currentElement.className.includes(CLASS_DAYBREAK)){
