@@ -228,19 +228,23 @@ function submitTime(){
     let currentElement = this;
     let runLoop = true;
     while(runLoop){
-        if(currentElement.className.includes(CLASS_MODULE) 
-        || currentElement.className.includes(CLASS_TRAININGSTART) 
-        || currentElement.className.includes(CLASS_DAYBREAK)
-        || currentElement.className.includes(CLASS_TIMEBREAK)
-        || currentElement.className.includes(CLASS_RESOURCE)){
+        let currClassName = currentElement.className;
+        if(currClassName.includes(CLASS_MODULE) 
+        || currClassName.includes(CLASS_TRAININGSTART) 
+        || currClassName.includes(CLASS_DAYBREAK)
+        || currClassName.includes(CLASS_TIMEBREAK)
+        || currClassName.includes(CLASS_RESOURCE)){
             currentElement.dataset.duration = duration;
-            if(currentElement.className.includes(CLASS_TRAININGSTART)
-            || currentElement.className.includes(CLASS_DAYBREAK)){
+            if(currClassName.includes(CLASS_TRAININGSTART)
+            || currClassName.includes(CLASS_DAYBREAK)){
                 currentElement.dataset.start = start;
-                if(titleEl != null && titleEl.value != ''){
-                    let titleNode = getChildByClassName(currentElement, 'break-title');
-                    titleNode.innerText = titleEl.value;
-                }
+            }
+            if((titleEl != null && titleEl.value != '') 
+            && currClassName.includes(CLASS_TRAININGSTART)
+            || currClassName.includes(CLASS_DAYBREAK)
+            || currClassName.includes(CLASS_TIMEBREAK)){
+                let titleNode = getChildByClassName(currentElement, 'break-title');
+                titleNode.innerText = titleEl.value;
             }
             runLoop = false;
         }
