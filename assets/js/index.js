@@ -522,7 +522,7 @@ function updateResourceCostList(l){
     <tr>
         <th class="quantity">Quantity</th>
         <th class="resource-name">Name of the resource</th>
-        <th class="material-costs">Material Costs</th>
+        <th class="material-costs">Estimated Material Costs</th>
     </tr>`;
     l.forEach(el => {
         resourceTable.innerHTML+=`
