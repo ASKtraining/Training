@@ -111,6 +111,26 @@ function submitTitle(){
     if(newDescription != '') description.innerText = newDescription;
 }
 
+function initiateEditResourceQuantity(){
+    let inputQuantity = document.getElementsByClassName('quantity-input');
+    for(let input of inputQuantity){
+        input.onchange = editResourceQuantity;
+    }
+}
+
+function editResourceQuantity(){
+    let parentNode = this.parentNode.parentNode;
+    let valueEl = getChildByClassName(parentNode, 'material-costs'); 
+    let cost = parseInt(valueEl.dataset.cost);
+    let oldValue = parseInt(valueEl.innerText);
+    let newValue = cost * parseInt(this.value);
+    valueEl.innerText = newValue + ' $';
+    let totalSumEl = document.getElementById('total-price');
+    let totalSum = parseInt(totalSumEl.innerText);
+    let newSum = totalSum - oldValue + newValue;
+    totalSumEl.innerText = newSum + ' $';
+}
+
 function initiateTrashButton() {
     let trashButtons = document.getElementsByClassName('trash');
     for (btn of trashButtons) {
@@ -559,17 +579,18 @@ function updateResourceCostList(l){
     l.forEach(el => {
         resourceTable.innerHTML+=`
         <tr>
-            <th class="quantity"><input value="${el['count']}"></input></th>
+            <th class="quantity"><input class="quantity-input" type="number" min="0" max="1000000" value="${el['count']}"></input></th>
             <th class="resource-name">${el['name']}</th>
-            <th class="material-costs">${el['count'] * el['cost']}</th>
+            <th class="material-costs" data-cost="${el['cost']}">${el['count'] * el['cost']} $</th>
         </tr>`;
         costSum += el['count'] * el['cost'];
     });
     resourceTable.innerHTML+=`
     <tr class="result">
         <td colspan="2" class="label">Result:</td>
-        <td class="total-price">${costSum} $</td>
+        <td id="total-price">${costSum} $</td>
     </tr>`;
+    initiateEditResourceQuantity();
 }
 
 /**
