@@ -79,6 +79,38 @@ function initiateSortable() {
  * Button onclick initialisations
  */
 
+function initiateEditTitle(){
+    let editButton = document.getElementById('edit-icon');
+    editButton.onclick = showEditTitle;
+    let submitButton = document.getElementById('submit-title');
+    submitButton.onclick = submitTitle;
+}
+
+function showEditTitle(){
+    let editTitle = document.getElementById('edit-title-and-description');
+    if(editTitle.style.display == 'none'){
+        editTitle.style.display = '';
+        return;
+    }
+    editTitle.style.display = 'none';
+}
+
+function submitTitle(){
+    let editTitle = document.getElementById('edit-title-and-description');
+    if(editTitle.style.display == ''){
+        editTitle.style.display = 'none';
+    }
+
+    let form = this.parentNode;
+    let title = document.getElementById('training-title');
+    let newTitle = getChildByClassName(form, 'title').value;
+    if(newTitle != '') title.innerText = newTitle;
+
+    let description = document.getElementById('training-description');    
+    let newDescription = getChildByClassName(form, 'description').value;
+    if(newDescription != '') description.innerText = newDescription;
+}
+
 function initiateTrashButton() {
     let trashButtons = document.getElementsByClassName('trash');
     for (btn of trashButtons) {
@@ -705,6 +737,7 @@ function updateSelectableModulesList() {
 window.onload = function () {
     initiateSortable();
     initiateWordcloudFilter();
+    initiateEditTitle();
     initiateTimeBreaks();
     initiateTrashButton();
     initiateTimeEdit();
