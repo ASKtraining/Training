@@ -79,6 +79,58 @@ function initiateSortable() {
  * Button onclick initialisations
  */
 
+function initiateEditTitle(){
+    let editButton = document.getElementById('edit-icon');
+    editButton.onclick = showEditTitle;
+    let submitButton = document.getElementById('submit-title');
+    submitButton.onclick = submitTitle;
+}
+
+function showEditTitle(){
+    let editTitle = document.getElementById('edit-title-and-description');
+    if(editTitle.style.display == 'none'){
+        editTitle.style.display = '';
+        return;
+    }
+    editTitle.style.display = 'none';
+}
+
+function submitTitle(){
+    let editTitle = document.getElementById('edit-title-and-description');
+    if(editTitle.style.display == ''){
+        editTitle.style.display = 'none';
+    }
+
+    let form = this.parentNode;
+    let title = document.getElementById('training-title');
+    let newTitle = getChildByClassName(form, 'title').value;
+    if(newTitle != '') title.innerText = newTitle;
+
+    let description = document.getElementById('training-description');    
+    let newDescription = getChildByClassName(form, 'description').value;
+    if(newDescription != '') description.innerText = newDescription;
+}
+
+function initiateEditResourceQuantity(){
+    let inputQuantity = document.getElementsByClassName('quantity-input');
+    for(let input of inputQuantity){
+        input.onchange = editResourceQuantity;
+    }
+}
+
+function editResourceQuantity(){
+    let parentNode = this.parentNode.parentNode;
+    let valueEl = getChildByClassName(parentNode, 'material-costs'); 
+    let cost = parseInt(valueEl.dataset.cost);
+    let oldValue = parseInt(valueEl.innerText);
+    let newValue = cost * parseInt(this.value);
+    valueEl.innerText = newValue + ' $';
+    let totalSumEl = document.getElementById('total-price');
+    let totalSum = parseInt(totalSumEl.innerText);
+    let newSum = totalSum - oldValue + newValue;
+    totalSumEl.innerText = newSum + ' $';
+}
+
 function initiateTrashButton() {
     let trashButtons = document.getElementsByClassName('trash');
     for (btn of trashButtons) {
@@ -173,22 +225,26 @@ function submitTime(){
 
     const titleEl = getChildByClassName(form, 'title');
     
-
     let currentElement = this;
     let runLoop = true;
     while(runLoop){
-        if(currentElement.className.includes(CLASS_MODULE) 
-        || currentElement.className.includes(CLASS_TRAININGSTART) 
-        || currentElement.className.includes(CLASS_DAYBREAK)
-        || currentElement.className.includes(CLASS_TIMEBREAK)){
+        let currClassName = currentElement.className;
+        if(currClassName.includes(CLASS_MODULE) 
+        || currClassName.includes(CLASS_TRAININGSTART) 
+        || currClassName.includes(CLASS_DAYBREAK)
+        || currClassName.includes(CLASS_TIMEBREAK)
+        || currClassName.includes(CLASS_RESOURCE)){
             currentElement.dataset.duration = duration;
-            if(currentElement.className.includes(CLASS_TRAININGSTART)
-            || currentElement.className.includes(CLASS_DAYBREAK)){
+            if(currClassName.includes(CLASS_TRAININGSTART)
+            || currClassName.includes(CLASS_DAYBREAK)){
                 currentElement.dataset.start = start;
-                if(titleEl != null && titleEl.value != ''){
-                    let titleNode = getChildByClassName(currentElement, 'break-title');
-                    titleNode.innerText = titleEl.value;
-                }
+            }
+            if((titleEl != null && titleEl.value != '') 
+            && currClassName.includes(CLASS_TRAININGSTART)
+            || currClassName.includes(CLASS_DAYBREAK)
+            || currClassName.includes(CLASS_TIMEBREAK)){
+                let titleNode = getChildByClassName(currentElement, 'break-title');
+                titleNode.innerText = titleEl.value;
             }
             runLoop = false;
         }
@@ -326,6 +382,7 @@ function runDynamicCalculationsOnAdd(evt) {
 function calculateTime() {
     let totalTime = 0;
     let clockTime = new Date();
+    let days = 0;
 
     let trainingstart = document.getElementById(CLASS_TRAININGSTART);
     const duration = parseInt(trainingstart.dataset.duration);
@@ -333,6 +390,7 @@ function calculateTime() {
     startTime = clockTime;
     clockTime = insertClockTime(clockTime, duration, trainingstart);
     totalTime+=duration;
+    days+=1;
 
     let moduleList = Array.from(document.getElementById(ID_MODULE_LIST_TRAINING).childNodes);
     moduleList = moduleList.filter(el => el.nodeName.includes('LI'));
@@ -374,16 +432,16 @@ function calculateTime() {
             clockTime = parseDatefromString(clockTime, mod.dataset.start);
             clockTime = insertClockTime(clockTime, duration, mod);
             totalTime+=duration;
-
+            days+=1;
         } 
     }
 
-    updateSummaryDuration(totalTime)
+    updateSummaryDuration(days, totalTime)
 }
 
-function updateSummaryDuration(totalTime){
+function updateSummaryDuration(days, totalTime){
     let summaryDuration = getDurationSplit(totalTime*60*1000);
-    document.querySelector('#summary-days').innerText = summaryDuration.days;
+    document.querySelector('#summary-days').innerText = days;
     document.querySelector('#summary-hours').innerText = summaryDuration.hours;
     document.querySelector('#summary-minutes').innerText = summaryDuration.minutes;
 }
@@ -396,15 +454,12 @@ function addDays(date, days) {
 
 // duration in ms
 function getDurationSplit(duration){
-    const daysDiv = 1000 * 60 * 60 * 24
-    const days = Math.floor(duration / daysDiv);
-    duration = duration - days * daysDiv;
     const hoursDiv = 1000 * 60 * 60;
     const hours = Math.floor(duration / hoursDiv);
     duration = duration - hours * hoursDiv;
     const minutesDiv = 1000 * 60;
     const minutes = Math.floor(duration / minutesDiv);
-    return {'days': days, 'hours': hours, 'minutes': minutes};
+    return {'hours': hours, 'minutes': minutes};
 }
 
 function parseDatefromString(clockTime, daytime) {
@@ -527,17 +582,18 @@ function updateResourceCostList(l){
     l.forEach(el => {
         resourceTable.innerHTML+=`
         <tr>
-            <th class="quantity"><input value="${el['count']}"></input></th>
+            <th class="quantity"><input class="quantity-input" type="number" min="0" max="1000000" value="${el['count']}"></input></th>
             <th class="resource-name">${el['name']}</th>
-            <th class="material-costs">${el['count'] * el['cost']}</th>
+            <th class="material-costs" data-cost="${el['cost']}">${el['count'] * el['cost']} $</th>
         </tr>`;
         costSum += el['count'] * el['cost'];
     });
     resourceTable.innerHTML+=`
     <tr class="result">
         <td colspan="2" class="label">Result:</td>
-        <td class="total-price">${costSum} $</td>
+        <td id="total-price">${costSum} $</td>
     </tr>`;
+    initiateEditResourceQuantity();
 }
 
 /**
@@ -705,6 +761,7 @@ function updateSelectableModulesList() {
 window.onload = function () {
     initiateSortable();
     initiateWordcloudFilter();
+    initiateEditTitle();
     initiateTimeBreaks();
     initiateTrashButton();
     initiateTimeEdit();
