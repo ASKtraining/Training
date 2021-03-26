@@ -1,0 +1,5 @@
+version: '0.1.0'
+
+training:
+  included-modules:
+    - rdf-url: https://opencultureagency.github.io/Module-TEMPLATE/resource.ttl
