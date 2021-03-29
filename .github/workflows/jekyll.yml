@@ -26,6 +26,6 @@ jobs:
           ${{ runner.os }}-gems-
 
     # Standard usage
-    - uses:  helaili/jekyll-action@2.0.4
+    - uses:  helaili/jekyll-action@2.2.0
       env:
         JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
