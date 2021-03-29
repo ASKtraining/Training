@@ -1,0 +1,31 @@
+name: Jekyll site CI
+
+on:
+  push:
+    branches: [ '**' ]
+  pull_request:
+    branches: [ '**' ]
+
+jobs:
+  jekyll:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        git clone https://github.com/ASKtraining/tools.git
+        pip3 install -r tools/requirements.txt
+        export BASE_IRI="http://myontology.com"
+        tools/scripts/pre-process
+
+    # Use GitHub Actions' cache to shorten build times and decrease load on servers
+    - uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
+    # Standard usage
+    - uses:  helaili/jekyll-action@2.0.4
+      env:
+        JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
