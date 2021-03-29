@@ -164,12 +164,21 @@ permalink: /
     <div id="content">
         <a id="edit-icon" class="edit" href="#edit-title-and-description"><i class="fas fa-edit"></i></a>
         <div id="edit-title-and-description">
+            <div class="edit-title-and-description-body">
+                <div class="edit-title-and-description-header">
+                    <p>Edit training plan details</p>
+                    <a class="close" href="#"><i class="fas fa-times-circle"></i></a>
+                </div>
+                <div class="edit-title-and-description-content">
             <form>
                 <input type="text" class="title" placeholder="Title of the training">
                 <textarea class="description"></textarea>
-                <input id="submit-title" type="button">Submit</button>
+                        <input id="submit-title" type="button" value="Save changes">
             </form>
         </div>
+            </div>
+        </div>
+        
         <h1 id="training-title">{{ page.title }} - Title of the Training</h1>
         <p id="training-description">Short description about the training.</p>
         <ul id="module-list-training" class="training-list">
@@ -215,7 +224,12 @@ permalink: /
                 </div>
                 <div class="content">
                     <div class="options">
-                        <a class="info" href="#"><i class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a> 
+                        <a class="info" href="#lightbox-solar-charger"><i class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a> 
+                    </div>
+                    <div id="lightbox-solar-charger">
+                        <div class="lightbox-body">
+                            <iframe height="700" width="500" src="https://asktraining.github.io/Resource-TEMPLATE/resources/MyBigFatTrainingModuleResource.html" title="W3Schools Free Online Web Tutorials"></iframe>
+                        </div>
                     </div>
                     <h2>Solar Charger</h2>
                     <p class="intro">Introduction into the module</p>

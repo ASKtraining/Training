@@ -88,17 +88,17 @@ function initiateEditTitle(){
 
 function showEditTitle(){
     let editTitle = document.getElementById('edit-title-and-description');
-    if(editTitle.style.display == 'none'){
-        editTitle.style.display = '';
+    if(editTitle.style.transform == ''){
+        editTitle.style.transform = '';
         return;
     }
-    editTitle.style.display = 'none';
+    editTitle.style.transform = 'scale(1,1)';
 }
 
 function submitTitle(){
     let editTitle = document.getElementById('edit-title-and-description');
-    if(editTitle.style.display == ''){
-        editTitle.style.display = 'none';
+    if(editTitle.style.transform == 'scale(0,0)'){
+        editTitle.style.transform = 'scale(1,1)';
     }
 
     let form = this.parentNode;

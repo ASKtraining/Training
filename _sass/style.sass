@@ -54,6 +54,86 @@ ul
         right: 10px
         font-size: 1.6em
         color: $color-element-background
+    #edit-title-and-description,
+    #lightbox-solar-charger
+        position: fixed
+        top: 0
+        left: 0
+        width: 100vw
+        height: 100vh
+        background: rgba(0,0,0,0.5)
+        display: flex
+        align-items: center
+        justify-content: center
+        z-index: 3
+        transform: scale(0,0)
+        transform-origin: top right
+        transition: transform ease-in-out 100ms
+    #edit-title-and-description:target,
+    #lightbox-solar-charger:target
+        transform: scale(1,1)
+    .edit-title-and-description-body,
+    .lightbox-body
+        width: 75%
+        max-width: 400px
+        background: white
+        position: relative
+        .edit-title-and-description-header
+            background-color: rgb(246 248 250)
+            border: 1px solid rgb(225 228 232)
+            text-align: right
+            padding: 10px
+            p
+                float: left
+                font-weight: 600
+                font-size: 0.8em
+                margin-top: 4px
+            .close
+                text-decoration: none
+                display: inline
+            .close::after
+                clear: both
+        .edit-title-and-description-content
+            padding: 20px 20px 20px 20px
+            display: flow-root
+            input.title
+                width: 95%
+                font-size: 1.1em
+                border: 1px solid #333
+                border-radius: 3px
+                margin-bottom: 20px
+                padding: 10px
+                background-color: rgb(250 251 252)
+                color: rgb(36 41 46)
+            textarea
+                width: 95%
+                font-family: Noto Sans JP
+                border: 1px solid #333
+                padding: 10px
+                border-radius: 3px
+                min-height: 250px
+            input#submit-title
+                position: relative
+                display: inline-block
+                padding: 5px 16px
+                margin-top: 10px
+                font-size: 14px
+                font-weight: 500
+                line-height: 20px
+                white-space: nowrap
+                vertical-align: middle
+                cursor: pointer
+                user-select: none
+                appearance: none
+                background: $color-element-background
+                box-shadow: inset 0 1px 0 rgba(20,70,32,0.2)
+                border: 1px solid
+                border-radius: 6px
+                border-color: rgba(27,31,35,0.15)
+                color: rgb(255 255 255)
+                float: right
+            input#submit-title::after
+                clear: both
     .resources
         .sidebar
             display: none
@@ -65,7 +145,7 @@ ul
     position: fixed
     height: 100%
     border-right: 1px $color-general-borders solid
-    z-index: 2
+    z-index: 1
     background: #fff
     .header
         background: #999999
