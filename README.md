@@ -41,7 +41,7 @@ Then you can use the following command to start the training planner at any time
 ```
 docker-compose start
 ```
-## Partners and Founders
+## Partners and Funder
 
 | r0g Agency | ASKnet | nanoLogika | BMZ |
 | :--------: | :----: | :-------------------------: | :-------: |
