@@ -23,7 +23,7 @@ permalink: /
         </div>
         <div class="clearer"></div>
         <ul id="module-list-side-bar" class="module-draggable-list">
-            <li id="Wind-Turbine" class="module battery" data-duration="15" data-participants="10" data-trainer="2" data-difficulty="3">
+            <!-- <li id="Wind-Turbine" class="module battery" data-duration="15" data-participants="10" data-trainer="2" data-difficulty="5">
                 <div class="time">
                     <i class="far fa-clock"></i> <span class='clock-time'>03:00pm - 03:45pm</span>
                     <div class="edit-time">
@@ -55,7 +55,7 @@ permalink: /
                         <p class="sidebar">Resources included: <a href="#" target="_blank">Open Documentation Guide</a> | <a href="#" target="_blank">Wind Turbine</a></p>
                         <ul class="resource-list">
                             <h4>Resources:</h4>
-                            <li class="resource resource-1" data-duration="0" data-name="Open Documentation Guide" data-cost="1" data-space="20" data-internet="no" data-power="no">
+                            <li class="resource resource-1" data-duration="30" data-name="Open Documentation Guide" data-cost="1" data-space="20" data-internet="no" data-power="no">
                                 <div class="time">
                                     <i class="far fa-clock"></i> <span></span>
                                     <div class="edit-time">
@@ -69,7 +69,7 @@ permalink: /
                                     </div>
                                 </div>
                                 <div class="content">
-                                    <a href="#" class="button">Manual <i class="fas fa-file-download"></i></a>
+                                    <a href="https://img-comment-fun.9cache.com/media/apLBwOD/aBoBXkzb_700w_0.jpg" class="button" target="_blank">Manual <i class="fas fa-file-download"></i></a>
                                     <div>Open Documentation Guide | medium | 0 minutes | 1 $</div>
                                 </div>
                                 <div class="clearer"></div>
@@ -97,7 +97,101 @@ permalink: /
                     </div>
                 </div>
                 <div class="clearer"></div>
+            </li> -->
+
+            <!-- Martins Test-Modul-Kopie -->
+
+            {% for module in site.modules %}
+            
+            <li id="{{ module.module.id }}" class="module {{ module.module.tag }}" data-duration="{{ module.module.duration }}" data-participants="10" data-trainer="2" data-difficulty="5">
+                <div class="time">
+                    <i class="far fa-clock"></i> <span class='clock-time'>03:00pm - 03:45pm</span>
+                    <div class="edit-time">
+                        <form>
+                            <label>Duration:</label>
+                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                            <span>minutes</span>
+                            <input class="submit button" type="button" value="Save">
+                            <input class="close button" type="button" value="Close">
+                        </form>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="options">
+                        <a class="button add-module" src="#">Add Module</a>
+                        <a class="info" href="#"><i class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                    <h2>{{ module.module.name }}</h2>
+                    <p class="intro">Introduction into the module</p>
+                    <div class="thumbnail"></div>
+                    <div class="module-meta">
+                        <div class="module-meta">
+                            <p class="module-duration"><i class="fas fa-hourglass-half"></i> 2 hours 20 minutes</p>
+                            <p class="difficulty-level"><i class="fas fa-graduation-cap"></i> easy-medium</p>
+                            <p class="material-costs"><i class="fas fa-dollar-sign"></i> 61$ material costs</p>
+                        </div>
+                    </div>
+                    <div class="resources">
+                        <p class="sidebar">Resources included: <a href="#" target="_blank">Open Documentation Guide</a> | <a href="#" target="_blank">Wind Turbine</a></p>
+                        <ul class="resource-list">
+                            <h4>Resources:</h4>
+
+                            {{ module.content }} 
+                            
+                            {% for resource in site.resources %}
+
+                            <li class="resource resource-1" data-duration="30" data-name="Open Documentation Guide" data-cost="1" data-space="20" data-internet="no" data-power="no">
+                                <div class="time">
+                                    <i class="far fa-clock"></i> <span></span>
+                                    <div class="edit-time">
+                                        <form>
+                                            <label>Duration:</label>
+                                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                                            <span>minutes</span>
+                                            <input class="submit button" type="button" value="Save">
+                                            <input class="close button" type="button" value="Close">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <a href="https://img-comment-fun.9cache.com/media/apLBwOD/aBoBXkzb_700w_0.jpg" class="button" target="_blank">Manual <i class="fas fa-file-download"></i></a>
+                                    <div>{{ resource.resource.name }} | medium | 0 minutes | 1 $</div>
+                                </div>
+                                <div class="clearer"></div>
+                            </li>
+
+                            {% endfor  %}
+
+                            <li class="resource resource-2" data-duration="90" data-name="Wind Turbine" data-cost="60" data-space="20" data-internet="no" data-power="no">
+                                <div class="time">
+                                    <i class="far fa-clock"></i> <span class='clock-time'>03:45pm - 05:15pm</span>
+                                    <div class="edit-time">
+                                        <form>
+                                            <label>Duration:</label>
+                                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                                            <span>minutes</span>
+                                            <input class="submit button" type="button" value="Save">
+                                            <input class="close button" type="button" value="Close">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <a href="#" class="button">Manual <i class="fas fa-file-download"></i></a>
+                                    <div>Wind Turbine | medium | 90 minutes | 60 $</div>
+                                </div>
+                                <div class="clearer"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearer"></div>
             </li>
+
+
+            {% endfor %}    
+
+            <!-- ENDE Martins Test-Modul-Kopie -->
+
         </ul>
 
         <ul id="break-list-side-bar" class="breaks">
