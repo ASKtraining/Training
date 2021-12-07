@@ -21,8 +21,11 @@ module:
           github-user: test
           telegram: test
     release: v.1.0
+    pic-url: example-module.png
     duration: 90
     max-participants: 10
+    min-trainers: 3
+    difficulty: 3
     compatibility: ASKotec2.0 or newer
     blog: https://url-to-blog-posts
     issues: https://url-to-issue-list
