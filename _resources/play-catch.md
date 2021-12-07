@@ -1,31 +1,10 @@
-<li class="resource resource-2" data-duration="90" data-name="Wind Turbine" data-cost="60" data-space="20" data-internet="no" data-power="no">
-    <div class="time">
-        <i class="far fa-clock"></i> <span class='clock-time'>03:45pm - 05:15pm</span>
-        <div class="edit-time">
-            <form>
-                <label>Duration:</label>
-                <input type="number" class="duration" placeholder="10" min="0" max="59">
-                <span>minutes</span>
-                <input class="submit button" type="button" value="Save">
-                <input class="close button" type="button" value="Close">
-            </form>
-        </div>
-    </div>
-    <div class="content">
-        <a href="#" class="button">Manual <i class="fas fa-file-download"></i></a>
-        <div>XXXXXXXXXX | medium | 90 minutes | 60 $</div>
-    </div>
-    <div class="clearer"></div>
-</li>
-
-
-
-<!-- ---
+---
 version: '0.1.0'
+layout: resource
 
 resource:
-    name: MyBigFatTrainingModuleResource
-    id: example-resource
+    name: Play a game of Catch
+    id: play-catch
     authors:
         - name: Name of the author
           github-user: werwe
@@ -34,7 +13,7 @@ resource:
     categories: [A, B]
     duration: HH:MM
     difficulty: high
-    cost: 99 Eur
+    cost: 30 Eur
     language: en
     connected-platforms:
         - blog: https://url-to-blog-post
@@ -58,4 +37,6 @@ resource:
         notes: tool_notes
 ---
 
-{% include resource.html %} -->
+{{ page.resource.name | append: 'TESTTESTTEST' }}
+{{ page.version | append: 'test' }}
+{{ page.name }}

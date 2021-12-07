@@ -1,5 +1,6 @@
 ---
 version: '0.1.0'
+layout: resource
 
 resource:
     name: bsp

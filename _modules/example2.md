@@ -12,8 +12,8 @@
 version: '0.1.0'
 
 module:
-    name: 'Example Module'
-    id: example-module
+    name: '2nd Test'
+    id: test
     tag: battery
     authors:
         - name: BaMa
@@ -34,7 +34,7 @@ module:
         - name: CC-BY-SA-4.0
           file: LICENSE.md
     manual: Manual.md
-    res: ['soldering', 'bsp']
+    res: ['soldering', 'play-catch']
     resources:
         - rdf-url: https://opencultureagency.github.io/Training.Module.Resource.Template/resource.ttl
 #        - yaml-url: https://raw.githubusercontent.com/opencultureagency/Training.Module.Resource.Template/main/resource.yml
