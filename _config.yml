@@ -8,5 +8,5 @@ collections:
     permalink: /modules/:path/
   resources:
     output: true
-    output_ext: .html
+    output_ext: .html .md
     permalink: /resources/:path/
