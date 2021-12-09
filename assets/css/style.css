@@ -1,4 +1,4 @@
-@import "/Training/assets/css/font-noto-sans-jp.css";
+@import "font-noto-sans-jp.css";
 body {
   font-family: Noto Sans JP;
   font-weight: 100;
@@ -59,26 +59,17 @@ ul {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   z-index: 3;
-  -webkit-transform: scale(0, 0);
-          transform: scale(0, 0);
-  -webkit-transform-origin: top right;
-          transform-origin: top right;
-  -webkit-transition: -webkit-transform ease-in-out 100ms;
-  transition: -webkit-transform ease-in-out 100ms;
+  transform: scale(0, 0);
+  transform-origin: top right;
   transition: transform ease-in-out 100ms;
-  transition: transform ease-in-out 100ms, -webkit-transform ease-in-out 100ms;
 }
 #content #edit-title-and-description:target,
 #content #lightbox-solar-charger:target {
-  -webkit-transform: scale(1, 1);
-          transform: scale(1, 1);
+  transform: scale(1, 1);
 }
 #content .edit-title-and-description-body,
 #content .lightbox-body {
@@ -147,16 +138,10 @@ ul {
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  user-select: none;
+  appearance: none;
   background: #4b4b80;
-  -webkit-box-shadow: inset 0 1px 0 rgba(20, 70, 32, 0.2);
-          box-shadow: inset 0 1px 0 rgba(20, 70, 32, 0.2);
+  box-shadow: inset 0 1px 0 rgba(20, 70, 32, 0.2);
   border: 1px solid;
   border-radius: 6px;
   border-color: rgba(27, 31, 35, 0.15);
@@ -589,14 +574,11 @@ a.help {
   #sidebar {
     position: absolute;
     max-width: 100%;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    appearance: none;
     left: 0;
     top: -100%;
     height: 100%;
     display: block;
-    -webkit-transition: all 500ms ease;
     transition: all 500ms ease;
     border-right: none;
   }
@@ -615,18 +597,15 @@ a.help {
   .open-sidebar #sidebar {
     top: 0;
     left: 0;
-    -webkit-transition: all 500ms ease;
     transition: all 500ms ease;
   }
   .open-sidebar #content {
     display: none;
-    -webkit-transition: all 500ms ease;
     transition: all 500ms ease;
   }
 
   #content {
     padding: 0 10px;
-    -webkit-transition: all 500ms ease;
     transition: all 500ms ease;
   }
 
@@ -641,4 +620,4 @@ a.help {
   .summary ul li {
     width: 50%;
   }
-}
+}/*# sourceMappingURL=style.css.map */
