@@ -78,11 +78,11 @@ permalink: /
                         </p>    
                         <ul class="resource-list">
                             <h4>Resources: </h4>   
-                            {% for actual_res in module.module.res %}
-                                {% for resource in site.resources %}
+                            {% for actual_res in module.module.res %} 1-
+                                {% for resource in site.resources %}2-
                                     {% assign search-res = resource.id | remove: '/resources/' %}
                                     {% if search-res == actual_res %}
-                                        {{ resource.output }}
+                                        {{ resource.output }} 3
                                     {% endif %}
                                 {% endfor %}
                             {% endfor  %}
