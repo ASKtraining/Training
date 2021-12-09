@@ -78,7 +78,14 @@ permalink: /
                         </p>    
                         <ul class="resource-list">
                             <h4>Resources: </h4>   
-                            {{ resource.output | append: 'tessst'}}    
+                            {% for actual_res in module.module.res %}
+                                {% for resource in site.resources %}
+                                    {% assign search-res = resource.id | remove: '/resources/' %}
+                                    {% if search-res == actual_res %}
+                                        {{ resource.output }}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor  %}
 
                             {{ all_res_output | append: 'hiiiier'}}
 
