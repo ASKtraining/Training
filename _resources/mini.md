@@ -8,3 +8,6 @@ resource:
     difficulty: 5
     cost: 30
 ---
+
+{{ resource.output }}
+{{ output }}
