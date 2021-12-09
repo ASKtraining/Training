@@ -1,8 +1,12 @@
 @import font-noto-sans-jp.css
 
-$color-general-borders: #000
-$color-element-background: rgb(75, 75, 128)
-$color-element-font: #fff
+$color-body-background: #e2e2e2
+$color-body-sidebar: rgba(255,255,255,0.7)
+$color-general-borders: #DFAF5F
+$color-element-background: rgba(223, 175, 95, 0.7)
+$color-element-background-inactive: rgba(223, 175, 95, 0.3)
+$color-element-font: #212121
+$color-element-font-invert: #fff
 
 $breakpoint-tablet: 768px
 $breakpoint-smartphone: 600px
@@ -12,6 +16,7 @@ body
     font-weight: 100
     font-size: 1em
     margin: 0
+    background: $color-body-background
 
 a:link,
 a:visited
@@ -48,6 +53,7 @@ ul
     margin: 0 auto
     padding: 0 20px 0 370px
     z-index: 1
+
     h1
         font-family: 'Josefin Sans'
         font-size: 30px
@@ -147,10 +153,14 @@ ul
 #sidebar
     max-width:350px
     position: fixed
-    height: 100%
-    border-right: 1px $color-general-borders solid
+    top: 50px
+    left: 50px
+    height: calc(100% - 50px)
+    background: $color-body-sidebar
     z-index: 1
-    background: #fff
+    box-shadow: 0 0 1em 0.5em $color-body-sidebar
+    border: 1px $color-general-borders solid
+    border-radius: 5px
     .header
         background: #999999
         border-bottom: 1px #000 solid
@@ -159,9 +169,9 @@ ul
         display: none
     #module-list-side-bar
         overflow: auto
-        height: calc(100% - 266px)
+        height: calc(100% - 366px)
         li
-            border-top: 1px $color-general-borders solid
+            
             padding: 0 10px
     .resource-list
         display: none
@@ -206,7 +216,7 @@ ul
             border-bottom: none
     .footer
         position: absolute
-        bottom: 24px
+        bottom: 58px
         left: 0
         margin-top: -100px
         border-top: 1px $color-general-borders solid
@@ -214,13 +224,24 @@ ul
         width: 100%
 
 .tags 
+    border-bottom: 1px $color-general-borders solid
+    padding: 0 10px 10px 10px
+    h3
+        i
+            background: $color-element-background
+            padding: 8px
+            margin-right: 10px
+            border-radius: 2px
+            color: $color-element-font-invert
     ul 
         li
-            margin: 6px
-            padding: 6px
+            margin-right: 6px
+            margin-bottom: 6px
+            padding: 12px
             float: left
             display: block
             cursor: pointer
+            background: $color-element-background-inactive
 
         li.selected,
         li:hover,
@@ -325,9 +346,10 @@ a.help
         color: $color-element-background
         margin-left: 5px
 
-.module
+.module 
     clear: both
     margin: 20px 0
+    cursor: pointer
     h2
         font-size: 1.1em
         margin: 6px 0
