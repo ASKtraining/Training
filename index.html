@@ -12,19 +12,19 @@ permalink: /
         <div class="tags">
             <ul id="wordcloud">
                 <li id="show-all-modules" class="selected">all</li>
-                <li>battery</li>
-                <li>charging</li>
-                <li>electronics</li>
-                <li>solar</li>
-                <li>motor</li>
-                <li>laser</li>
-                <li>sensoric</li>
+                <li>Web</li>
+                <li>Software</li>
+                <li>Hardware</li>
+                <li>Community</li>
+                <li>Organizational_Development</li>
+                <li>Media&Art</li>
+                <li>Data_Security</li>
+                <li>Open_Source</li>
+                <li>Repair</li>
             </ul>
         </div>
         <div class="clearer"></div>
         <ul id="module-list-side-bar" class="module-draggable-list">
-
-            <!-- Alle Modul-Yamls werden hier eingelesen -->
 
             {% for module in site.modules %}
             
@@ -48,7 +48,6 @@ permalink: /
                     </div>
                     <h2>{{ module.module.name }}</h2>
                     <p class="intro">Introduction into the module</p>
-                    <!-- img style muss noch schöner gemacht werden (Bilder skalieren, aber nicht verzerren - größtmögliches skalieren was noch passt) -->
                     <div class="thumbnail"><img src="assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
                     <div class="module-meta">
                         <div class="module-meta">
@@ -57,67 +56,38 @@ permalink: /
                             <p class="material-costs"><i class="fas fa-dollar-sign"></i> ??? 61$ material costs</p>
                         </div>
                     </div>
-                    <div class="resources">
-                        <p class="sidebar">Resources included: <a href="#" target="_blank">Open Documentation Guide</a> | <a href="#" target="_blank">Wind Turbine</a></p>
-                        <ul class="resource-list">
-                            <h4>Resources: {{ site.resources }}</h4>
-
-                            {{ module.content }} 
+                     <div class="resources">
+                        <p class="sidebar">Resources included: 
                             
-
-                            {% for resource in site.resources %}
-                            TESTTESTTESTTEST
-                            <li class="resource resource-1" data-duration="30" data-name="Open Documentation Guide" data-cost="1" data-space="20" data-internet="no" data-power="no">
-                                <div class="time">
-                                    <i class="far fa-clock"></i> <span></span>
-                                    <div class="edit-time">
-                                        <form>
-                                            <label>Duration:</label>
-                                            <input type="number" class="duration" placeholder="10" min="0" max="59">
-                                            <span>minutes</span>
-                                            <input class="submit button" type="button" value="Save">
-                                            <input class="close button" type="button" value="Close">
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <a href="https://img-comment-fun.9cache.com/media/apLBwOD/aBoBXkzb_700w_0.jpg" class="button" target="_blank">Manual <i class="fas fa-file-download"></i></a>
-                                    <div>{{ resource.resource.name }} | medium | 0 minutes | 1 $</div>
-                                </div>
-                                <div class="clearer"></div>
-                            </li>
-
+                            {% assign first = true %}
+                            {% assign all_res_output = '' %}
+                            {% for actual_res in module.module.res %}
+                                {% for resource in site.resources %}
+                                    {% assign search-res = resource.id | remove: '/resources/' %}
+                                    {% if search-res == actual_res %}
+                                        {% if first == false %}
+                                            {{ '|' }}
+                                        {% endif %}
+                                        {% assign first = false %}
+                                        <a href="{{ resource.resource.url }}" target="_blank">{{ resource.resource.name }}</a>
+                                        {% assign all_res_output = all_res_output | append: resource.output %}
+                                    {% endif %}
+                                {% endfor %}
                             {% endfor  %}
+                            
+                        </p>    
+                        <ul class="resource-list">
+                            <h4>Resources: </h4>       
 
-                            <li class="resource resource-2" data-duration="90" data-name="Wind Turbine" data-cost="60" data-space="20" data-internet="no" data-power="no">
-                                <div class="time">
-                                    <i class="far fa-clock"></i> <span class='clock-time'>03:45pm - 05:15pm</span>
-                                    <div class="edit-time">
-                                        <form>
-                                            <label>Duration:</label>
-                                            <input type="number" class="duration" placeholder="10" min="0" max="59">
-                                            <span>minutes</span>
-                                            <input class="submit button" type="button" value="Save">
-                                            <input class="close button" type="button" value="Close">
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <a href="#" class="button">Manual <i class="fas fa-file-download"></i></a>
-                                    <div>Wind Turbine | medium | 90 minutes | 60 $</div>
-                                </div>
-                                <div class="clearer"></div>
-                            </li>
+                            {{ all_res_output }}
+
                         </ul>
                     </div>
                 </div>
                 <div class="clearer"></div>
             </li>
 
-
             {% endfor %}    
-
-            <!-- ENDE Module -->
 
         </ul>
 
