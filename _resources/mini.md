@@ -11,3 +11,5 @@ resource:
 
 {{ resource.output }}
 {{ output }}
+{{ resource.content }}
+{{ content }}

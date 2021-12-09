@@ -83,6 +83,8 @@ permalink: /
                                     {% assign search-res = resource.id | remove: '/resources/' %}
                                     {% if search-res == actual_res %}
                                         {{ resource.content | append: 'hiiiier' }} 3
+                                        {{ resource.output | append: 'hiiiier' }} 3
+                                        {{ resource }}
                                     {% endif %}
                                 {% endfor %}
                             {% endfor  %}
