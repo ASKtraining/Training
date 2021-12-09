@@ -1,18 +1,20 @@
 ---
 version: '0.1.0'
+layout: resource
 
 resource:
-    name: bsp
-    id: bsp
+    name: Soldering
+    id: soldering
+    url: https://en.wikipedia.org/wiki/Soldering
     authors:
         - name: Name of the author
           github-user: werwe
           email: rwewer@email.com
     release: v.1.0
     categories: [A, B]
-    duration: HH:MM
+    duration: 45
     difficulty: high
-    cost: 99 Eur
+    cost: 20
     language: en
     connected-platforms:
         - blog: https://url-to-blog-post
@@ -35,3 +37,7 @@ resource:
         quantity: 1
         notes: tool_notes
 ---
+
+{{ page.resource.name | append: 'TESTTESTTEST' }}
+{{ page.version | append: 'test' }}
+{{ page.name }}
