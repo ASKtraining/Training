@@ -9,7 +9,7 @@ resource:
     cost: 30
 ---
 
-{{ resource.output }}
-{{ output }}
-{{ resource.content }}
-{{ content }}
+{{ resource.output | append: 'bla' }}
+{{ output | append: 'bla' }}
+{{ resource.content | append: 'bla' }}
+{{ content | append: 'bla' }}
