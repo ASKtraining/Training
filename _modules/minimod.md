@@ -9,4 +9,5 @@ module:
     min-trainers: 30
     difficulty: 1
     res: ['mini', 'mini']
+    # marker
 ---    
