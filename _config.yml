@@ -1,0 +1,12 @@
+baseurl: 
+url: 
+
+collections:
+  modules:
+    output: true
+    output_ext: .html
+    permalink: /modules/:path/
+  resources:
+    output: true
+    output_ext: .html
+    permalink: /resources/:path/

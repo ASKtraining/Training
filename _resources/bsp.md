@@ -11,7 +11,7 @@ resource:
           email: rwewer@email.com
     release: v.1.0
     categories: [A, B]
-    duration: HH:MM
+    duration: 75
     difficulty: high
     cost: 99 Eur
     language: en

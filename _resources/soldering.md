@@ -12,9 +12,9 @@ resource:
           email: rwewer@email.com
     release: v.1.0
     categories: [A, B]
-    duration: HH:MM
+    duration: 45
     difficulty: high
-    cost: 30 Eur
+    cost: 20
     language: en
     connected-platforms:
         - blog: https://url-to-blog-post

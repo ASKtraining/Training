@@ -12,19 +12,19 @@ permalink: /
         <div class="tags">
             <ul id="wordcloud">
                 <li id="show-all-modules" class="selected">all</li>
-                <li>battery</li>
-                <li>charging</li>
-                <li>electronics</li>
-                <li>solar</li>
-                <li>motor</li>
-                <li>laser</li>
-                <li>sensoric</li>
+                <li>Web</li>
+                <li>Software</li>
+                <li>Hardware</li>
+                <li>Community</li>
+                <li>Organizational_Development</li>
+                <li>Media&Art</li>
+                <li>Data_Security</li>
+                <li>Open_Source</li>
+                <li>Repair</li>
             </ul>
         </div>
         <div class="clearer"></div>
         <ul id="module-list-side-bar" class="module-draggable-list">
-
-            <!-- Alle Modul-Yamls werden hier eingelesen -->
 
             {% for module in site.modules %}
             
@@ -48,7 +48,6 @@ permalink: /
                     </div>
                     <h2>{{ module.module.name }}</h2>
                     <p class="intro">Introduction into the module</p>
-                    <!-- img style muss noch schöner gemacht werden (Bilder skalieren, aber nicht verzerren - größtmögliches skalieren was noch passt) -->
                     <div class="thumbnail"><img src="assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
                     <div class="module-meta">
                         <div class="module-meta">
@@ -57,24 +56,30 @@ permalink: /
                             <p class="material-costs"><i class="fas fa-dollar-sign"></i> ??? 61$ material costs</p>
                         </div>
                     </div>
-                    <div class="resources">
-                        <p class="sidebar">Resources included: <a href="#" target="_blank">Open Documentation Guide</a> | <a href="#" target="_blank">Wind Turbine</a></p>
-                        <ul class="resource-list">
-                            <h4>Resources: </h4>                       
-
-                            <!-- {% for resid in module.module.res %}
-                                <li>{{ resid }}</li>   Ausgabe nur zur Info zum coden
-                            {% endfor %} -->
-
+                     <div class="resources">
+                        <p class="sidebar">Resources included: 
+                            
+                            {% assign first = true %}
+                            {% assign all_res_output = '' %}
                             {% for actual_res in module.module.res %}
                                 {% for resource in site.resources %}
                                     {% assign search-res = resource.id | remove: '/resources/' %}
                                     {% if search-res == actual_res %}
-                                        <!-- {{ search-res }} = {{ actual_res }}<br> -->
-                                        {{ resource.output }}
+                                        {% if first == false %}
+                                            {{ '|' }}
+                                        {% endif %}
+                                        {% assign first = false %}
+                                        <a href="{{ resource.resource.url }}" target="_blank">{{ resource.resource.name }}</a>
+                                        {% assign all_res_output = all_res_output | append: resource.output %}
                                     {% endif %}
                                 {% endfor %}
                             {% endfor  %}
+                            
+                        </p>    
+                        <ul class="resource-list">
+                            <h4>Resources: </h4>       
+
+                            {{ all_res_output }}
 
                         </ul>
                     </div>
@@ -82,10 +87,7 @@ permalink: /
                 <div class="clearer"></div>
             </li>
 
-
             {% endfor %}    
-
-            <!-- ENDE Module -->
 
         </ul>
 
