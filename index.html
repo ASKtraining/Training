@@ -82,12 +82,12 @@ permalink: /
                                 {% for resource in site.resources %}2-
                                     {% assign search-res = resource.id | remove: '/resources/' %}
                                     {% if search-res == actual_res %}
-                                        {{ resource.resource.output }} 3
+                                        {{ resource.output | append: 'hiiiier' }} 3
                                     {% endif %}
                                 {% endfor %}
                             {% endfor  %}
 
-                            {{ all_res_output | append: 'hiiiier'}}
+                            {{ all_res_output }}
 
                         </ul>
                     </div>
