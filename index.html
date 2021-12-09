@@ -82,7 +82,7 @@ permalink: /
                                 {% for resource in site.resources %}2-
                                     {% assign search-res = resource.id | remove: '/resources/' %}
                                     {% if search-res == actual_res %}
-                                        {{ resource.output | append: 'hiiiier' }} 3
+                                        {{ resource.content | append: 'hiiiier' }} 3
                                     {% endif %}
                                 {% endfor %}
                             {% endfor  %}
