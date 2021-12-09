@@ -53,17 +53,40 @@ ul
     margin: 0 auto
     padding: 0 20px 0 370px
     z-index: 1
-
-    h1
+    .title
         font-family: 'Josefin Sans'
-        font-size: 30px
+        font-size: 6em
         font-weight: bold
+        margin: 35px 0
+    .introduction
+        font-size: 1.9em
+    .button
+        margin: 60px auto
+        font-size: 1.9em
+        width: auto
+        display: inline-block
     .edit
-        position: absolute
-        top: 0px
-        right: 10px
-        font-size: 1.6em
-        color: $color-element-background
+        display:inline
+        background: $color-element-background-inactive
+        color: $color-element-font
+        font-size: 0.5em
+        padding: 5px
+        border-radius: 5px
+        margin-left: 10px
+    .edit:hover
+        background: $color-element-background
+    #training-plan
+        position: relative
+        background: $color-body-sidebar
+        padding: 20px
+        border: 10px $color-general-borders solid
+        border-raodius: 10px
+        .training-plan-icon
+            position: absolute
+            top: -129px
+            right: -80px
+            font-size: 10em
+            color: $color-general-borders
     #edit-title-and-description,
     #lightbox-solar-charger
         position: fixed
@@ -286,7 +309,7 @@ ul
     display: block
     width: 150px
     padding: 10px 20px
-    margin: 20px 0
+    margin: 20px auto
     text-align: center
     background: $color-element-background
     color: $color-element-font

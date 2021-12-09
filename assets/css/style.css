@@ -45,17 +45,45 @@ ul {
   padding: 0 20px 0 370px;
   z-index: 1;
 }
-#content h1 {
+#content .title {
   font-family: "Josefin Sans";
-  font-size: 30px;
+  font-size: 6em;
   font-weight: bold;
+  margin: 35px 0;
+}
+#content .introduction {
+  font-size: 1.9em;
+}
+#content .button {
+  margin: 60px auto;
+  font-size: 1.9em;
+  width: auto;
+  display: inline-block;
 }
 #content .edit {
+  background: rgba(223, 175, 95, 0.3);
+  color: #212121;
+  font-size: 0.5em;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+#content .edit:hover {
+  background: rgba(223, 175, 95, 0.7);
+}
+#content #training-plan {
+  position: relative;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  border: 10px #DFAF5F solid;
+  border-raodius: 10px;
+}
+#content #training-plan .training-plan-icon {
   position: absolute;
-  top: 0px;
-  right: 10px;
-  font-size: 1.6em;
-  color: rgba(223, 175, 95, 0.7);
+  top: -129px;
+  right: -80px;
+  font-size: 10em;
+  color: #DFAF5F;
 }
 #content #edit-title-and-description,
 #content #lightbox-solar-charger {
@@ -322,7 +350,7 @@ ul {
   display: block;
   width: 150px;
   padding: 10px 20px;
-  margin: 20px 0;
+  margin: 20px auto;
   text-align: center;
   background: rgba(223, 175, 95, 0.7);
   color: #212121;

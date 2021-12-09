@@ -159,62 +159,68 @@ permalink: /
     </div>
 
     <div id="content">
-        <h1>Create your own Trainingsplan</h1>
-        <a id="edit-icon" class="edit" href="#edit-title-and-description"><i class="fas fa-edit"></i></a>
-        <div id="edit-title-and-description">
-            <div class="edit-title-and-description-body">
-                <div class="edit-title-and-description-header">
-                    <p>Edit training plan details</p>
-                    <a class="close" href="#"><i class="fas fa-times-circle"></i></a>
-                </div>
-                <div class="edit-title-and-description-content">
-            <form>
-                <input type="text" class="title" placeholder="Title of the training">
-                <textarea class="description"></textarea>
-                        <input id="submit-title" type="button" value="Save changes">
-            </form>
-        </div>
-            </div>
-        </div>
-        
-        <h1 id="training-title">{{ page.title }} - Title of the Training</h1>
-        <p id="training-description">Short description about the training.</p>
-        <ul id="module-list-training" class="training-list">
-            <div id="trainingstart" class="trainingstart" data-duration="15" data-start="09:00">
-                <div class="time">
-                    <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:00am - 10:20pm</span></a>
-                    <div class="edit-time">
-                        <form>
-                            <label>Start-Time:</label>
-                            <input type="number" class="hours" placeholder="09" min="1" max="12">
-                            <span>:</span>
-                            <input type="number" class="minutes" placeholder="00" min="0" max="59">
-                            <select class="am-or-pm">
-                                <option value="am">am</option>
-                                <option value="pm">pm</option>
-                            </select>
-                            <label>Duration:</label>
-                            <input type="number" class="duration" placeholder="15" min="0" max="240">
-                            <span>minutes</span>
-                            <input type="text" class="title" placeholder="Introduction into the training">
-                            <input class="submit button" type="button">
-                            <input class="close button" type="button" value="Close">
-                        </form>
+        <div class="title">Create your own trainings plan</div>
+        <p class="introduction">Here you can easily create your own training plan for your workshop. Find a training module that you want to use in the workshop and determine the order. The training configurator automatically calculates the times when each module or its resource starts. You can also customize the times for your sessions. At the end you can print your training plan and we wish you good luck for your training.</p>
+        <a href="#training-title" class="button">Start trainings plan</a>
+        <div id="training-plan">
+            <div class="training-plan-icon"><i class="fas fa-clipboard-list"></i></div>
+            
+            <div id="edit-title-and-description">
+                <div class="edit-title-and-description-body">
+                    <div class="edit-title-and-description-header">
+                        <p>Edit training plan details</p>
+                        <a class="close" href="#"><i class="fas fa-times-circle"></i></a>
                     </div>
+                    <div class="edit-title-and-description-content">
+                <form>
+                    <input type="text" class="title" placeholder="Title of the training">
+                    <textarea class="description"></textarea>
+                            <input id="submit-title" type="button" value="Save changes">
+                </form>
+            </div>
                 </div>
-                <div class="content">
-                    <p class="break-title">Introduction into the training</p>
-                </div>
-                <div class="clearer"></div>
             </div>
             
-        </ul>
-        <div class="clearer page-break"></div>
-        <div class="add-modules-breaks">
-            <p>Drag and Drop more Modules to add</p>
-            <a href="#" id="add-module-mobile" class="button">+ Module</a>
-            <a href="#" id="add-timebreak-mobile" class="button">+ Time Break</a>
-            <a href="#" id="add-daybreak-mobile" class="button">+ Day Brake</a>
+            <h1 id="training-title">{{ page.title }} - Title of the Training <a id="edit-icon" class="edit" href="#edit-title-and-description">Edit title and description</a></h1>
+            <p id="training-description">Short description about the training.</p>
+            <ul id="module-list-training" class="training-list">
+                <div id="trainingstart" class="trainingstart" data-duration="15" data-start="09:00">
+                    <div class="time">
+                        <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:00am - 10:20pm</span></a>
+                        <div class="edit-time">
+                            <form>
+                                <label>Start-Time:</label>
+                                <input type="number" class="hours" placeholder="09" min="1" max="12">
+                                <span>:</span>
+                                <input type="number" class="minutes" placeholder="00" min="0" max="59">
+                                <select class="am-or-pm">
+                                    <option value="am">am</option>
+                                    <option value="pm">pm</option>
+                                </select>
+                                <label>Duration:</label>
+                                <input type="number" class="duration" placeholder="15" min="0" max="240">
+                                <span>minutes</span>
+                                <input type="text" class="title" placeholder="Introduction into the training">
+                                <input class="submit button" type="button">
+                                <input class="close button" type="button" value="Close">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="break-title">Introduction into the training</p>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                
+            </ul>
+        
+            <div class="clearer page-break"></div>
+            <div class="add-modules-breaks">
+                <p>Drag and Drop more Modules to add</p>
+                <a href="#" id="add-module-mobile" class="button">+ Module</a>
+                <a href="#" id="add-timebreak-mobile" class="button">+ Time Break</a>
+                <a href="#" id="add-daybreak-mobile" class="button">+ Day Brake</a>
+            </div>
         </div>
         <div class="summary">
             <h2>Summary</h2>
