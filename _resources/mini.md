@@ -8,8 +8,3 @@ resource:
     difficulty: 5
     cost: 30
 ---
-
-{{ resource.output | append: 'bla' }}
-{{ output | append: 'bla' }}
-{{ resource.content | append: 'bla' }}
-{{ content | append: 'bla' }}
