@@ -60,16 +60,15 @@ permalink: /
                             
                             {% assign first = true %}
                             {% assign all_res_output = '' %}
+
                             {% for actual_res in module.module.res %}
-                                {% for resource in site.resources %}
-                                    {% assign search-res = resource.id | remove: '/resources/' %}
-                                    {% if search-res == actual_res %}
+                                {% for res in site.data.resources %}
+                                    {% if res.id == actual_res %}
                                         {% if first == false %}
                                             {{ '|' }}
                                         {% endif %}
                                         {% assign first = false %}
-                                        <a href="{{ resource.resource.url }}" target="_blank">{{ resource.resource.name }}</a>
-                                        {% assign all_res_output = all_res_output | append: resource.output %}
+                                        <a href="{{ res.url }}" target="_blank">{{ res.name }}</a>
                                     {% endif %}
                                 {% endfor %}
                             {% endfor  %}
@@ -78,18 +77,18 @@ permalink: /
                         <ul class="resource-list">
                             <h4>Resources: </h4>   
 
-                            {% case res.difficulty %}
-                                {% when 1 %}
-                                    {% assign diff_text = 'easy' %}
-                                {% when 5 %}
-                                    {% assign diff_text = 'advanced' %}
-                                {% else %}
-                                    {% assign diff_text = 'medium' %}
-                            {% endcase %}
-
-                            {% for actual_res in module.module.res %} 1-
+                            {% for actual_res in module.module.res %}
                                 {% for res in site.data.resources %}
                                     {% if res.id == actual_res %}
+
+                                        {% case res.difficulty %}
+                                            {% when 1 %}
+                                                {% assign diff_text = 'easy' %}
+                                            {% when 5 %}
+                                                {% assign diff_text = 'advanced' %}
+                                            {% else %}
+                                                {% assign diff_text = 'medium' %}
+                                        {% endcase %}
 
                                         <li class="resource" data-duration="{{ res.duration }}" data-name="{{ res.name }}" data-cost="{{ res.cost }}" data-space="" data-internet="" data-power="">
                                             <div class="time">
