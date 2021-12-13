@@ -3,7 +3,6 @@ layout: trainingsplan
 title: '#ASKtraining'
 permalink: /
 ---
-
 <div id="MultipleContainers">
     <div id="sidebar">
         <div class="header">
@@ -77,24 +76,45 @@ permalink: /
                             
                         </p>    
                         <ul class="resource-list">
-                            <h4>Resources: </h4>   0-
+                            <h4>Resources: </h4>   
+
+                            {% case res.difficulty %}
+                                {% when 1 %}
+                                    {% assign diff_text = 'easy' %}
+                                {% when 5 %}
+                                    {% assign diff_text = 'advanced' %}
+                                {% else %}
+                                    {% assign diff_text = 'medium' %}
+                            {% endcase %}
+
                             {% for actual_res in module.module.res %} 1-
-                                {% for resource in site.resources %}2-
-                                    {% assign search-res = resource.id | remove: '/resources/' %}
-                                    {% if search-res == actual_res %}
-                                        <!-- {{ resource.content | append: 'hiiiier' }} 3
-                                        {{ resource.output | append: 'hiiiier' }} 3 -->
-                                        {{ output | append: 'hiiiier' }} 3
-                                        {{ resource }}
+                                {% for res in site.data.resources %}
+                                    {% if res.id == actual_res %}
+
+                                        <li class="resource" data-duration="{{ res.duration }}" data-name="{{ res.name }}" data-cost="{{ res.cost }}" data-space="" data-internet="" data-power="">
+                                            <div class="time">
+                                                <i class="far fa-clock"></i> <span class='clock-time'>03:45pm - 05:15pm</span>
+                                                <div class="edit-time">
+                                                    <form>
+                                                        <label>Duration:</label>
+                                                        <input type="number" class="duration" placeholder="{{ res.duration }}" min="0" max="240">
+                                                        <span>minutes</span>
+                                                        <input class="submit button" type="button" value="Save">
+                                                        <input class="close button" type="button" value="Close">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <a href="{{ res.url }}" class="button" target="_blank">Manual &nbsp; <i class="fas fa-file-download"></i></a>
+                                                <div><strong>{{ res.name }}</strong> | {{ diff_text }} | {{ res.duration }} minutes | {{ res.cost }} $</div>
+                                            </div>
+                                            <div class="clearer"></div>
+                                        </li>
+
                                     {% endif %}
                                 {% endfor %}
-                            {% endfor  %}
+                            {% endfor %}
 
-                            {{ include _resources/mini.md }}
-
-                            Resource-Output:
-                            {{ all_res_output }}
-                            Ende Resource-Output
                         </ul>
                     </div>
                 </div>

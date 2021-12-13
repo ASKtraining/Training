@@ -1,0 +1,27 @@
+- name: Minimal Resource
+  id: mini
+  url: https://en.wikipedia.org/wiki/Minimal_(supermarket)
+  duration: 210
+  difficulty: 5
+  cost: 30
+
+- name: Beispiel
+  id: bsp
+  url: 
+  duration: 75
+  difficulty: 5
+  cost: 99
+
+- name: Play a game of Catch
+  id: play-catch
+  url: 
+  duration: 15
+  difficulty: 1
+  cost: 0
+
+- name: Soldering
+  id: soldering
+  url: https://en.wikipedia.org/wiki/Soldering
+  duration: 45
+  difficulty: 5
+  cost: 20
