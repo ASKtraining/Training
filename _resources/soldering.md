@@ -37,7 +37,3 @@ resource:
         quantity: 1
         notes: tool_notes
 ---
-
-{{ page.resource.name | append: 'TESTTESTTEST' }}
-{{ page.version | append: 'test' }}
-{{ page.name }}
