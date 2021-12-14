@@ -1,4 +1,5 @@
-# #ASKtraining training plan
+# #ASKtraining Configurator
+[new #ASKnet 2021 edition]
 
 With the #ASKnet training plan you can compile and plan your individual training. You can choose from the different training modules and freely organize the schedule for your training. The training plan automatically creates a schedule with recommended breaks, which are then individually adjusted.
 
