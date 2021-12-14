@@ -1,0 +1,644 @@
+@import "/Training/assets/css/font-noto-sans-jp.css";
+body {
+  font-family: Noto Sans JP;
+  font-weight: 100;
+  font-size: 1em;
+  margin: 0;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+p {
+  line-height: 1.3em;
+  margin: 0 0 7px 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.clearer {
+  clear: both;
+  height: 0;
+  width: 0;
+  line-height: 0;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+#content {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 0 370px;
+  z-index: 1;
+}
+#content .edit {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 1.6em;
+  color: #4b4b80;
+}
+#content #edit-title-and-description,
+#content #lightbox-solar-charger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  z-index: 3;
+  -webkit-transform: scale(0, 0);
+          transform: scale(0, 0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transition: -webkit-transform ease-in-out 100ms;
+  transition: -webkit-transform ease-in-out 100ms;
+  transition: transform ease-in-out 100ms;
+  transition: transform ease-in-out 100ms, -webkit-transform ease-in-out 100ms;
+}
+#content #edit-title-and-description:target,
+#content #lightbox-solar-charger:target {
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+}
+#content .edit-title-and-description-body,
+#content .lightbox-body {
+  width: 75%;
+  max-width: 400px;
+  background: white;
+  position: relative;
+}
+#content .edit-title-and-description-body .edit-title-and-description-header,
+#content .lightbox-body .edit-title-and-description-header {
+  background-color: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  text-align: right;
+  padding: 10px;
+}
+#content .edit-title-and-description-body .edit-title-and-description-header p,
+#content .lightbox-body .edit-title-and-description-header p {
+  float: left;
+  font-weight: 600;
+  font-size: 0.8em;
+  margin-top: 4px;
+}
+#content .edit-title-and-description-body .edit-title-and-description-header .close,
+#content .lightbox-body .edit-title-and-description-header .close {
+  text-decoration: none;
+  display: inline;
+}
+#content .edit-title-and-description-body .edit-title-and-description-header .close::after,
+#content .lightbox-body .edit-title-and-description-header .close::after {
+  clear: both;
+}
+#content .edit-title-and-description-body .edit-title-and-description-content,
+#content .lightbox-body .edit-title-and-description-content {
+  padding: 20px 20px 20px 20px;
+  display: flow-root;
+}
+#content .edit-title-and-description-body .edit-title-and-description-content input.title,
+#content .lightbox-body .edit-title-and-description-content input.title {
+  width: 95%;
+  font-size: 1.1em;
+  border: 1px solid #333;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fafbfc;
+  color: #24292e;
+}
+#content .edit-title-and-description-body .edit-title-and-description-content textarea,
+#content .lightbox-body .edit-title-and-description-content textarea {
+  width: 95%;
+  font-family: Noto Sans JP;
+  border: 1px solid #333;
+  padding: 10px;
+  border-radius: 3px;
+  min-height: 250px;
+}
+#content .edit-title-and-description-body .edit-title-and-description-content input#submit-title,
+#content .lightbox-body .edit-title-and-description-content input#submit-title {
+  position: relative;
+  display: inline-block;
+  padding: 5px 16px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: #4b4b80;
+  -webkit-box-shadow: inset 0 1px 0 rgba(20, 70, 32, 0.2);
+          box-shadow: inset 0 1px 0 rgba(20, 70, 32, 0.2);
+  border: 1px solid;
+  border-radius: 6px;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: white;
+  float: right;
+}
+#content .edit-title-and-description-body .edit-title-and-description-content input#submit-title::after,
+#content .lightbox-body .edit-title-and-description-content input#submit-title::after {
+  clear: both;
+}
+#content .resources .sidebar {
+  display: none;
+}
+#content .print {
+  float: right;
+}
+
+#sidebar {
+  max-width: 350px;
+  position: fixed;
+  height: 100%;
+  border-right: 1px #000 solid;
+  z-index: 1;
+  background: #fff;
+}
+#sidebar .header {
+  background: #999999;
+  border-bottom: 1px #000 solid;
+  text-align: right;
+  padding: 10px;
+  display: none;
+}
+#sidebar #module-list-side-bar {
+  overflow: auto;
+  height: calc(100% - 266px);
+}
+#sidebar #module-list-side-bar li {
+  border-top: 1px #000 solid;
+  padding: 0 10px;
+}
+#sidebar .resource-list {
+  display: none;
+}
+#sidebar .time {
+  display: none;
+}
+#sidebar .module .content {
+  width: 100%;
+  float: none;
+  display: block;
+  border: none;
+  padding: 0;
+}
+#sidebar .module .content .intro {
+  display: none;
+}
+#sidebar .module .content h4 {
+  display: none;
+}
+#sidebar .module .content .options a.trash {
+  display: none;
+}
+#sidebar .breaks {
+  text-align: center;
+  position: absolute;
+  bottom: 75px;
+  background-color: #fff;
+  width: 100%;
+}
+#sidebar .breaks .timebreak,
+#sidebar .breaks .daybreak {
+  background: #fff;
+  position: relative;
+  display: block;
+  padding: 10px 0;
+  margin: 0;
+  cursor: pointer;
+}
+#sidebar .breaks .timebreak .options,
+#sidebar .breaks .daybreak .options {
+  display: none;
+}
+#sidebar .breaks .timebreak {
+  border-top: 1px #000 solid;
+  border-bottom: none;
+  border-right: none;
+}
+#sidebar .breaks .daybreak {
+  border-top: 1px #000 solid;
+  border-bottom: none;
+}
+#sidebar .footer {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  margin-top: -100px;
+  border-top: 1px #000 solid;
+  background-color: #fff;
+  width: 100%;
+}
+
+.tags ul li {
+  margin: 6px;
+  padding: 6px;
+  float: left;
+  display: block;
+  cursor: pointer;
+}
+.tags ul li.selected,
+.tags ul li:hover,
+.tags ul li:focus,
+.tags ul li:active {
+  background: #4b4b80;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.thumbnail {
+  width: 75px;
+  height: 75px;
+  background: #4b4b80;
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+
+.button {
+  display: block;
+  width: 150px;
+  padding: 10px 20px;
+  margin: 20px 0;
+  text-align: center;
+  background: #4b4b80;
+  color: #fff;
+}
+
+a.help {
+  padding: 5px 17px;
+  border-radius: 100%;
+  background: #4b4b80;
+  color: #fff;
+  font-size: 1.3em;
+  cursor: pointer;
+  font-weight: bold;
+  float: left;
+  margin: 10px 20px 0 0;
+}
+
+.time {
+  width: 150px;
+  position: relative;
+  float: left;
+  font-size: 0.8em;
+  padding: 3px 0;
+}
+.time i {
+  font-size: 1.4em;
+}
+.time span {
+  margin-top: -2px;
+  font-weight: bold;
+}
+.time .edit-time {
+  position: absolute;
+  top: 25px;
+  left: 40px;
+  display: none;
+  width: 300px;
+  background: #fff;
+  border: 1px #000 solid;
+  z-index: 10000;
+  padding: 5px 10px;
+}
+.time .edit-time:before {
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: -21px;
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid black;
+}
+.time .edit-time span,
+.time .edit-time label {
+  float: left;
+  margin: 6px;
+  font-weight: normal;
+}
+.time .edit-time input,
+.time .edit-time select {
+  display: inline;
+  padding: 5px;
+  text-align: center;
+  font-size: 1.4em;
+  float: left;
+}
+.time .edit-time select {
+  margin-left: 5px;
+}
+.time .edit-time input.hours,
+.time .edit-time input.minutes {
+  width: 40px;
+}
+.time .edit-time input.duration {
+  width: 40px;
+}
+.time .edit-time input.title {
+  width: 250px;
+}
+.time .edit-time input.submit {
+  width: auto;
+  font-size: 1em;
+  float: right;
+  margin: 3px 0 0 0;
+}
+
+.options {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 1.2em;
+}
+.options a {
+  color: #4b4b80;
+  margin-left: 5px;
+}
+
+.module {
+  clear: both;
+  margin: 20px 0;
+}
+.module h2 {
+  font-size: 1.1em;
+  margin: 6px 0;
+}
+.module h4 {
+  margin: 20px 0 0 160px;
+}
+.module .time {
+  padding-top: 39px;
+}
+.module .content {
+  position: relative;
+  width: calc(100% - 172px);
+  float: left;
+  display: block;
+  border: 1px #000 solid;
+  padding: 0 0 10px 10px;
+}
+.module .content .options {
+  top: 3px;
+  right: 10px;
+}
+.module .content .options a.add-module {
+  display: none;
+  color: #fff;
+  font-size: 0.8em;
+}
+.module .content .intro {
+  margin-bottom: 15px;
+}
+.module .content .module-meta i {
+  width: 25px;
+}
+.module .content .module-meta .duration i,
+.module .content .module-meta .material-costs i {
+  padding-left: 5px;
+  width: 20px;
+}
+
+.resource-list {
+  clear: both;
+  margin-left: -160px;
+}
+.resource-list .resource {
+  clear: both;
+  padding: 8px 0;
+  display: block;
+}
+.resource-list .time {
+  padding-top: 3px;
+}
+.resource-list .content {
+  border: 0;
+  padding: 0 0 0 10px;
+}
+.resource-list .content .button {
+  float: right;
+  padding: 3px 0;
+  width: 80px;
+  font-size: 0.8em;
+  margin: 0;
+}
+.resource-list .timebreak .options {
+  top: -3px;
+  right: -3px;
+}
+
+.timebreak,
+.daybreak,
+.trainingstart {
+  background: #fff;
+  position: relative;
+  display: block;
+  padding: 12px 0 10px 0;
+  margin: 10px -1px 10px 0;
+}
+.timebreak p,
+.daybreak p,
+.trainingstart p {
+  text-align: center;
+  font-weight: bold;
+}
+.timebreak .options,
+.daybreak .options,
+.trainingstart .options {
+  top: 8px;
+  right: 20px;
+}
+.timebreak .time .edit-time,
+.daybreak .time .edit-time,
+.trainingstart .time .edit-time {
+  width: 750px;
+  top: -11px;
+}
+
+.timebreak {
+  border-top: 1px #000 dotted;
+  border-bottom: 1px #000 dotted;
+  border-right: 1px #fff solid;
+}
+
+.daybreak,
+.trainingstart {
+  border-top: 3px #000 solid;
+  border-bottom: 3px #000 solid;
+}
+
+.add-modules-breaks {
+  display: block;
+  clear: both;
+  width: 100%;
+  padding: 40px 0;
+  margin: 10px 0 20px 0;
+  text-align: center;
+  border: 1px #000 dotted;
+}
+.add-modules-breaks a.button {
+  display: none;
+}
+
+.summary {
+  background: #4b4b80;
+  color: #fff;
+  padding: 20px;
+}
+.summary h2 {
+  text-align: center;
+  margin-top: 0;
+}
+.summary ul {
+  font-size: 2em;
+  padding: 10px 0;
+}
+.summary ul li {
+  float: left;
+  text-align: center;
+  width: 25%;
+  margin-bottom: 20px;
+  display: block;
+}
+.summary ul li .label {
+  font-size: 0.5em;
+  display: block;
+}
+.summary ul li i {
+  display: block;
+}
+.summary ul li.time-icon {
+  padding-top: 17px;
+  font-size: 1.3em;
+}
+.summary .duration {
+  padding-bottom: 0;
+}
+.summary .duration li {
+  margin-bottom: 0;
+}
+.summary p {
+  font-size: 1em;
+  text-align: center;
+  margin: 0;
+}
+.summary .separator {
+  clear: both;
+  border-bottom: 1px #fff solid;
+  margin: 10px 0 30px 0;
+}
+
+.resource-overview table {
+  width: 100%;
+}
+.resource-overview table th {
+  text-align: left;
+}
+.resource-overview table .quantity {
+  width: 10%;
+}
+.resource-overview table .quantity input {
+  width: 70%;
+  padding: 3px 0;
+  text-align: center;
+}
+.resource-overview table .resource-name {
+  width: 70%;
+}
+.resource-overview table .material-costs {
+  width: 20%;
+  text-align: right;
+}
+.resource-overview table .result {
+  text-align: right;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 900px) {
+  #sidebar {
+    position: absolute;
+    max-width: 100%;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    left: 0;
+    top: -100%;
+    height: 100%;
+    display: block;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    border-right: none;
+  }
+  #sidebar .header {
+    display: block;
+  }
+  #sidebar .breaks,
+#sidebar .footer {
+    display: none;
+  }
+
+  .module .content .options a.add-module {
+    display: inline;
+  }
+
+  .open-sidebar #sidebar {
+    top: 0;
+    left: 0;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+  .open-sidebar #content {
+    display: none;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+
+  #content {
+    padding: 0 10px;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+
+  .add-modules-breaks p {
+    display: none;
+  }
+  .add-modules-breaks a.button {
+    display: inline;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .summary ul li {
+    width: 50%;
+  }
+}

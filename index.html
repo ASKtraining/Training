@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>#ASKtraining</title>
+    <link rel="stylesheet" href="/Training/assets/css/style.min.css">
+    <link rel="stylesheet" type="text/css" media="print" href="/Training/assets/css/print.min.css">
+    <link rel="stylesheet" href="/Training/assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/Training/assets/css/regular.min.css">
+    <link rel="stylesheet" href="/Training/assets/css/brands.min.css">
+    <link rel="stylesheet" href="/Training/assets/css/solid.min.css">
+    <link rel="stylesheet" href="/Training/assets/css/v4-shims.min.css">
+    <script src="/Training/assets/js/angular.js"></script>
+    <script src="/Training/assets/js/sortable.js"></script>
+    <script src="/Training/assets/js/index.js"></script>
+  </head>
+  <body>
+    <section>
+      <div id="MultipleContainers">
+    <div id="sidebar">
+        <div class="header">
+            <a href="#" id="close-sidebar-mobile"><i class="fas fa-times-circle"></i></a>
+        </div>
+        <div class="tags">
+            <ul id="wordcloud">
+                <li id="show-all-modules" class="selected">all</li>
+                <li>battery</li>
+                <li>charging</li>
+                <li>electronics</li>
+                <li>solar</li>
+                <li>motor</li>
+                <li>laser</li>
+                <li>sensoric</li>
+            </ul>
+        </div>
+        <div class="clearer"></div>
+        <ul id="module-list-side-bar" class="module-draggable-list">
+            <li id="Wind-Turbine" class="module battery" data-duration="15" data-participants="10" data-trainer="2" data-difficulty="3">
+                <div class="time">
+                    <i class="far fa-clock"></i> <span class='clock-time'>03:00pm - 03:45pm</span>
+                    <div class="edit-time">
+                        <form>
+                            <label>Duration:</label>
+                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                            <span>minutes</span>
+                            <input class="submit button" type="button" value="Save">
+                            <input class="close button" type="button" value="Close">
+                        </form>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="options">
+                        <a class="button add-module" src="#">Add Module</a>
+                        <a class="info" href="#"><i class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                    <h2>Wind Turbine</h2>
+                    <p class="intro">Introduction into the module</p>
+                    <div class="thumbnail"></div>
+                    <div class="module-meta">
+                        <div class="module-meta">
+                            <p class="module-duration"><i class="fas fa-hourglass-half"></i> 2 hours 20 minutes</p>
+                            <p class="difficulty-level"><i class="fas fa-graduation-cap"></i> easy-medium</p>
+                            <p class="material-costs"><i class="fas fa-dollar-sign"></i> 61$ material costs</p>
+                        </div>
+                    </div>
+                    <div class="resources">
+                        <p class="sidebar">Resources included: <a href="#" target="_blank">Open Documentation Guide</a> | <a href="#" target="_blank">Wind Turbine</a></p>
+                        <ul class="resource-list">
+                            <h4>Resources:</h4>
+                            <li class="resource resource-1" data-duration="0" data-name="Open Documentation Guide" data-cost="1" data-space="20" data-internet="no" data-power="no">
+                                <div class="time">
+                                    <i class="far fa-clock"></i> <span></span>
+                                    <div class="edit-time">
+                                        <form>
+                                            <label>Duration:</label>
+                                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                                            <span>minutes</span>
+                                            <input class="submit button" type="button" value="Save">
+                                            <input class="close button" type="button" value="Close">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <a href="#" class="button">Manual <i class="fas fa-file-download"></i></a>
+                                    <div>Open Documentation Guide | medium | 0 minutes | 1 $</div>
+                                </div>
+                                <div class="clearer"></div>
+                            </li>
+                            <li class="resource resource-2" data-duration="90" data-name="Wind Turbine" data-cost="60" data-space="20" data-internet="no" data-power="no">
+                                <div class="time">
+                                    <i class="far fa-clock"></i> <span class='clock-time'>03:45pm - 05:15pm</span>
+                                    <div class="edit-time">
+                                        <form>
+                                            <label>Duration:</label>
+                                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                                            <span>minutes</span>
+                                            <input class="submit button" type="button" value="Save">
+                                            <input class="close button" type="button" value="Close">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <a href="#" class="button">Manual <i class="fas fa-file-download"></i></a>
+                                    <div>Wind Turbine | medium | 90 minutes | 60 $</div>
+                                </div>
+                                <div class="clearer"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearer"></div>
+            </li>
+        </ul>
+
+        <ul id="break-list-side-bar" class="breaks">
+            <li class="timebreak" data-duration="15">
+                <div class="time">
+                    <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:20am - 12:30am</span></a>
+                    <div class="edit-time">
+                        <form>
+                            <label>Duration:</label>
+                            <input type="number" class="duration" placeholder="15" min="0" max="59">
+                            <span>minutes</span>
+                            <input type="text" class="title" placeholder="Time Break">
+                            <input class="submit button" type="button" value="Save">
+                            <input class="close button" type="button" value="Close">
+                        </form>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="options">
+                        <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                    <p class="break-title">Time Break</p>
+                </div>
+                <div class="clearer"></div>
+            </li>
+            <li class="daybreak" data-duration="15" data-start="09:00">
+                <div class="time">
+                    <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:00am - 10:20pm</span></a>
+                    <div class="edit-time">
+                        <form>
+                            <label>Start-Time:</label>
+                            <input type="number" class="hours" placeholder="09" min="1" max="12">
+                            <span>:</span>
+                            <input type="number" class="minutes" placeholder="00" min="0" max="59">
+                            <select class="am-or-pm">
+                                <option value="am">am</option>
+                                <option value="pm">pm</option>
+                                </select>
+                            <label>Duration:</label>
+                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                            <span>minutes</span>
+                            <input type="text" class="title" placeholder="Introduction into the training">
+                            <input class="submit button" type="button" value="Save">
+                            <input class="close button" type="button" value="Close">
+                        </form>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="options">
+                        <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                    <p class="break-title">Day Break</p>
+                </div>
+                <div class="clearer"></div>
+            </li>
+        </ul>
+
+        <div class="footer">
+            <a href="#" class="help">?</a>
+            <p>CC-BY-SA 4.0 #ASKtraining<br /><a href="#">view on Github</a></p>
+        </div>
+
+    </div>
+
+    <div id="content">
+        <a id="edit-icon" class="edit" href="#edit-title-and-description"><i class="fas fa-edit"></i></a>
+        <div id="edit-title-and-description">
+            <div class="edit-title-and-description-body">
+                <div class="edit-title-and-description-header">
+                    <p>Edit training plan details</p>
+                    <a class="close" href="#"><i class="fas fa-times-circle"></i></a>
+                </div>
+                <div class="edit-title-and-description-content">
+            <form>
+                <input type="text" class="title" placeholder="Title of the training">
+                <textarea class="description"></textarea>
+                        <input id="submit-title" type="button" value="Save changes">
+            </form>
+        </div>
+            </div>
+        </div>
+        
+        <h1 id="training-title">#ASKtraining - Title of the Training</h1>
+        <p id="training-description">Short description about the training.</p>
+        <ul id="module-list-training" class="training-list">
+            <div id="trainingstart" class="trainingstart" data-duration="15" data-start="09:00">
+                <div class="time">
+                    <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:00am - 10:20pm</span></a>
+                    <div class="edit-time">
+                        <form>
+                            <label>Start-Time:</label>
+                            <input type="number" class="hours" placeholder="09" min="1" max="12">
+                            <span>:</span>
+                            <input type="number" class="minutes" placeholder="00" min="0" max="59">
+                            <select class="am-or-pm">
+                                <option value="am">am</option>
+                                <option value="pm">pm</option>
+                            </select>
+                            <label>Duration:</label>
+                            <input type="number" class="duration" placeholder="15" min="0" max="240">
+                            <span>minutes</span>
+                            <input type="text" class="title" placeholder="Introduction into the training">
+                            <input class="submit button" type="button">
+                            <input class="close button" type="button" value="Close">
+                        </form>
+                    </div>
+                </div>
+                <div class="content">
+                    <p class="break-title">Introduction into the training</p>
+                </div>
+                <div class="clearer"></div>
+            </div>
+            <li id="Solar-Charger" class="module solar" data-duration="15" data-participants="25" data-trainer="5" data-difficulty="1">
+                <div class="time">
+                    <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:20am - 12:30am</span></a>
+                    <div class="edit-time">
+                        <form>
+                            <label>Duration:</label>
+                            <input type="number" class="duration" placeholder="15" min="0" max="59">
+                            <span>minutes</span>
+                            <input class="submit button" type="button" value="Save">
+                            <input class="close button" type="button" value="Close">
+                        </form>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="options">
+                        <a class="info" href="#lightbox-solar-charger"><i class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a> 
+                    </div>
+                    <div id="lightbox-solar-charger">
+                        <div class="lightbox-body">
+                            <iframe height="700" width="500" src="https://asktraining.github.io/Resource-TEMPLATE/resources/MyBigFatTrainingModuleResource.html" title="W3Schools Free Online Web Tutorials"></iframe>
+                        </div>
+                    </div>
+                    <h2>Solar Charger</h2>
+                    <p class="intro">Introduction into the module</p>
+                    <div class="thumbnail"></div>
+                    <div class="module-meta">
+                        <p class="module-duration"><i class="fas fa-hourglass-half"></i> 01 days 2 hours 20 minutes</p>
+                        <p class="difficulty-level"><i class="fas fa-graduation-cap"></i> easy-advanced</p>
+                        <p class="material-costs"><i class="fas fa-dollar-sign"></i> 46 $ material costs</p>
+                    </div>
+                    <div class="resources">
+                        <p class="sidebar">Resources included: <a href="#">LED Lamp</a> | <a href="#">Battery Charger</a> | <a href="#">Solar Charger</a></p>
+                        <ul class="resource-list">
+                            <h4>Resources:</h4>
+                            <li class="resource" data-duration="0" data-name="Open Hardware Guide" data-cost="1" data-space="20" data-internet="yes" data-power="yes">
+                                <div class="time">
+                                    <i class="far fa-clock"></i> <span></span>
+                                    <div class="edit-time">
+                                        <form>
+                                            <label>Duration:</label>
+                                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                                            <span>minutes</span>
+                                            <input class="submit button" type="button" value="Save">
+                                            <input class="close button" type="button" value="Close">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <a href="#" class="button">Manual <i class="fas fa-file-download"></i></a>
+                                    <div>Open Hardware Guide | easy | 0 minutes | 1 $</div>
+                                </div>
+                                <div class="clearer"></div>
+                            </li>
+                            <li class="timebreak" data-duration="15">
+                                <div class="time">
+                                    <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:20am - 12:30am</span></a>
+                                    <div class="edit-time">
+                                        <form>
+                                            <label>Duration:</label>
+                                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                                            <span>minutes</span>
+                                            <input type="text" class="title" placeholder="Time Break">
+                                            <input class="submit button" type="button" value="Save">
+                                            <input class="close button" type="button" value="Close">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <div class="options">
+                                        <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
+                                    </div>
+                                    <p class="break-title">Time Break</p>
+                                </div>
+                                <div class="clearer"></div>
+                            </li>
+                            <li class="resource resource-2" data-duration="45" data-name="LED Lamp" data-cost="5" data-space="20" data-internet="no" data-power="no">
+                                <div class="time">
+                                    <i class="far fa-clock"></i> <span class='clock-time'>12:45am - 01:30pm</span>
+                                    <div class="edit-time">
+                                        <form>
+                                            <label>Duration:</label>
+                                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                                            <span>minutes</span>
+                                            <input class="submit button" type="button" value="Save">
+                                            <input class="close button" type="button" value="Close">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <a href="#" class="button">Manual <i class="fas fa-file-download"></i></a>
+                                    <div>LED Lamp | medium | 45 minutes | 5 $</div>
+                                </div>
+                                <div class="clearer"></div>
+                            </li>
+                            <li class="resource resource-3" data-duration="90" data-name="Solar Charger" data-cost="40" data-space="20" data-internet="no" data-power="no">
+                                <div class="time">
+                                    <i class="far fa-clock"></i> <span class='clock-time'>01:30am - 03:00pm</span>
+                                    <div class="edit-time">
+                                        <form>
+                                            <label>Duration:</label>
+                                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                                            <span>minutes</span>
+                                            <input class="submit button" type="button" value="Save">
+                                            <input class="close button" type="button" value="Close">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <a href="#" class="button">Manual <i class="fas fa-file-download"></i></a>
+                                    <div>Solar Charger | advanced | 90 minutes | 40 $</div>
+                                </div>
+                                <div class="clearer"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearer"></div>
+            </li>
+            <li class="daybreak" data-duration="15" data-start="09:00">
+                <div class="time">
+                    <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:00am - 10:20pm</span></a>
+                    <div class="edit-time">
+                        <form>
+                            <label>Start-Time:</label>
+                            <input type="number" class="hours" placeholder="09" min="1" max="12">
+                            <span>:</span>
+                            <input type="number" class="minutes" placeholder="00" min="0" max="59">
+                            <select class="am-or-pm">
+                                <option value="am">am</option>
+                                <option value="pm">pm</option>
+                                </select>
+                            <label>Duration:</label>
+                            <input type="number" class="duration" placeholder="10" min="0" max="59">
+                            <span>minutes</span>
+                            <input type="text" class="title" placeholder="Day Break">
+                            <input class="submit button" type="button" value="Save">
+                            <input class="close button" type="button" value="Close">
+                        </form>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="options">
+                        <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                    <p class="break-title">Day Break</p>
+                </div>
+                <div class="clearer"></div>
+            </li>
+        </ul>
+        <div class="clearer page-break"></div>
+        <div class="add-modules-breaks">
+            <p>Drag and Drop more Modules to add</p>
+            <a href="#" id="add-module-mobile" class="button">+ Module</a>
+            <a href="#" id="add-timebreak-mobile" class="button">+ Time Break</a>
+            <a href="#" id="add-daybreak-mobile" class="button">+ Day Brake</a>
+        </div>
+        <div class="summary">
+            <h2>Summary</h2>
+            <ul class="duration">
+                <li class="time-icon"><i class="far fa-clock"></i></li>
+                <li class="days"><span class="label">days</span><span id="summary-days"></span></li>
+                <li class="hours"><span class="label">hours</span><span id="summary-hours"></span></li>
+                <li class="minutes"><span class="label">minutes</span><span id="summary-minutes"></span></li>
+                <div class="clearer"></div>
+            </ul>
+            <p>total time of your training</p>
+            <div class="separator"></div>
+            <ul class="informations">
+                <li><i class="fas fa-cubes"></i><span id="number-of-modules"></span><span class="label">Number of modules</span></li>
+                <li><i class="fas fa-users"></i><span id="max-participants"></span><span class="label">Max. participants</span></li>
+                <li><i class="fas fa-chalkboard-teacher"></i><span id="min-trainers"></span><span class="label">Min. trainers</span></li>
+                <li><i class="fas fa-graduation-cap"></i><span id="difficulty"></span><span class="label">Difficulty level for trainers</span></li>
+                <div class="separator"></div>
+                <li><i class="fas fa-cube"></i><span id="number-of-resources"></span><span class="label">Number of resources</span></li>
+                <li><i class="fas fa-ruler-combined"></i><span id="training-space"></span><span class="label">Minimum training space</span></li>
+                <li><i class="fas fa-globe-europe"></i><span id="internet-needed"></span><span class="label">Internet needed</span></li>
+                <li><i class="fas fa-plug"></i><span id="power-needed"></span><span class="label">Power supply needed</span></li>
+                <div class="clearer"></div>
+            </ul>
+        </div>
+        <div class="resource-overview">
+            <h3>Resources</h3>
+            <table id="resource-table">
+                <tr>
+                    <th class="quantity">Quantity</th>
+                    <th class="resource-name">Name of the resource</th>
+                    <th class="material-costs">Estimated Material Costs</th>
+                </tr>
+                <tr>
+                    <td class="quantity"><input></input></td>
+                    <td class="resource-name">LED Lamp</td>
+                    <td class="material-costs">20 $</td>
+                </tr>
+                <tr>
+                    <td class="quantity"><input></input></td>
+                    <td class="resource-name">Open Training Guide</td>
+                    <td class="material-costs">5 $</td>
+                </tr>
+                <tr>
+                    <td class="quantity"><input></input></td>
+                    <td class="resource-name">Solar Charger</td>
+                    <td class="material-costs">40 $</td>
+                </tr>
+                <tr class="result">
+                    <td colspan="2" class="label">Result:</td>
+                    <td class="total-price">65 $</td>
+                </tr>
+            </table>
+        </div>
+        <div class="attachments">
+            <h3>Attachments</h3>
+            <div class="attachment">
+                <input type="checkbox" id="timetable" name="timetable" value="Timetable">
+                <label for="timetable"> Timetable <a href="#"><i class="fas fa-info-circle"></i></a></label>
+            </div>
+            <div class="attachment">
+                <input type="checkbox" id="materialchecklist" name="materialchecklist" value="materialchecklist">
+                <label for="materialchecklist"> Material checklist <a href="#"><i class="fas fa-info-circle"></i></a></label>
+            </div>
+            <div class="attachment">
+                <input type="checkbox" id="name-badges" name="name-badges" value="name-badges">
+                <label for="name-badges"> Name badges <a href="#"><i class="fas fa-info-circle"></i></a></label>
+            </div>
+        </div>
+        <button class="button print" onclick="window.print();" class="noPrint"><i class="fas fa-print"></i> Print</button>
+    </div>
+</div>
+
+
+
+
+    </section>
+  </body>
+</html>

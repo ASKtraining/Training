@@ -1,0 +1,22 @@
+#sidebar,
+.noPrint,
+a.edit,
+.button,
+.options,
+.add-modules-breaks,
+.attachments {
+  display: none;
+}
+
+#content {
+  padding: 0 10px;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+#content .page-break {
+  display: block;
+  page-break-after: always;
+}
+#content .summary {
+  color: #000;
+}
