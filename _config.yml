@@ -1,0 +1,12 @@
+baseurl: /Training/
+url: 
+
+collections:
+  resources:
+    output: true
+    output_ext: .html .md
+    permalink: /resources/:path/
+  modules:
+    output: true
+    output_ext: .html
+    permalink: /modules/:path/
