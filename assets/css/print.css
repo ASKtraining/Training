@@ -10,7 +10,6 @@ a.edit,
 
 #content {
   padding: 0 10px;
-  -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
 #content .page-break {
@@ -19,4 +18,4 @@ a.edit,
 }
 #content .summary {
   color: #000;
-}
+}/*# sourceMappingURL=print.css.map */
