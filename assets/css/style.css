@@ -92,6 +92,12 @@ body.index #content .button {
   font-size: 10em;
   color: #DFAF5F;
 }
+#content #training-plan #training-description {
+  margin-bottom: 30px;
+}
+#content #training-plan .training-list {
+  min-height: 200px;
+}
 #content #edit-title-and-description,
 #content #lightbox-solar-charger {
   position: fixed;
@@ -583,10 +589,9 @@ a.help {
   display: block;
   clear: both;
   width: 100%;
-  padding: 40px 0;
+  padding: 0 0;
   margin: 10px 0 20px 0;
   text-align: center;
-  border: 1px #DFAF5F dotted;
 }
 .add-modules-breaks a.button {
   display: none;
