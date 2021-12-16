@@ -529,6 +529,7 @@ a.help
     background: $color-element-background
     color: $color-element-font
     padding: 20px
+    margin: 50px 0
     h2
         text-align: center
         margin-top: 0
@@ -580,6 +581,27 @@ a.help
         .result
             text-align: right
             font-weight: bold
+
+.attachments
+    position: relative
+    .overlay
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background: $color-element-background
+        opacity: 0
+        text-align: center
+        display: flex
+        justify-content: center
+        align-items: center
+        cursor: pointer
+        font-size: 1.9em
+    &:hover
+        .overlay
+            opacity: 1
+
 
 @media only screen and (max-width: 900px)
     #sidebar
