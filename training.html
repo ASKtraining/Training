@@ -9,7 +9,7 @@ permalink: /training/
             <a href="#" id="close-sidebar-mobile"><i class="fas fa-times-circle"></i></a>
         </div>
         <div class="tags">
-            <h3><i class="fas fa-filter"></i> Filter Modules by tags</h3>
+            <h3><i class="fas fa-filter"></i> Filter modules by tags</h3>
             <ul id="wordcloud">
                 <li id="show-all-modules" class="selected">all</li>
                 <li>Web</li>
@@ -31,21 +31,21 @@ permalink: /training/
             
             <li id="{{ module.module.id }}" class="module {{ module.module.tag }}" data-duration="{{ module.module.duration }}" data-participants="{{ module.module.max-participants }}" data-trainer="{{ module.module.min-trainers }}" data-difficulty="{{ module.module.difficulty }}">
                 <div class="time">
-                    <i class="far fa-clock"></i> <span class='clock-time'>03:00pm - 03:45pm</span>
+                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-clock"></i></div> <span class='clock-time'>03:00pm - 03:45pm</span>
                     <div class="edit-time">
                         <form>
                             <label>Duration:</label>
                             <input type="number" class="duration" placeholder="10" min="0" max="59">
                             <span>minutes</span>
                             <input class="submit button" type="button" value="Save">
-                            <input class="close button" type="button" value="Close">
+                            <input class="close" type="button" value="X">
                         </form>
                     </div>
                 </div>
                 <div class="content">
                     <div class="options">
                         <a class="button add-module" src="#">Add Module</a>
-                        <a class="info" href="#"><i class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
+                        <a class="info" href="#" data-tooltip="this feature is coming" data-tooltip-location="left"><i class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
                     </div>
                     <h2>{{ module.module.name }}</h2>
                     <p class="intro">Introduction into the module</p>
@@ -94,14 +94,14 @@ permalink: /training/
 
                                         <li class="resource" data-duration="{{ res.duration }}" data-name="{{ res.name }}" data-cost="{{ res.cost }}" data-space="" data-internet="" data-power="">
                                             <div class="time">
-                                                <i class="far fa-clock"></i> <span class='clock-time'>03:45pm - 05:15pm</span>
+                                                <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-clock"></i></div> <span class='clock-time'>03:45pm - 05:15pm</span>
                                                 <div class="edit-time">
                                                     <form>
                                                         <label>Duration:</label>
                                                         <input type="number" class="duration" placeholder="{{ res.duration }}" min="0" max="240">
                                                         <span>minutes</span>
                                                         <input class="submit button" type="button" value="Save">
-                                                        <input class="close button" type="button" value="Close">
+                                                        <input class="close" type="button" value="X">
                                                     </form>
                                                 </div>
                                             </div>
@@ -132,15 +132,15 @@ permalink: /training/
         <ul id="break-list-side-bar" class="breaks">
             <li class="timebreak" data-duration="15">
                 <div class="time">
-                    <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:20am - 12:30am</span></a>
+                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-clock"></i></div> <span class='clock-time'>10:20am - 12:30am</span></a>
                     <div class="edit-time">
                         <form>
+                            <input type="text" class="title" placeholder="Time Break">
                             <label>Duration:</label>
                             <input type="number" class="duration" placeholder="15" min="0" max="59">
                             <span>minutes</span>
-                            <input type="text" class="title" placeholder="Time Break">
                             <input class="submit button" type="button" value="Save">
-                            <input class="close button" type="button" value="Close">
+                            <input class="close" type="button" value="X">
                         </form>
                     </div>
                 </div>
@@ -154,7 +154,7 @@ permalink: /training/
             </li>
             <li class="daybreak" data-duration="15" data-start="09:00">
                 <div class="time">
-                    <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:00am - 10:20pm</span></a>
+                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-clock"></i></div> <span class='clock-time'>10:00am - 10:20pm</span></a>
                     <div class="edit-time">
                         <form>
                             <label>Start-Time:</label>
@@ -170,7 +170,7 @@ permalink: /training/
                             <span>minutes</span>
                             <input type="text" class="title" placeholder="Introduction into the training">
                             <input class="submit button" type="button" value="Save">
-                            <input class="close button" type="button" value="Close">
+                            <input class="close" type="button" value="X">
                         </form>
                     </div>
                 </div>
@@ -186,7 +186,7 @@ permalink: /training/
 
         <div class="footer">
             <a href="#" class="help">?</a>
-            <p>CC-BY-SA 4.0 #ASKtraining<br /><a href="#">view on Github</a></p>
+            <p>CC-BY-SA 4.0 #ASKtraining<br /><a href="https://github.com/ASKnetCommunity/Training">view on Github</a></p>
         </div>
 
     </div>
@@ -216,7 +216,7 @@ permalink: /training/
             <ul id="module-list-training" class="training-list">
                 <div id="trainingstart" class="trainingstart" data-duration="15" data-start="09:00">
                     <div class="time">
-                        <a href="#"><i class="far fa-clock"></i> <span class='clock-time'>10:00am - 10:20pm</span></a>
+                        <div style="display:inline;" data-tooltip="edit start time & title" data-tooltip-location="right"><i class="far fa-clock"></i></div> <span class='clock-time'>10:00am - 10:20pm</span></a>
                         <div class="edit-time">
                             <form>
                                 <input style="margin-bottom:20px;" type="text" class="title" placeholder="Introduction into the training">
@@ -234,7 +234,7 @@ permalink: /training/
                                     <span>minutes</span>
                                 </div>
                                     <input class="submit button" type="button" value="Save">
-                                    <input class="close" type="button" value="Close">
+                                    <input class="close" type="button" value="X">
                             </form>
                         </div>
                     </div>
@@ -243,12 +243,13 @@ permalink: /training/
                     </div>
                     <div class="clearer"></div>
                 </div>
-                
+                <div class="clearer page-break"></div>
             </ul>
         
             <div class="clearer page-break"></div>
             <div class="add-modules-breaks">
-                <p>Drag and Drop more Modules to add</p>
+                <p style="font-size:45px;"><i class="fas fa-arrow-up"></i></p>
+                <p>Drag and drop more modules to add</p>
                 <a href="#" id="add-module-mobile" class="button">+ Module</a>
                 <a href="#" id="add-timebreak-mobile" class="button">+ Time Break</a>
                 <a href="#" id="add-daybreak-mobile" class="button">+ Day Brake</a>
@@ -257,8 +258,8 @@ permalink: /training/
         <div class="summary">
             <h2>Summary</h2>
             <ul class="duration">
-                <li class="time-icon"><i class="far fa-clock"></i></li>
                 <li class="days"><span class="label">days</span><span id="summary-days"></span></li>
+                <li class="time-icon"><i class="far fa-clock"></i></li>
                 <li class="hours"><span class="label">hours</span><span id="summary-hours"></span></li>
                 <li class="minutes"><span class="label">minutes</span><span id="summary-minutes"></span></li>
                 <div class="clearer"></div>
@@ -280,7 +281,7 @@ permalink: /training/
             
         </div>
         <div class="resource-overview">
-            <h3>Resources</h3>
+            <h2>Resources</h2>
             <table id="resource-table">
                 <tr>
                     <th class="quantity">Quantity</th>
@@ -322,8 +323,15 @@ permalink: /training/
                 <input type="checkbox" id="name-badges" name="name-badges" value="name-badges">
                 <label for="name-badges"> Name badges <a href="#"><i class="fas fa-info-circle"></i></a></label>
             </div>
+            <div class="overlay">
+                <p>This feature is coming</p>
+            </div>
         </div>
-        <button class="button print" onclick="window.print();" class="noPrint"><i class="fas fa-print"></i> Print</button>
+        <div class="actions">
+            <button class="button print" onclick="window.print();" class="noPrint"><i class="fas fa-print"></i> Print</button>
+            <span class="button" data-tooltip="this feature is coming" data-tooltip-location="top"><i class="fas fa-save"></i> Save</span>
+            <span class="button" data-tooltip="this feature is coming" data-tooltip-location="top"><i class="fas fa-file-download"></i> Download</span>
+        </div>
     </div>
 </div>
 
