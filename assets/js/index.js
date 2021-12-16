@@ -513,11 +513,9 @@ function getChildByClassName(el, className){
 }
 
 const difficultyLevels= {
-    1: 'low',
-    2: 'low-medium',
-    3: 'medium',
-    4: 'medium-high',
-    5: 'high'
+    1: 'easy',
+    2: 'medium',
+    3: 'advanced'
 };
 
 function calculateSummary() {
