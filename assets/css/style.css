@@ -53,6 +53,8 @@ body.index #content .introduction {
 }
 body.index #content .button {
   margin: 60px auto;
+  font-size: 1.9em;
+  width: auto;
 }
 
 #content {
@@ -61,10 +63,6 @@ body.index #content .button {
   margin: 0 auto;
   padding: 0 20px 0 370px;
   z-index: 1;
-}
-#content .button {
-  font-size: 1.9em;
-  width: auto;
 }
 #content .edit {
   background: rgba(223, 175, 95, 0.3);
@@ -396,26 +394,32 @@ a.help {
 .time .edit-time {
   position: absolute;
   top: 25px;
-  left: 40px;
+  left: 20px;
   display: none;
-  width: 150px;
-  background: #fff;
+  width: 241px;
+  border-radius: 6px;
+  background-color: rgba(223, 175, 95, 0.9);
   border: 1px #DFAF5F solid;
-  box-shadow: inset 0 1px 0 rgba(223, 175, 95, 0.7);
+  box-shadow: 0px 0px 24px rgba(223, 175, 95, 0.7);
   z-index: 10000;
-  padding: 20px 10px;
+  padding: 10px 18px;
+  color: #000;
+  font-size: 1.4em;
 }
 .time .edit-time:before {
-  display: block;
-  position: absolute;
-  top: 2px;
-  left: -21px;
   content: "";
-  width: 0;
-  height: 0;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
-  border-right: 20px solid black;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 5px);
+  border-style: solid;
+  border-width: 5px 5px 0px 5px;
+  border-color: rgba(223, 175, 95, 0.9) transparent transparent transparent;
+  transition-duration: 0s;
+  transform-origin: top;
+  transform: translateX(-50%) scaleY(0);
+  pointer-events: none;
+  transition: 0.2s;
+  will-change: transform;
 }
 .time .edit-time span,
 .time .edit-time label {
@@ -426,13 +430,17 @@ a.help {
 .time .edit-time input,
 .time .edit-time select {
   display: inline;
-  padding: 5px;
+  padding: 5px 5px 4px 5px;
   text-align: center;
-  font-size: 1.4em;
+  font-size: 1em;
   float: left;
+  border: 0;
+  margin-top: 6px;
+  background: #fff;
 }
 .time .edit-time select {
-  margin-left: 5px;
+  margin-left: 10px;
+  padding: 4px 5px;
 }
 .time .edit-time input.hours,
 .time .edit-time input.minutes {
@@ -442,19 +450,29 @@ a.help {
   width: 60px;
 }
 .time .edit-time input.title {
-  width: 250px;
+  width: 100%;
+  padding: 10px 0;
 }
 .time .edit-time input.submit {
-  width: 100px;
+  width: 100%;
   font-size: 1em;
   margin: 3px 0 0 0;
   border: 1px rgba(223, 175, 95, 0.7) solid;
+  background: #212121;
+  color: #fff;
   cursor: pointer;
   display: block;
+  padding: 10px 0;
+  margin: 20px 0 10px 0;
 }
 .time .edit-time input.close {
   border: none;
-  background: transparent;
+  position: absolute;
+  top: -20px;
+  right: -14px;
+  padding: 3px 9px;
+  border-radius: 100%;
+  background: #DFAF5F;
   cursor: pointer;
 }
 
@@ -528,6 +546,9 @@ a.help {
 .resource-list .time {
   padding-top: 3px;
 }
+.resource-list .time .edit-time {
+  top: -19px;
+}
 .resource-list .content {
   border: 0;
   padding: 0 0 0 10px;
@@ -568,9 +589,8 @@ a.help {
 .timebreak .time .edit-time,
 .daybreak .time .edit-time,
 .trainingstart .time .edit-time {
-  width: 275px;
+  width: 287px;
   top: -11px;
-  box-shadow: 0 0 1em 0.5em rgba(223, 175, 95, 0.7);
 }
 
 .timebreak {
