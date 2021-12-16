@@ -416,9 +416,9 @@ function calculateTime() {
             let moduleDurationEl = getChildByClassName(mod, CLASS_MODULEDURATION);
             const durationSplit = getDurationSplit(moduleEndTime - moduleStartTime)
             if(durationSplit.days != undefined ){
-                moduleDurationEl.innerHTML = `<i class="fas fa-hourglass-half"></i> ${durationSplit.days} days ${durationSplit.hours} hours ${durationSplit.minutes} minutes`;
+                moduleDurationEl.innerHTML = `<i class="fas fa-hourglass-half"></i>${durationSplit.days} days ${durationSplit.hours} hours ${durationSplit.minutes} minutes`;
             } else {
-                moduleDurationEl.innerHTML = `<i class="fas fa-hourglass-half"></i> ${durationSplit.hours} hours ${durationSplit.minutes} minutes`;
+                moduleDurationEl.innerHTML = `<i class="fas fa-hourglass-half"></i>${durationSplit.hours} hours ${durationSplit.minutes} minutes`;
             }
 
         } else if (mod.className.includes(CLASS_TIMEBREAK)) {
@@ -513,6 +513,7 @@ function getChildByClassName(el, className){
 }
 
 const difficultyLevels= {
+    0: '-',
     1: 'easy',
     2: 'medium',
     3: 'advanced'

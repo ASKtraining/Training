@@ -382,6 +382,11 @@ body.index #content .button {
   color: #212121;
 }
 
+.btn-inactive {
+  background: #bababa;
+  color: #575757;
+}
+
 a.help {
   padding: 5px 17px;
   border-radius: 100%;
