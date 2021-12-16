@@ -32,10 +32,3 @@ module:
 
 
 
-
-
-<!-- {% for resource in site.resources %}
-  {{ resource.content }}
-{% endfor %} -->
-
-

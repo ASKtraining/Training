@@ -15,7 +15,7 @@ module:
     duration: 90
     max-participants: 10
     min-trainers: 3
-    difficulty: 3
+    difficulty: 2
     compatibility: ASKotec2.0 or newer
     blog: https://url-to-blog-posts
     issues: https://url-to-issue-list
@@ -31,12 +31,5 @@ module:
 ---
 
 
-
-
-
-
-<!-- {% for resource in site.resources %}
-  {{ resource.content }}
-{% endfor %} -->
 
 

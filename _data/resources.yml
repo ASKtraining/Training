@@ -2,14 +2,14 @@
   id: minires
   url: https://en.wikipedia.org/wiki/Minimal_(supermarket)
   duration: 210
-  difficulty: 5
+  difficulty: 1
   cost: 30
 
 - name: Beispiel
   id: bsp
   url: 
   duration: 75
-  difficulty: 5
+  difficulty: 2
   cost: 99
 
 - name: Play a game of Catch
@@ -23,5 +23,5 @@
   id: soldering
   url: https://en.wikipedia.org/wiki/Soldering
   duration: 45
-  difficulty: 5
+  difficulty: 3
   cost: 20

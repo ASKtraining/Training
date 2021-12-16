@@ -416,9 +416,9 @@ function calculateTime() {
             let moduleDurationEl = getChildByClassName(mod, CLASS_MODULEDURATION);
             const durationSplit = getDurationSplit(moduleEndTime - moduleStartTime)
             if(durationSplit.days != undefined ){
-                moduleDurationEl.innerHTML = `<i class="fas fa-hourglass-half"></i> ${durationSplit.days} days ${durationSplit.hours} hours ${durationSplit.minutes} minutes`;
+                moduleDurationEl.innerHTML = `<i class="fas fa-hourglass-half"></i>${durationSplit.days} days ${durationSplit.hours} hours ${durationSplit.minutes} minutes`;
             } else {
-                moduleDurationEl.innerHTML = `<i class="fas fa-hourglass-half"></i> ${durationSplit.hours} hours ${durationSplit.minutes} minutes`;
+                moduleDurationEl.innerHTML = `<i class="fas fa-hourglass-half"></i>${durationSplit.hours} hours ${durationSplit.minutes} minutes`;
             }
 
         } else if (mod.className.includes(CLASS_TIMEBREAK)) {
@@ -513,11 +513,10 @@ function getChildByClassName(el, className){
 }
 
 const difficultyLevels= {
-    1: 'low',
-    2: 'low-medium',
-    3: 'medium',
-    4: 'medium-high',
-    5: 'high'
+    0: '-',
+    1: 'easy',
+    2: 'medium',
+    3: 'advanced'
 };
 
 function calculateSummary() {
@@ -530,6 +529,10 @@ function calculateSummary() {
         difficulty = parseInt(d.difficulty) > difficulty ? parseInt(d.difficulty) : difficulty;
         participants = parseInt(d.participants) < participants ? parseInt(d.participants) : participants;
         trainer = parseInt(d.trainer) > trainer ? parseInt(d.trainer) : trainer;
+    }
+    if (moduleListTraining.length === 0) { 
+        participants = 0;
+        trainer = 0;
     }
     document.querySelector('#number-of-modules').innerText = moduleListTraining.length;
     document.querySelector('#max-participants').innerText = participants;
