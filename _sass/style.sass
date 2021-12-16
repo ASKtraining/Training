@@ -179,8 +179,22 @@ body.index
     .resources
         .sidebar
             display: none
-    .print
-        float: right
+    .actions
+        display: block
+        .button
+            float: right
+            display: block
+            padding: 10px 50px
+            margin: 40px 0 40px 15px
+            font-size: 1.5em
+            cursor: pointer
+            width: auto
+            border: 1px $color-element-font solid
+            font-weight: 400
+            &:hover
+                background: $color-element-background-inactive
+        .print
+            padding: 14px 50px
 
 #sidebar
     max-width:350px

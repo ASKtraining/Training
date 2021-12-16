@@ -200,8 +200,25 @@ body.index #content .button {
 #content .resources .sidebar {
   display: none;
 }
-#content .print {
+#content .actions {
+  display: block;
+}
+#content .actions .button {
   float: right;
+  display: block;
+  padding: 10px 50px;
+  margin: 40px 0 40px 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+  width: auto;
+  border: 1px #212121 solid;
+  font-weight: 400;
+}
+#content .actions .button:hover {
+  background: rgba(223, 175, 95, 0.3);
+}
+#content .actions .print {
+  padding: 14px 50px;
 }
 
 #sidebar {
