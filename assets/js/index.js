@@ -531,6 +531,10 @@ function calculateSummary() {
         participants = parseInt(d.participants) < participants ? parseInt(d.participants) : participants;
         trainer = parseInt(d.trainer) > trainer ? parseInt(d.trainer) : trainer;
     }
+    if (moduleListTraining.length === 0) { 
+        participants = 0;
+        trainer = 0;
+    }
     document.querySelector('#number-of-modules').innerText = moduleListTraining.length;
     document.querySelector('#max-participants').innerText = participants;
     document.querySelector('#min-trainers').innerText = trainer;
