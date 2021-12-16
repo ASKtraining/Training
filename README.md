@@ -3,13 +3,13 @@
 
 With the #ASKnet training plan you can compile and plan your individual training. You can choose from the different training modules and freely organize the schedule for your training. The training plan automatically creates a schedule with recommended breaks, which are then individually adjusted.
 
-![Trainingsplan Overview](/assets/img/readme-traininsplan-overview.png)
+![Trainingsplan Overview](assets/img/screenshot.png)
 
 Afterwards, the training plan shows which resources are needed, how high the material costs are, how high the recommended number of participants should be and how many trainers are needed.
 
 You can also add helpful attachments to your training plan, such as a timetable, material checklists, and more. Your individual training plan is ready, which you can then download as a PDF package to share or print out.
 
-## --===<({   [Here it goes to the training plan](https://asktraining.github.io/Training/)   })>===--
+## --===<({   [Demo](https://asktraining.github.io/Training/)   })>===--
 
 ## Documentation
 
