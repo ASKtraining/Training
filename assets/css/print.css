@@ -10,7 +10,6 @@ a.edit,
 
 #content {
   padding: 0 10px;
-  -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
 #content .page-break {
@@ -20,3 +19,13 @@ a.edit,
 #content .summary {
   color: #000;
 }
+#content #training-plan {
+  border: 0;
+}
+#content #training-plan .training-plan-icon {
+  display: none;
+}
+
+.actions {
+  display: none;
+}/*# sourceMappingURL=print.css.map */
