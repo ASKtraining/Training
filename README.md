@@ -46,7 +46,7 @@ docker-compose start
 
 | r0g Agency | ASKnet | developed by nanoLogika | BMZ |
 | :--------: | :----: | :-------------------------: | :-------: |
-|[![r0g Logo](assets/img/partner-r0g-logo.png)](https://openculture.agency/)|[![#ASKnet Logo](assets/img/partner-asknet-logo.jpg)](https://github.com/ASKnet-Open-Training)| [![nanoLogika Logo](assets/img/partner-nanologika-logo.png)](https://www.nanologika.de) | [![BMZ Logo](assets/img/founder_BMZ.jpg)](https://www.bmz.de/en/) |
+|[![r0g Logo](assets/img/r0g_logo.png)](https://openculture.agency/)|[![#ASKnet Logo](assets/img/asknet-logo.png)](https://github.com/ASKnet-Open-Training)| [![nanoLogika Logo](assets/img/partner-nanologika-logo.png)](https://www.nanologika.de) | [![BMZ Logo](assets/img/founder_BMZ.jpg)](https://www.bmz.de/en/) |
 | [Official Website](https://openculture.agency/) | [Official Website](https://github.com/ASKnet-Open-Training) | [Official Website](https://www.nanologika.de) | [Official Website](https://www.bmz.de/en/) |
 
 ## License
