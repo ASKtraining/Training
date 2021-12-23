@@ -25,3 +25,54 @@
   duration: 45
   difficulty: 3
   cost: 20
+
+- name: "Unit: ASKotec Introduction"
+  id: askotecintro
+  description: "Get an idea what you can do with the learning kit called: #ASKotec - Access to Skills and Knowledge open tech emergency case"
+  url: "https://askotec.openculture.agency/"
+  duration: 30
+  difficulty: 1
+  cost: 
+
+- name: "Unit: DIY LED Light"
+  id: ledlight
+  description: "Build your own LED Light with the help of the Open Hardware Guide instructions"
+  url: "https://github.com/opencultureagency/Open-Hardware-Guide"
+  duration: 40
+  difficulty: 1
+  cost: 5
+
+- name: "Unit: DIY Solar Charger"
+  id: solarcharger
+  url: "https://wikifab.org/wiki/DIY_Solar_Charger"
+  duration: 75
+  difficulty: 2
+  cost: 1000
+ 
+- name: "Unit: Open Guides Introduction"
+  id: openguides
+  url: "https://openculture.agency/open-educational-resources/"
+  duration: 75
+  difficulty: 2
+  cost: 20
+
+- name: "Tool: Open Hardware Guide"
+  id: ohg
+  url: "https://github.com/opencultureagency/Open-Hardware-Guide"
+  duration: 
+  difficulty: 
+  cost: 1
+  
+- name: "Tool: Open Documentation Guide"
+  id: odg
+  url: "https://github.com/opencultureagency/Open-Documentation-Guide"
+  duration: 
+  difficulty: 
+  cost: 1
+  
+- name: "Tool: #ASKotec Kit"
+  id: askotec
+  url: "https://askotec.openculture.agency/"
+  duration: 
+  difficulty: 
+  cost: 1000
