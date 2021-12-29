@@ -68,7 +68,7 @@ permalink: /training/
                         <a class="info" href="#" data-tooltip="this feature is coming" data-tooltip-location="left"><i class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
                     </div>
                     <h2>{{ module.module.name }}</h2>
-                    <p class="intro">Introduction into the module</p>
+                    <p class="intro">{{ module.module.description }}</p>
                     <div class="thumbnail"><img src="{{ site.url }}{{ site.baseurl }}assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
                     <div class="module-meta">
                         <div class="module-meta">
@@ -77,7 +77,8 @@ permalink: /training/
                             <p class="material-costs"><i class="fas fa-dollar-sign"></i>{{ module_cost }} $ material costs</p>
                         </div>
                     </div>
-                     <div class="resources">
+                    <p class="intro">Introduction into the module</p>
+                    <div class="resources">
                         <p class="sidebar">Resources included: 
                             
                             {% assign first = true %}
@@ -97,7 +98,6 @@ permalink: /training/
                             
                         </p>    
                         <ul class="resource-list">
-                            <h4>Resources: </h4>   
 
                             {% for actual_res in module.module.res %}
                                 {% for res in site.resources %}
@@ -130,6 +130,9 @@ permalink: /training/
                                             <div class="content">
                                                 <a href="{{ res.resource.url }}" class="button" target="_blank">Manual &nbsp; <i class="fas fa-file-download"></i></a>
                                                 <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} | {{ res.resource.duration }} minutes | {{ res.resource.cost }} $</div>
+                                                {% if res.resource.description %} 
+                                                    <p>{{ res.resource.description }}</p>
+                                                {% endif %}
                                             </div>
                                             <div class="clearer"></div>
                                         </li>
