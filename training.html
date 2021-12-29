@@ -42,9 +42,9 @@ permalink: /training/
 
                 {% assign module_cost = 0 %}
                 {% for actual_res in module.module.res %}
-                    {% for res in site.data.resources %}
-                        {% if res.id == actual_res %}
-                            {% assign module_cost = module_cost | plus: res.cost %}
+                    {% for res in site.resources %}
+                        {% if res.resource.id == actual_res %}
+                            {% assign module_cost = module_cost | plus: res.resource.cost %}
                         {% endif %}
                     {% endfor %}
                 {% endfor  %}
@@ -84,13 +84,13 @@ permalink: /training/
                             {% assign all_res_output = '' %}
 
                             {% for actual_res in module.module.res %}
-                                {% for res in site.data.resources %}
-                                    {% if res.id == actual_res %}
+                                {% for res in site.resources %}
+                                    {% if res.resource.id == actual_res %}
                                         {% if first == false %}
                                             {{ '|' }}
                                         {% endif %}
                                         {% assign first = false %}
-                                        <a href="{{ res.url }}" target="_blank">{{ res.name }}</a>
+                                        <a href="{{ res.resource.url }}" target="_blank">{{ res.resource.name }}</a>
                                     {% endif %}
                                 {% endfor %}
                             {% endfor  %}
@@ -100,10 +100,10 @@ permalink: /training/
                             <h4>Resources: </h4>   
 
                             {% for actual_res in module.module.res %}
-                                {% for res in site.data.resources %}
-                                    {% if res.id == actual_res %}
+                                {% for res in site.resources %}
+                                    {% if res.resource.id == actual_res %}
 
-                                        {% case res.difficulty %}
+                                        {% case res.resource.difficulty %}
                                             {% when 1 %}
                                                 {% assign diff_text = 'easy' %}
                                             {% when 2 %}
@@ -111,16 +111,16 @@ permalink: /training/
                                             {% when 3 %}
                                                 {% assign diff_text = 'advanced' %}
                                             {% else %}
-                                                {% assign diff_text = res.difficulty %}
+                                                {% assign diff_text = res.resource.difficulty %}
                                         {% endcase %}
 
-                                        <li class="resource" data-duration="{{ res.duration }}" data-name="{{ res.name }}" data-cost="{{ res.cost }}" data-space="" data-internet="" data-power="">
+                                        <li class="resource" data-duration="{{ res.resource.duration }}" data-name="{{ res.resource.name }}" data-cost="{{ res.resource.cost }}" data-space="" data-internet="" data-power="">
                                             <div class="time">
                                                 <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-clock"></i></div> <span class='clock-time'>03:45pm - 05:15pm</span>
                                                 <div class="edit-time">
                                                     <form>
                                                         <label>Duration:</label>
-                                                        <input type="number" class="duration" placeholder="{{ res.duration }}" min="0" max="240">
+                                                        <input type="number" class="duration" placeholder="{{ res.resource.duration }}" min="0" max="240">
                                                         <span>minutes</span>
                                                         <input class="submit button" type="button" value="Save">
                                                         <input class="close" type="button" value="X">
@@ -128,8 +128,8 @@ permalink: /training/
                                                 </div>
                                             </div>
                                             <div class="content">
-                                                <a href="{{ res.url }}" class="button" target="_blank">Manual &nbsp; <i class="fas fa-file-download"></i></a>
-                                                <div><strong>{{ res.name }}</strong> | {{ diff_text }} | {{ res.duration }} minutes | {{ res.cost }} $</div>
+                                                <a href="{{ res.resource.url }}" class="button" target="_blank">Manual &nbsp; <i class="fas fa-file-download"></i></a>
+                                                <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} | {{ res.resource.duration }} minutes | {{ res.resource.cost }} $</div>
                                             </div>
                                             <div class="clearer"></div>
                                         </li>
