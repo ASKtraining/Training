@@ -12,10 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
-        git clone https://github.com/ASKtraining/tools.git
-        pip3 install -r tools/requirements.txt
-        export BASE_IRI="http://myontology.com"
-        tools/scripts/pre-process
+        # git clone https://github.com/ASKtraining/tools.git
+        # pip3 install -r tools/requirements.txt
+        # export BASE_IRI="http://myontology.com"
+        # tools/scripts/pre-process
 
     # Use GitHub Actions' cache to shorten build times and decrease load on servers
     - uses: actions/cache@v2
