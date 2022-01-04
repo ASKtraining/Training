@@ -4,7 +4,7 @@ version: '0.1.0'
 module:
     name: 'Open Workshop Setup'
     id: open-workshop
-    tag: 'Open_Source'
+    tag: 'Open_Source&Knowledge'
     authors:
         - name: BaMa
           email: test@bla.com
