@@ -1,5 +1,4 @@
-url: "https://training.asknet.community"
-baseurl: "/"
+baseurl: ""
 
 collections:
   modules:
