@@ -1,5 +1,4 @@
 ---
-layout: resource
 resource:
     name: Minimal Resource
     id: minires

@@ -2,7 +2,7 @@
 module:
     name: 'Minimal Module'
     id: minimod
-    tag: Software
+    tag: Web&Software
     pic-url: minimod.png
     duration: 30
     max-participants: 300
