@@ -9,6 +9,7 @@ module:
     max-participants: 15
     min-trainers: 3
     difficulty: 2
+    license: 'Test License'
     res: ['askotec']
     # marker
 ---  

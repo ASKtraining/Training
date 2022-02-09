@@ -9,6 +9,7 @@ module:
     max-participants: 15
     min-trainers: 2
     difficulty: 3
+    license: 
     res: ['askotecintro', 'ledlight', 'solarcharger', 'openguides', 'ohg', 'odg', 'askotec']
     # marker
 --- 

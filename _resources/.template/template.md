@@ -6,5 +6,6 @@ resource:
     duration: 0     #in minutes
     difficulty:     #1-3, 1 is easyest
     cost: 1000      #in $
+    license: 
     # marker
 ---

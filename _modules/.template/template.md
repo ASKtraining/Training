@@ -9,6 +9,7 @@ module:
     max-participants: 10
     min-trainers: 1
     difficulty: 1   #1-3, 1 is easyest
+    license: 
     res: ['']       #IDs of the resources. e.g. ['askotec'], or if more: ['askotec', 'ohg']
     # marker
 ---  

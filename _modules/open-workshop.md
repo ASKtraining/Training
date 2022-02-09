@@ -24,6 +24,7 @@ module:
         - name: CC-BY-SA-4.0
           file: LICENSE.md
     manual: Manual.md
+    license: 
     res: ['minires', 'soldering', 'play-catch']
     resources:
         - rdf-url: https://opencultureagency.github.io/Training.Module.Resource.Template/resource.ttl

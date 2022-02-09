@@ -8,6 +8,7 @@ module:
     max-participants: 300
     min-trainers: 30
     difficulty: 1
+    license: 
     res: ['minires', 'minires']
     # marker
 ---    

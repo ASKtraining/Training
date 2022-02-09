@@ -7,5 +7,6 @@ resource:
     duration: 30
     difficulty: 1
     cost: 
+    license: 
     # marker
 ---

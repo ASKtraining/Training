@@ -68,6 +68,7 @@ permalink: /training/
                     </div>
                     <h2>{{ module.module.name }}</h2>
                     <p class="intro">Introduction into the module</p>
+                    {% if module.module.license %}<p class="intro">License: {{ module.module.license }}</p>{% endif %}
                     <div class="thumbnail"><img src="/assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
                     <div class="module-meta">
                         <div class="module-meta">
@@ -128,7 +129,7 @@ permalink: /training/
                                             </div>
                                             <div class="content">
                                                 <a href="{{ res.resource.url }}" class="button" target="_blank">Manual &nbsp; <i class="fas fa-file-download"></i></a>
-                                                <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} | {{ res.resource.duration }} minutes | {{ res.resource.cost }} $</div>
+                                                <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} | {{ res.resource.duration }} minutes | {{ res.resource.cost }} ${% if res.resource.license %} | License: {{ res.resource.license }}{% endif %}</div>
                                                 {% if res.resource.description %} 
                                                     <p>{{ res.resource.description }}</p>
                                                 {% endif %}
