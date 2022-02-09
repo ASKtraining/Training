@@ -2,6 +2,7 @@
 module:
     name: ''
     id: 'template'      #can only contain small letters, numbers, minus and underscore. needs to be the same as the file name
+    url: ''     #url that is linked in the table view, can be empty
     tag: ''     #list, just separated by blank space, e.g. 'Web Open_Source'
     description: ''
     pic-url: opentech.jpg

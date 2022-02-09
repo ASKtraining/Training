@@ -2,6 +2,7 @@
 module:
     name: 'Minimal Module'
     id: minimod
+    url: https://en.wikipedia.org/wiki/Minimal_(supermarket)
     tag: Web&Software
     pic-url: minimod.png
     duration: 30

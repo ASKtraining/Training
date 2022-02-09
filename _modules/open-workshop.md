@@ -4,6 +4,7 @@ version: '0.1.0'
 module:
     name: 'Open Workshop Setup'
     id: open-workshop
+    url: 
     tag: 'Open_Source&Knowledge'
     authors:
         - name: BaMa
