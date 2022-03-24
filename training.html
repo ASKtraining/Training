@@ -69,7 +69,7 @@ permalink: /training/
                     </div>
                     <h2>{{ module.module.name }}</h2>
                     <p class="intro">Introduction into the module</p>
-                    {% if module.module.license %}<p class="intro">License: {{ module.module.license }}</p>{% endif %}
+                    {% if module.module.license %}<p class="intro">License: {{ module.module.license | markdownify }}</p>{% endif %}
                     <div class="thumbnail"><img src="/assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
                     <div class="module-meta">
                         <div class="module-meta">
@@ -78,7 +78,6 @@ permalink: /training/
                             <p class="material-costs"><i class="fas fa-dollar-sign"></i>{{ module_cost }} $ material costs</p>
                         </div>
                     </div>
-                    <p class="intro">Introduction into the module</p>
                     <div class="resources">
                         <p class="sidebar">Resources included: 
                             
@@ -130,9 +129,12 @@ permalink: /training/
                                             </div>
                                             <div class="content">
                                                 {% if res.resource.url %}<a href="{{ res.resource.url }}" class="button" target="_blank">Source &nbsp; <i class="fas fa-external-link-alt"></i></a>{% endif %}
-                                                <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} | {{ res.resource.duration }} minutes | {{ res.resource.cost }} ${% if res.resource.license %} | License: {{ res.resource.license }}{% endif %}</div>
-                                                {% if res.resource.description %} 
-                                                    <p>{{ res.resource.description }}</p>
+                                                <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} | {{ res.resource.duration }} minutes | {{ res.resource.cost }} $</div>
+                                                {% if res.resource.description %}
+                                                    {{ res.resource.description | markdownify }}
+                                                {% endif %}
+                                                {% if res.resource.license %}
+                                                    {{ res.resource.license | prepend: "License: " | markdownify }}
                                                 {% endif %}
                                             </div>
                                             <div class="clearer"></div>
