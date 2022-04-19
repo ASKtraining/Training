@@ -9,6 +9,6 @@ module:
     max-participants: 12
     min-trainers: 1
     difficulty: 2   #1-3, 1 is easyest
-    res: ['bmc']       #IDs of the resources. e.g. ['askotec'], or if more: ['askotec', 'ohg']
+    res: ['logframe']       #IDs of the resources. e.g. ['askotec'], or if more: ['askotec', 'ohg']
     # marker
 ---  
