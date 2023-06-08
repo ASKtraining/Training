@@ -26,7 +26,7 @@ module:
           file: LICENSE.md
     manual: Manual.md
     license: 
-    res: ['minires', 'soldering', 'play-catch']
+    res: ['']
     resources:
         - rdf-url: https://opencultureagency.github.io/Training.Module.Resource.Template/resource.ttl
         - yaml-url: https://raw.githubusercontent.com/opencultureagency/Training.Module.Resource.Template/main/resource.yml
