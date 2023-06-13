@@ -34,6 +34,16 @@ docker compose up -d
 ```
 and then go to your browser and type `http://0.0.0.0:4000/Training`
 
+Note: In case the browser can't open the link above open the "Gemfile" in the "Training" repository and add: 
+```
+gem "webrick" 
+```
+at the end of the file, save the file, stop docker and start docker with 
+```
+docker compose up 
+```
+again.
+
 To stop the training plan:
 ```
 docker compose stop
