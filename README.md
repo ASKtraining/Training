@@ -36,11 +36,11 @@ and then go to your browser and type `http://0.0.0.0:4000/Training`
 
 To stop the training plan:
 ```
-docker-compose stop
+docker compose stop
 ```
 Then you can use the following command to start the training planner at any time without needing an internet connection:
 ```
-docker-compose start
+docker compose start
 ```
 ## Partners and Funder
 
