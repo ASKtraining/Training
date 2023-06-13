@@ -38,7 +38,7 @@ Note: In case the browser can't open the link above open the "Gemfile" in the "T
 ```
 gem "webrick" 
 ```
-at the end of the file, save the file, stop docker and start docker with 
+to the end of the file, save the file, stop docker compose and start docker compose again with 
 ```
 docker compose up 
 ```
