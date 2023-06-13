@@ -30,17 +30,27 @@ To run the training plan locally, the following are required:
 If the requirements are met, all you need to do is check out this Git repository locally and enter the following command in the repository's directory:
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 and then go to your browser and type `http://0.0.0.0:4000/Training`
 
+Note: In case the browser can't open the link above open the "Gemfile" in the "Training" repository and add: 
+```
+gem "webrick" 
+```
+to the end of the file, save the file, stop docker compose and start docker compose again with 
+```
+docker compose up 
+```
+again. This is only a temporary adjustment for local instance development! DO NOT COMMIT TO MAIN BRANCH!
+
 To stop the training plan:
 ```
-docker-compose stop
+docker compose stop
 ```
 Then you can use the following command to start the training planner at any time without needing an internet connection:
 ```
-docker-compose start
+docker compose start
 ```
 ## Partners and Funder
 

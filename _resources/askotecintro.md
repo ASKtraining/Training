@@ -6,7 +6,7 @@ resource:
     url: "https://askotec.openculture.agency/"
     duration: 30
     difficulty: 1
-    cost: 
-    license: 
+    cost: 0
+    license: CC-BY-SA 4.0
     # marker
 ---
