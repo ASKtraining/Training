@@ -42,7 +42,7 @@ to the end of the file, save the file, stop docker compose and start docker comp
 ```
 docker compose up 
 ```
-again. This is only a temporary hack for local instances! DO NOT COMMIT TO MAIN BRANCH!
+again. This is only a temporary adjustment for local instance development! DO NOT COMMIT TO MAIN BRANCH!
 
 To stop the training plan:
 ```
