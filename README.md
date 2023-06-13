@@ -30,7 +30,7 @@ To run the training plan locally, the following are required:
 If the requirements are met, all you need to do is check out this Git repository locally and enter the following command in the repository's directory:
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 and then go to your browser and type `http://0.0.0.0:4000/Training`
 
