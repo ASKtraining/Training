@@ -42,7 +42,7 @@ at the end of the file, save the file, stop docker and start docker with
 ```
 docker compose up 
 ```
-again.
+again. This is only a temporary hack for local instances!
 
 To stop the training plan:
 ```
