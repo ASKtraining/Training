@@ -10,7 +10,7 @@ module:
     max-participants: 10
     min-trainers: 1
     difficulty: 2
-    license: CC BY-SA 4.0
+    license: "CC BY-SA 4.0"
     res: ['defyhatenow_boardgame_instructions', 'ThinkB4UClick', 'fake_news', 'hate_speech', 'counter_hate_speech', 'ethical_journalism_guide', 'socialmedia_peace_activism' 'defyhatenow_boardgame']
     # marker
 ---  
