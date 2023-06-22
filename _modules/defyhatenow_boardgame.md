@@ -11,6 +11,6 @@ module:
     min-trainers: 1
     difficulty: 2
     license: "CC BY-SA 4.0"
-    res: ['defyhatenow_boardgame_instructions', 'ThinkB4UClick', 'fake_news', 'hate_speech', 'counter_hate_speech', 'ethical_journalism_guide', 'socialmedia_peace_activism', 'defyhatenow_boardgame']
+    res: ['defyhatenow_boardgame_instructions', 'code_of_conduct', 'SafeDigitasSpaces', 'stop_disinformation', 'counter_hate_speech_online', 'ethical_journalism_guide', 'mental_health_trauma', 'defyhatenow_boardgame']
     # marker
 ---  
