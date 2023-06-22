@@ -1,8 +1,8 @@
 ---
 resource:
-    name: 'Counter hate speech online'
-    id: 'counter_hate_speech'
-    description: "What to do if you see hate speech online"
+    name: 'Social media code of conduct'
+    id: 'code_of_conduct'
+    description: "How to deal with the social media."
     url: ''
     duration: 20     
     difficulty: 2
