@@ -3,7 +3,7 @@ resource:
     name: 'counter hate speech online'
     id: 'counter_hate_speech_online'    
     description: "What is hate speech and how to counter it."
-    url: ''
+    url: 'https://github.com/opencultureagency/defyhatenow/blob/master/CAMEROON/SocialMedia-FieldGuide/counter%20hate%20speech.pdf'
     duration: 20
     difficulty: 2
     cost: 0      #in $ (dont leave empty, but type 0 instead)
