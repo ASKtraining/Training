@@ -1,7 +1,7 @@
 ---
 resource:
     name: 'DIY water filter introduction'
-    id: 'diy_water_filter'
+    id: 'diy_water_filter_setup'
     description: "Video that explains how the water filter works and also shows how to set it up."
     url: 'https://www.youtube.com/watch?v=232xA2e8RiQ'
     duration: 300
