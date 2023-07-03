@@ -5,7 +5,7 @@ resource:
     description: "Video that explains how the water filter works and also shows how to set it up."
     url: 'https://www.youtube.com/watch?v=232xA2e8RiQ'
     duration: 20
-    difficulty:1 
+    difficulty: 1  
     cost: 0
     license: CC BY-SA 4.0
     # marker
