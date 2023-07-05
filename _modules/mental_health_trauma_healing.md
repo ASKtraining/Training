@@ -11,6 +11,6 @@ module:
     min-trainers: 1
     difficulty: 1   #1-3, 1 is easyest
     license: CC BY-SA 4.0
-    res: ['mental_health_trauma', 'mental_health_trauma_healing_FG', 'defyhatenow_facilitator_notes']
+    res: ['mental_health_trauma', 'defyhatenow_field_guide_c5', 'defyhatenow_facilitator_notes']
     # marker
 ---  
