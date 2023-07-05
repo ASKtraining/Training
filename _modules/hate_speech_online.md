@@ -11,6 +11,6 @@ module:
     min-trainers: 1
     difficulty: 1   #1-3, 1 is easyest
     license: CC BY-SA 4.0
-    res: ['counter_hate_speech_online', 'hate_speech_online_FG_2', 'hate_speech_online_FG_6', 'defyhatenow_facilitator_notes']
+    res: ['counter_hate_speech_online', 'defyhatenow_field_guide_c2', 'defyhatenow_field_guide_c6', 'defyhatenow_facilitator_notes']
     # marker
 ---  
