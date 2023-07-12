@@ -7,6 +7,6 @@ resource:
     duration: 5    
     difficulty: 1   
     cost: 0      
-    license: CC BY-SA 4.0
+    license:
     # marker
 ---
