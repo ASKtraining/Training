@@ -6,11 +6,11 @@ module:
     tag: ''     #list, just separated by blank space, e.g. 'Web Open_Source'
     description: ""
     pic-url: opentech.jpg
-    duration: 30    #introduction time in minutes, the resources have their own time blocks
+    duration: 0 #put to 0, introduction time in minutes no function currently, the resources have their own time blocks
     max-participants: 10
     min-trainers: 1
     difficulty: 1   #1-3, 1 is easyest
-    license: 
+    license: '[CC-BY-SA 4.0 International](https://choosealicense.com/licenses/cc-by-sa-4.0/)'
     res: ['']       #IDs of the resources. e.g. ['askotec'], or if more: ['askotec', 'ohg']
     # marker
 ---  

@@ -13,7 +13,7 @@ module:
           telegram: test
     release: v.1.0
     pic-url: workshop.jpg
-    duration: 90
+    duration: 0 # 90
     max-participants: 10
     min-trainers: 3
     difficulty: 2
@@ -25,7 +25,7 @@ module:
         - name: CC-BY-SA-4.0
           file: LICENSE.md
     manual: Manual.md
-    license: 
+    license: '[CC-BY-SA 4.0 International](https://choosealicense.com/licenses/cc-by-sa-4.0/)'
     res: ['']
     resources:
         - rdf-url: https://opencultureagency.github.io/Training.Module.Resource.Template/resource.ttl
