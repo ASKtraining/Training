@@ -50,7 +50,14 @@ permalink: /training/
             
             <li id="{{ module.module.id }}" class="module {{ module.module.tag }}" data-duration="{{ module.module.duration }}" data-participants="{{ module.module.max-participants }}" data-trainer="{{ module.module.min-trainers }}" data-difficulty="{{ module.module.difficulty }}">
                 <div class="time">
-                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-clock"></i></div> <span class='clock-time'>03:00pm - 03:45pm</span>
+                    <div style="display:inline;" data-tooltip="move module" data-tooltip-location="right"><i
+                            class="fas fa-hand-pointer"></i>
+                    </div>
+                </div>
+                <!--
+                <div class="time">
+                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-clock"></i>
+                    </div> <span class='clock-time'>03:00pm - 03:45pm</span>
                     <div class="edit-time">
                         <form>
                             <label>Duration:</label>
@@ -61,6 +68,8 @@ permalink: /training/
                         </form>
                     </div>
                 </div>
+                -->
+
                 <div class="content">
                     <div class="options">
                         <a class="button add-module" src="#">Add Module</a>
@@ -68,7 +77,8 @@ permalink: /training/
                         {% if module.module.url %}<a href="{{ module.module.url }}" class="button" target="_blank">Source &nbsp; <i class="fas fa-external-link-alt"></i></a>{% endif %}
                     </div>
                     <h2>{{ module.module.name }}</h2>
-                    <p class="intro">Introduction into the module</p>
+                    <p class="intro">Learning Objective:</p>
+                    {% if module.module.description %}<p class="intro"> {{ module.module.description | markdownify }}</p>{% endif %}
                     {% if module.module.license %}<p class="intro">License: {{ module.module.license | markdownify }}</p>{% endif %}
                     <div class="thumbnail"><img src="/assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
                     <div class="module-meta">
@@ -78,6 +88,7 @@ permalink: /training/
                             <p class="material-costs"><i class="fas fa-dollar-sign"></i>{{ module_cost }} $ material costs</p>
                         </div>
                     </div>
+
                     <div class="resources">
                         <p class="sidebar">Resources included: 
                             
@@ -116,7 +127,7 @@ permalink: /training/
 
                                         <li class="resource" data-duration="{{ res.resource.duration }}" data-name="{{ res.resource.name }}" data-cost="{{ res.resource.cost }}" data-space="" data-internet="" data-power="">
                                             <div class="time">
-                                                <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-clock"></i></div> <span class='clock-time'>03:45pm - 05:15pm</span>
+                                                <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-edit"></i></div> <span class='clock-time'>03:45pm - 05:15pm</span>
                                                 <div class="edit-time">
                                                     <form>
                                                         <label>Duration:</label>
@@ -160,7 +171,7 @@ permalink: /training/
         <ul id="break-list-side-bar" class="breaks">
             <li class="timebreak" data-duration="15">
                 <div class="time">
-                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-clock"></i></div> <span class='clock-time'>10:20am - 12:30am</span></a>
+                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="fas fa-edit"></i></div> <span class='clock-time'>10:20am - 12:30am</span></a>
                     <div class="edit-time">
                         <form>
                             <input type="text" class="title" placeholder="Time Break">
@@ -182,7 +193,7 @@ permalink: /training/
             </li>
             <li class="daybreak" data-duration="15" data-start="09:00">
                 <div class="time">
-                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-clock"></i></div> <span class='clock-time'>10:00am - 10:20pm</span></a>
+                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="fas fa-edit"></i></div> <span class='clock-time'>10:00am - 10:20pm</span></a>
                     <div class="edit-time">
                         <form>
                             <label>Start-Time:</label>
@@ -244,7 +255,7 @@ permalink: /training/
             <ul id="module-list-training" class="training-list">
                 <div id="trainingstart" class="trainingstart" data-duration="15" data-start="09:00">
                     <div class="time">
-                        <div style="display:inline;" data-tooltip="edit start time & title" data-tooltip-location="right"><i class="far fa-clock"></i></div> <span class='clock-time'>10:00am - 10:20pm</span></a>
+                        <div style="display:inline;" data-tooltip="edit start time & title" data-tooltip-location="right"><i class="fas fa-edit"></i></div> <span class='clock-time'>10:00am - 10:20pm</span></a>
                         <div class="edit-time">
                             <form>
                                 <input style="margin-bottom:20px;" type="text" class="title" placeholder="Introduction into the training">
@@ -287,7 +298,7 @@ permalink: /training/
             <h2>Summary</h2>
             <ul class="duration">
                 <li class="days"><i class="fas fa-calendar-day"></i><span id="summary-days"></span><span class="label">day(s)</span></li>
-                <li class="time-icon"><i class="far fa-clock"></i></li>
+                <li class="time-icon"><i class="fas fa-edit"></i></li>
                 <li class="hours"><span class="label">hours</span><span id="summary-hours"></span><span class="label">total time of your training</span></li>
                 <li class="minutes"><span class="label">minutes</span><span id="summary-minutes"></span></li>
                 <div class="clearer"></div>
