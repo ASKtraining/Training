@@ -10,7 +10,7 @@ module:
     max-participants: 10
     min-trainers: 1
     difficulty: 2
-    license: '[CC-BY-SA 4.0 International](https://choosealicense.com/licenses/cc-by-sa-4.0/)'CC BY-SA 4.0
+    license: '[CC-BY-SA 4.0 International](https://choosealicense.com/licenses/cc-by-sa-4.0/)'
     res: ['smartmigration', 'regular&irregular_migration', 'getting_visa', 'identifying_traps', 'human_trafficking', 'migration_warning_signs', 'truth_lies', 'women_migration', 'resources', 'mmn_boardgame', 'mmn_rumour_cards']   
     # marker
 ---  
