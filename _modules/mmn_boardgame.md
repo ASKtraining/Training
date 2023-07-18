@@ -6,7 +6,7 @@ module:
     tag: 'Community&Moderation Media&Art' 
     description: "This Moudlue is about the Migrant Media Network boardgame and it's related topics."
     pic-url: MMN_logo.jpg
-    duration: 15    #introduction time in minutes, the resources have their own time blocks
+#    duration: 15    #introduction time in minutes, the resources have their own time blocks
     max-participants: 10
     min-trainers: 1
     difficulty: 2

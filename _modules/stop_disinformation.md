@@ -6,7 +6,7 @@ module:
     tag: 'Community&Moderation Media&Art'
     description: "What is Mis-, Dis-, and Mal-Information and who can it be detected?"
     pic-url: thinkb4uclick.png
-    duration: 30    #introduction time in minutes, the resources have their own time blocks
+#    duration: 30    #introduction time in minutes, the resources have their own time blocks
     max-participants: 10
     min-trainers: 1
     difficulty: 1  

@@ -13,7 +13,7 @@ module:
           telegram: test
     release: v.1.0
     pic-url: workshop.jpg
-    duration: 90
+#    duration: 90
     max-participants: 10
     min-trainers: 3
     difficulty: 2
