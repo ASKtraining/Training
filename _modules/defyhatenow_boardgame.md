@@ -10,7 +10,7 @@ module:
     max-participants: 10
     min-trainers: 1
     difficulty: 2
-    license: "CC BY-SA 4.0"
+    license: '[CC-BY-SA 4.0 International](https://choosealicense.com/licenses/cc-by-sa-4.0/)'"CC BY-SA 4.0"
     res: ['code_of_conduct', 'SafeDigitasSpaces', 'stop_disinformation', 'counter_hate_speech_online', 'ethical_journalism_guide', 'mental_health_trauma', 'defyhatenow_boardgame']
     # marker
 ---  
