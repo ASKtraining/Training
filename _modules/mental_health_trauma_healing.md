@@ -6,7 +6,7 @@ module:
     tag: 'Community&Moderation Media&Art'
     description: "Trauma is a persons experience of a situation - and how they think and feel about it afterwards. This modul gives information about trauma, mental health and healing in the context of social media."
     pic-url: mental_health_trauma_healing.png
-#    duration: 30    #introduction time in minutes, the resources have their own time blocks
+    duration: 0 # 30    #introduction time in minutes, the resources have their own time blocks
     max-participants: 10
     min-trainers: 1
     difficulty: 1   #1-3, 1 is easyest

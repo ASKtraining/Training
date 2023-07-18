@@ -6,7 +6,7 @@ module:
     tag: ''     #list, just separated by blank space, e.g. 'Web Open_Source'
     description: ""
     pic-url: opentech.jpg
-#    duration: 30    #introduction time in minutes, the resources have their own time blocks
+    duration: 0 # 30    #introduction time in minutes, the resources have their own time blocks
     max-participants: 10
     min-trainers: 1
     difficulty: 1   #1-3, 1 is easyest

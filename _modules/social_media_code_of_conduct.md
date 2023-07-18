@@ -6,7 +6,7 @@ module:
     tag: 'Community&Moderation Media&Art'
     description: "This module is about the code of conduct for the use of social media."
     pic-url: code_of_conduct.png
-#    duration: 30
+    duration: 0 # 30
     max-participants: 10
     min-trainers: 1
     difficulty: 1
