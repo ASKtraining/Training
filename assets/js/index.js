@@ -164,7 +164,7 @@ function initiateTimeEdit(){
 
 function initiateTimeButton(classes){
     for(clazz of classes){
-        let trainingstartClock = document.querySelectorAll(`.${clazz} .fa-clock`);
+        let trainingstartClock = document.querySelectorAll(`.${clazz} .fa-edit`);
         for(let clock of trainingstartClock){
             clock.onclick = toggleTimeEditWindow;
         }
