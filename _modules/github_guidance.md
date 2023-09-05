@@ -2,7 +2,7 @@
 module:
     name: 'GitHub Guidance'
     id: 'github_guidance'
-    url: 'https://asknet-open-training.github.io/Github-Guidance/pages/github-repo'
+    url: 'https://asknet-open-training.github.io/Github-Guidance/'
     tag: 'Web&Software Open_Source&Knowledge'     #list, just separated by blank space, e.g. 'Web Open_Source'
     description: "The #ASKnet Github-Guidance gives you a jumpstart to use Github: Creating repositores, share your ideas/projects and knowledge with others and grow up with your community."
     pic-url: GitHub-logo.png
