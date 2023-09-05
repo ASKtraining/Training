@@ -1,10 +1,10 @@
 ---
 module:
-    name: 'GitHub Guidance'
-    id: 'github_guidance'
-    url: 'https://asknet-open-training.github.io/Github-Guidance/'
+    name: 'OERs on GitHub'
+    id: 'oers_on_github'
+    url: 'https://github.com/ASKnetCommunity/OER_documents_template'
     tag: 'Web&Software Open_Source&Knowledge'     #list, just separated by blank space, e.g. 'Web Open_Source'
-    description: "The #ASKnet Github-Guidance gives you a jumpstart to use Github: Creating repositores, share your ideas/projects and knowledge with others and grow up with your community."
+    description: "This repository is a template for creating documents (Open Educational Resources) in the environment of GitHub. It explains especially how to upload and link images into your document. Use the template repository for creating your own documents and repositories."
     pic-url: GitHub-logo.png
     duration: 10
     max-participants: 10
