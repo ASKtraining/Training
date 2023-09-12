@@ -1,6 +1,6 @@
 ---
 resource:
-    name: "Unit: DIY Solar Charger"
+    name: "DIY Solar Charger"
     id: solarcharger
     url: "https://wikifab.org/wiki/DIY_Solar_Charger"
     duration: 75
