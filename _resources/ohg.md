@@ -1,9 +1,9 @@
 ---
 resource:
-    name: "Tool: Open Hardware Guide"
+    name: "Open Hardware Guide Intro"
     id: ohg
     url: "https://github.com/opencultureagency/Open-Hardware-Guide"
-    duration: 0
+    duration: 20
     difficulty: 
     cost: 1
     license: 

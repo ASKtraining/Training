@@ -1,11 +1,12 @@
 ---
 resource:
-    name: "Tool: Open Documentation Guide"
+    name: "Open Documentation Guide Intro"
     id: odg
+    description: "Open Source Documentation Guide Introduction and how to use it"
     url: "https://github.com/opencultureagency/Open-Documentation-Guide"
-    duration: 0
-    difficulty: 
+    duration: 20
+    difficulty: 1
     cost: 1
-    license: 
+    license: CC BY-SA 4.0 
     # marker
 ---

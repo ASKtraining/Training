@@ -1,6 +1,6 @@
 ---
 resource:
-    name: "Unit: DIY LED Light"
+    name: "DIY LED Light"
     id: ledlight
     description: "Build your own LED Light with the help of the Open Hardware Guide instructions"
     url: "https://github.com/opencultureagency/Open-Hardware-Guide"
