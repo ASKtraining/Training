@@ -11,6 +11,6 @@ module:
     min-trainers: 3
     difficulty: 2
     license: '[CC-BY-SA 4.0 International](https://choosealicense.com/licenses/cc-by-sa-4.0/)'
-    res: ['askotec']
+    res: ['askotecintro','communityrepairsetup']
     # marker
 ---  
