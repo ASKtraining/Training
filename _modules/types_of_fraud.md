@@ -11,6 +11,6 @@ module:
     min-trainers: 1
     difficulty: 2   #1-3, 1 is easyest
     license: '[CC-BY-SA 4.0 International](https://choosealicense.com/licenses/cc-by-sa-4.0/)'
-    res: ['']       #IDs of the resources. e.g. ['askotec'], or if more: ['askotec', 'ohg']
+    res: ['credit_card_fraud']       #IDs of the resources. e.g. ['askotec'], or if more: ['askotec', 'ohg']
     # marker
 ---  
