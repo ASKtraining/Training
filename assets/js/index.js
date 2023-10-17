@@ -377,6 +377,7 @@ function runDynamicCalculationsOnAdd(evt) {
     insertTimeBreaks(mod);
     calculateTime();
     calculateSummary();
+    initiateTimeEdit();
 }
 
 function calculateTime() {
