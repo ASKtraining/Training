@@ -767,23 +767,6 @@ function updateSelectableModulesList() {
 }
 
 /**
- * Resource duration edit
- */
-function initiateResourceDurationEdit(){
-    let inputDuration = document.getElementsByClassName('duration-input');
-    for(let input of inputDuration){
-        input.onchange = editResourceDuration;
-    }
-}
-
-function editResourceDuration() {
-    let parentNode = this.parentNode.parentNode.parentNode;
-    let duration = parseInt(parentNode.dataset.duration);
-    let newValue = parseInt(this.value);
-    console.log(`Old: ${duration} minutes, New: ${newValue} minutes`);
-}
-
-/**
  * and here we go
  */
 window.onload = function () {
