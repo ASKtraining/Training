@@ -235,6 +235,12 @@ function submitTime(){
         || currClassName.includes(CLASS_TIMEBREAK)
         || currClassName.includes(CLASS_RESOURCE)){
             currentElement.dataset.duration = duration;
+            let displayEl = getChildByClassName(currentElement, 'duration-display');
+            if (parseInt(duration) > 0) {
+                displayEl.innerText = `| ${duration} minutes`;
+            } else {
+                displayEl.innerText = '';
+            }
             if(currClassName.includes(CLASS_TRAININGSTART)
             || currClassName.includes(CLASS_DAYBREAK)){
                 currentElement.dataset.start = start;
@@ -761,6 +767,23 @@ function updateSelectableModulesList() {
 }
 
 /**
+ * Resource duration edit
+ */
+function initiateResourceDurationEdit(){
+    let inputDuration = document.getElementsByClassName('duration-input');
+    for(let input of inputDuration){
+        input.onchange = editResourceDuration;
+    }
+}
+
+function editResourceDuration() {
+    let parentNode = this.parentNode.parentNode.parentNode;
+    let duration = parseInt(parentNode.dataset.duration);
+    let newValue = parseInt(this.value);
+    console.log(`Old: ${duration} minutes, New: ${newValue} minutes`);
+}
+
+/**
  * and here we go
  */
 window.onload = function () {
@@ -773,4 +796,5 @@ window.onload = function () {
     initiateMobileButtons();
     calculateTime();
     calculateSummary();
+    initiateResourceDurationEdit();
 }
