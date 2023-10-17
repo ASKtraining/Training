@@ -7,6 +7,6 @@ resource:
     duration: 60    #in minutes
     difficulty: 2    #1-3, 1 is easyest
     cost: 5      #in $ (dont leave empty, but type 0 instead)
-    license: [CC-BY-SA 4.0 International](https://choosealicense.com/licenses/cc-by-sa-4.0/) #e.g. CC BY-SA 4.0
+    license: '[CC-BY-SA 4.0 International](https://choosealicense.com/licenses/cc-by-sa-4.0/)' #e.g. CC BY-SA 4.0
     # marker
 ---
