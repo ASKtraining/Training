@@ -779,5 +779,4 @@ window.onload = function () {
     initiateMobileButtons();
     calculateTime();
     calculateSummary();
-    initiateResourceDurationEdit();
 }
