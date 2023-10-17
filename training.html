@@ -28,27 +28,29 @@ permalink: /training/
 
             {% for module in site.modules %}
 
-                {% case module.module.difficulty %}
-                    {% when 1 %}
-                        {% assign module_diff_text = 'easy' %}
-                    {% when 2 %}
-                        {% assign module_diff_text = 'medium' %}
-                    {% when 3 %}
-                        {% assign module_diff_text = 'advanced' %}
-                    {% else %}
-                        {% assign module_diff_text = module.module.difficulty %}
-                {% endcase %}
+            {% case module.module.difficulty %}
+            {% when 1 %}
+            {% assign module_diff_text = 'easy' %}
+            {% when 2 %}
+            {% assign module_diff_text = 'medium' %}
+            {% when 3 %}
+            {% assign module_diff_text = 'advanced' %}
+            {% else %}
+            {% assign module_diff_text = module.module.difficulty %}
+            {% endcase %}
 
-                {% assign module_cost = 0 %}
-                {% for actual_res in module.module.res %}
-                    {% for res in site.resources %}
-                        {% if res.resource.id == actual_res %}
-                            {% assign module_cost = module_cost | plus: res.resource.cost %}
-                        {% endif %}
-                    {% endfor %}
-                {% endfor  %}
-            
-            <li id="{{ module.module.id }}" class="module {{ module.module.tag }}" data-duration="{{ module.module.duration }}" data-participants="{{ module.module.max-participants }}" data-trainer="{{ module.module.min-trainers }}" data-difficulty="{{ module.module.difficulty }}">
+            {% assign module_cost = 0 %}
+            {% for actual_res in module.module.res %}
+            {% for res in site.resources %}
+            {% if res.resource.id == actual_res %}
+            {% assign module_cost = module_cost | plus: res.resource.cost %}
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+
+            <li id="{{ module.module.id }}" class="module {{ module.module.tag }}"
+                data-duration="{{ module.module.duration }}" data-participants="{{ module.module.max-participants }}"
+                data-trainer="{{ module.module.min-trainers }}" data-difficulty="{{ module.module.difficulty }}">
                 <div class="time">
                     <div style="display:inline;" data-tooltip="move module" data-tooltip-location="right"><i
                             class="fas fa-hand-pointer"></i>
@@ -73,86 +75,102 @@ permalink: /training/
                 <div class="content">
                     <div class="options">
                         <a class="button add-module" src="#">Add Module</a>
-                        <a class="info" href="#" data-tooltip="this feature is coming" data-tooltip-location="left"><i class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
-                        {% if module.module.url %}<a href="{{ module.module.url }}" class="button" target="_blank">Source &nbsp; <i class="fas fa-external-link-alt"></i></a>{% endif %}
+                        <a class="info" href="#" data-tooltip="this feature is coming" data-tooltip-location="left"><i
+                                class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i
+                                class="fas fa-trash-alt"></i></a>
+                        {% if module.module.url %}<a href="{{ module.module.url }}" class="button"
+                            target="_blank">Source &nbsp; <i class="fas fa-external-link-alt"></i></a>{% endif %}
                     </div>
                     <h2>{{ module.module.name }}</h2>
                     <p class="intro">Learning Objective:</p>
-                    {% if module.module.description %}<p class="intro"> {{ module.module.description | markdownify }}</p>{% endif %}
-                    {% if module.module.license %}<p class="intro">License: {{ module.module.license | markdownify }}</p>{% endif %}
-                    <div class="thumbnail"><img src="/assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
+                    {% if module.module.description %}<p class="intro"> {{ module.module.description | markdownify }}
+                    </p>{% endif %}
+                    {% if module.module.license %}<p class="intro">License: {{ module.module.license | markdownify }}
+                    </p>{% endif %}
+                    <div class="thumbnail"><img src="/assets/img/modules/{{ module.module.pic-url }}" class="thumbnail">
+                    </div>
                     <div class="module-meta">
                         <div class="module-meta">
-                            <p class="module-duration"><i class="fas fa-hourglass-half"></i>{{ module.module.duration | divided_by:60 }} Hours {{ module.module.duration | modulo:60 }} Minutes</p>
+                            <p class="module-duration"><i class="fas fa-hourglass-half"></i>{{ module.module.duration |
+                                divided_by:60 }} Hours {{ module.module.duration | modulo:60 }} Minutes</p>
                             <p class="difficulty-level"><i class="fas fa-graduation-cap"></i>{{ module_diff_text }}</p>
-                            <p class="material-costs"><i class="fas fa-dollar-sign"></i>{{ module_cost }} $ material costs</p>
+                            <p class="material-costs"><i class="fas fa-dollar-sign"></i>{{ module_cost }} $ material
+                                costs</p>
                         </div>
                     </div>
 
                     <div class="resources">
-                        <p class="sidebar">Resources included: 
-                            
+                        <p class="sidebar">Resources included:
+
                             {% assign first = true %}
                             {% assign all_res_output = '' %}
 
                             {% for actual_res in module.module.res %}
-                                {% for res in site.resources %}
-                                    {% if res.resource.id == actual_res %}
-                                        {% if first == false %}
-                                            {{ '|' }}
-                                        {% endif %}
-                                        {% assign first = false %}
-                                        <a href="{{ res.resource.url }}" target="_blank">{{ res.resource.name }}</a>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endfor  %}
-                            
-                        </p>    
+                            {% for res in site.resources %}
+                            {% if res.resource.id == actual_res %}
+                            {% if first == false %}
+                            {{ '|' }}
+                            {% endif %}
+                            {% assign first = false %}
+                            <a href="{{ res.resource.url }}" target="_blank">{{ res.resource.name }}</a>
+                            {% endif %}
+                            {% endfor %}
+                            {% endfor %}
+
+                        </p>
                         <ul class="resource-list">
 
                             {% for actual_res in module.module.res %}
-                                {% for res in site.resources %}
-                                    {% if res.resource.id == actual_res %}
+                            {% for res in site.resources %}
+                            {% if res.resource.id == actual_res %}
 
-                                        {% case res.resource.difficulty %}
-                                            {% when 1 %}
-                                                {% assign diff_text = 'easy' %}
-                                            {% when 2 %}
-                                                {% assign diff_text = 'medium' %}
-                                            {% when 3 %}
-                                                {% assign diff_text = 'advanced' %}
-                                            {% else %}
-                                                {% assign diff_text = res.resource.difficulty %}
-                                        {% endcase %}
+                            {% case res.resource.difficulty %}
+                            {% when 1 %}
+                            {% assign diff_text = 'easy' %}
+                            {% when 2 %}
+                            {% assign diff_text = 'medium' %}
+                            {% when 3 %}
+                            {% assign diff_text = 'advanced' %}
+                            {% else %}
+                            {% assign diff_text = res.resource.difficulty %}
+                            {% endcase %}
 
-                                        <li class="resource" data-duration="{{ res.resource.duration }}" data-name="{{ res.resource.name }}" data-cost="{{ res.resource.cost }}" data-space="" data-internet="" data-power="">
-                                            <div class="time">
-                                                <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="far fa-edit"></i></div> <span class='clock-time'>03:45pm - 05:15pm</span>
-                                                <div class="edit-time">
-                                                    <form>
-                                                        <label>Duration:</label>
-                                                        <input type="number" class="duration" placeholder="{{ res.resource.duration }}" min="0" max="240">
-                                                        <span>minutes</span>
-                                                        <input class="submit button" type="button" value="Save">
-                                                        <input class="close" type="button" value="X">
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <div class="content">
-                                                {% if res.resource.url %}<a href="{{ res.resource.url }}" class="button" target="_blank">Source &nbsp; <i class="fas fa-external-link-alt"></i></a>{% endif %}
-                                                <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} | {{ res.resource.duration }} minutes | {{ res.resource.cost }} $</div>
-                                                {% if res.resource.description %}
-                                                    {{ res.resource.description | markdownify }}
-                                                {% endif %}
-                                                {% if res.resource.license %}
-                                                    {{ res.resource.license | prepend: "License: " | markdownify }}
-                                                {% endif %}
-                                            </div>
-                                            <div class="clearer"></div>
-                                        </li>
-
+                            <li class="resource" data-duration="{{ res.resource.duration }}"
+                                data-name="{{ res.resource.name }}" data-cost="{{ res.resource.cost }}" data-space=""
+                                data-internet="" data-power="">
+                                <div class="time">
+                                    <div style="display:inline;" data-tooltip="edit duration"
+                                        data-tooltip-location="right"><i class="far fa-edit"></i></div> <span
+                                        class='clock-time'>03:45pm - 05:15pm</span>
+                                    <div class="edit-time">
+                                        <form>
+                                            <label>Duration:</label>
+                                            <input type="number" class="duration"
+                                                placeholder="{{ res.resource.duration }}" min="0" max="240">
+                                            <span>minutes</span>
+                                            <input class="submit button" type="button" value="Save">
+                                            <input class="close" type="button" value="X">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    {% if res.resource.url %}<a href="{{ res.resource.url }}" class="button"
+                                        target="_blank">Source &nbsp; <i class="fas fa-external-link-alt"></i></a>{%
+                                    endif %}
+                                    <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} | {{
+                                        res.resource.duration }} minutes | {{ res.resource.cost }} $</div>
+                                    {% if res.resource.description %}
+                                    {{ res.resource.description | markdownify }}
                                     {% endif %}
-                                {% endfor %}
+                                    {% if res.resource.license %}
+                                    {{ res.resource.license | prepend: "License: " | markdownify }}
+                                    {% endif %}
+                                </div>
+                                <div class="clearer"></div>
+                            </li>
+
+                            {% endif %}
+                            {% endfor %}
                             {% endfor %}
 
                         </ul>
@@ -164,19 +182,20 @@ permalink: /training/
                 <div class="clearer"></div>
             </li>
 
-            {% endfor %}    
+            {% endfor %}
 
         </ul>
 
         <ul id="break-list-side-bar" class="breaks">
             <li class="timebreak" data-duration="15">
                 <div class="time">
-                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="fas fa-edit"></i></div> <span class='clock-time'>10:20am - 12:30am</span></a>
+                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i
+                            class="fas fa-edit"></i></div> <span class='clock-time'>10:20am - 12:30am</span></a>
                     <div class="edit-time">
                         <form>
                             <input type="text" class="title" placeholder="Time Break">
                             <label>Duration:</label>
-                            <input type="number" class="duration" placeholder="15" min="0" max="59">
+                            <input type="number" class="duration" placeholder="15" min="0">
                             <span>minutes</span>
                             <input class="submit button" type="button" value="Save">
                             <input class="close" type="button" value="X">
@@ -193,7 +212,8 @@ permalink: /training/
             </li>
             <li class="daybreak" data-duration="15" data-start="09:00">
                 <div class="time">
-                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i class="fas fa-edit"></i></div> <span class='clock-time'>10:00am - 10:20pm</span></a>
+                    <div style="display:inline;" data-tooltip="edit duration" data-tooltip-location="right"><i
+                            class="fas fa-edit"></i></div> <span class='clock-time'>10:00am - 10:20pm</span></a>
                     <div class="edit-time">
                         <form>
                             <label>Start-Time:</label>
@@ -203,7 +223,7 @@ permalink: /training/
                             <select class="am-or-pm">
                                 <option value="am">am</option>
                                 <option value="pm">pm</option>
-                                </select>
+                            </select>
                             <label>Duration:</label>
                             <input type="number" class="duration" placeholder="10" min="0" max="59">
                             <span>minutes</span>
@@ -225,7 +245,8 @@ permalink: /training/
 
         <div class="footer">
             <a href="#" class="help">?</a>
-            <p>CC-BY-SA 4.0 #ASKtraining<br /><a href="https://github.com/ASKnetCommunity/Training">view on Github</a> | <a href="http://www.asknet.community">#ASKnet Website</a></p>
+            <p>CC-BY-SA 4.0 #ASKtraining<br /><a href="https://github.com/ASKnetCommunity/Training">view on Github</a> |
+                <a href="http://www.asknet.community">#ASKnet Website</a></p>
         </div>
 
     </div>
@@ -233,7 +254,7 @@ permalink: /training/
     <div id="content">
         <div id="training-plan">
             <div class="training-plan-icon"><i class="fas fa-clipboard-list"></i></div>
-            
+
             <div id="edit-title-and-description">
                 <div class="edit-title-and-description-body">
                     <div class="edit-title-and-description-header">
@@ -241,24 +262,28 @@ permalink: /training/
                         <a class="close" href="#"><i class="fas fa-times-circle"></i></a>
                     </div>
                     <div class="edit-title-and-description-content">
-                <form>
-                    <input type="text" class="title" placeholder="Title of the training">
-                    <textarea class="description"></textarea>
+                        <form>
+                            <input type="text" class="title" placeholder="Title of the training">
+                            <textarea class="description"></textarea>
                             <input id="submit-title" type="button" value="Save changes">
-                </form>
-            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            
-            <h1 id="training-title">{{ page.title }} - Title of the Training <a id="edit-icon" class="edit" href="#edit-title-and-description">Edit title and description</a></h1>
+
+            <h1 id="training-title">{{ page.title }} - Title of the Training <a id="edit-icon" class="edit"
+                    href="#edit-title-and-description">Edit title and description</a></h1>
             <p id="training-description">Short description about the training.</p>
             <ul id="module-list-training" class="training-list">
                 <div id="trainingstart" class="trainingstart" data-duration="15" data-start="09:00">
                     <div class="time">
-                        <div style="display:inline;" data-tooltip="edit start time & title" data-tooltip-location="right"><i class="fas fa-edit"></i></div> <span class='clock-time'>10:00am - 10:20pm</span></a>
+                        <div style="display:inline;" data-tooltip="edit start time & title"
+                            data-tooltip-location="right"><i class="fas fa-edit"></i></div> <span
+                            class='clock-time'>10:00am - 10:20pm</span></a>
                         <div class="edit-time">
                             <form>
-                                <input style="margin-bottom:20px;" type="text" class="title" placeholder="Introduction into the training">
+                                <input style="margin-bottom:20px;" type="text" class="title"
+                                    placeholder="Introduction into the training">
                                 <label>Start-Time:</label>
                                 <input type="number" class="hours" placeholder="09" min="1" max="12">
                                 <span>:</span>
@@ -272,8 +297,8 @@ permalink: /training/
                                     <input type="number" class="duration" placeholder="15" min="0" max="240">
                                     <span>minutes</span>
                                 </div>
-                                    <input class="submit button" type="button" value="Save">
-                                    <input class="close" type="button" value="X">
+                                <input class="submit button" type="button" value="Save">
+                                <input class="close" type="button" value="X">
                             </form>
                         </div>
                     </div>
@@ -284,7 +309,7 @@ permalink: /training/
                 </div>
                 <div class="clearer page-break"></div>
             </ul>
-        
+
             <div class="clearer page-break"></div>
             <div class="add-modules-breaks">
                 <p style="font-size:45px;"><i class="fas fa-arrow-up"></i></p>
@@ -297,26 +322,36 @@ permalink: /training/
         <div class="summary">
             <h2>Summary</h2>
             <ul class="duration">
-                <li class="days"><i class="fas fa-calendar-day"></i><span id="summary-days"></span><span class="label">day(s)</span></li>
+                <li class="days"><i class="fas fa-calendar-day"></i><span id="summary-days"></span><span
+                        class="label">day(s)</span></li>
                 <li class="time-icon"><i class="fas fa-edit"></i></li>
-                <li class="hours"><span class="label">hours</span><span id="summary-hours"></span><span class="label">total time of your training</span></li>
+                <li class="hours"><span class="label">hours</span><span id="summary-hours"></span><span
+                        class="label">total time of your training</span></li>
                 <li class="minutes"><span class="label">minutes</span><span id="summary-minutes"></span></li>
                 <div class="clearer"></div>
             </ul>
             <div class="separator"></div>
             <ul class="informations">
-                <li><i class="fas fa-cubes"></i><span id="number-of-modules"></span><span class="label">Number of modules</span></li>
-                <li><i class="fas fa-users"></i><span id="max-participants"></span><span class="label">Max. participants</span></li>
-                <li><i class="fas fa-chalkboard-teacher"></i><span id="min-trainers"></span><span class="label">Min. trainers</span></li>
-                <li><i class="fas fa-graduation-cap"></i><span id="difficulty"></span><span class="label">Difficulty level</span></li>
+                <li><i class="fas fa-cubes"></i><span id="number-of-modules"></span><span class="label">Number of
+                        modules</span></li>
+                <li><i class="fas fa-users"></i><span id="max-participants"></span><span class="label">Max.
+                        participants</span></li>
+                <li><i class="fas fa-chalkboard-teacher"></i><span id="min-trainers"></span><span class="label">Min.
+                        trainers</span></li>
+                <li><i class="fas fa-graduation-cap"></i><span id="difficulty"></span><span class="label">Difficulty
+                        level</span></li>
                 <div class="separator"></div>
-                <li><i class="fas fa-cube"></i><span id="number-of-resources"></span><span class="label">Number of resources</span></li>
-                <li><i class="fas fa-ruler-combined"></i><span id="training-space"></span><span class="label">Minimum training space</span></li>
-                <li><i class="fas fa-globe-europe"></i><span id="internet-needed"></span><span class="label">Internet needed</span></li>
-                <li><i class="fas fa-plug"></i><span id="power-needed"></span><span class="label">Power supply needed</span></li>
+                <li><i class="fas fa-cube"></i><span id="number-of-resources"></span><span class="label">Number of
+                        resources</span></li>
+                <li><i class="fas fa-ruler-combined"></i><span id="training-space"></span><span class="label">Minimum
+                        training space</span></li>
+                <li><i class="fas fa-globe-europe"></i><span id="internet-needed"></span><span class="label">Internet
+                        needed</span></li>
+                <li><i class="fas fa-plug"></i><span id="power-needed"></span><span class="label">Power supply
+                        needed</span></li>
                 <div class="clearer"></div>
             </ul>
-            
+
         </div>
         <div class="resource-overview">
             <h2>Resources</h2>
@@ -354,8 +389,10 @@ permalink: /training/
                 <label for="timetable"> Timetable <a href="#"><i class="fas fa-info-circle"></i></a></label>
             </div>
             <div class="attachment">
-                <input type="checkbox" id="materialchecklist" name="materialchecklist" value="materialchecklist" disabled>
-                <label for="materialchecklist"> Material checklist <a href="#"><i class="fas fa-info-circle"></i></a></label>
+                <input type="checkbox" id="materialchecklist" name="materialchecklist" value="materialchecklist"
+                    disabled>
+                <label for="materialchecklist"> Material checklist <a href="#"><i
+                            class="fas fa-info-circle"></i></a></label>
             </div>
             <div class="attachment">
                 <input type="checkbox" id="name-badges" name="name-badges" value="name-badges" disabled>
@@ -367,11 +404,10 @@ permalink: /training/
         </div>
         <div class="actions">
             <button class="button print noPrint" onclick="window.print();"><i class="fas fa-print"></i> Print</button>
-            <span class="btn-inactive button" data-tooltip="this feature is coming" data-tooltip-location="top"><i class="fas fa-save"></i> Save</span>
-            <span class="btn-inactive button" data-tooltip="this feature is coming" data-tooltip-location="top"><i class="fas fa-file-download"></i> Download</span>
+            <span class="btn-inactive button" data-tooltip="this feature is coming" data-tooltip-location="top"><i
+                    class="fas fa-save"></i> Save</span>
+            <span class="btn-inactive button" data-tooltip="this feature is coming" data-tooltip-location="top"><i
+                    class="fas fa-file-download"></i> Download</span>
         </div>
     </div>
 </div>
-
-
-
