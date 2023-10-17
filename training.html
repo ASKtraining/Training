@@ -140,7 +140,7 @@ permalink: /training/
                                             </div>
                                             <div class="content">
                                                 {% if res.resource.url %}<a href="{{ res.resource.url }}" class="button" target="_blank">Source &nbsp; <i class="fas fa-external-link-alt"></i></a>{% endif %}
-                                                <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} | {{ res.resource.duration }} minutes | {{ res.resource.cost }} $</div>
+                                                <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} {% if res.resource.duration > 0 %}| {{ res.resource.duration }} minutes {% endif %}| {{ res.resource.cost }} $</div>
                                                 {% if res.resource.description %}
                                                     {{ res.resource.description | markdownify }}
                                                 {% endif %}
