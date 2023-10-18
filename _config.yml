@@ -9,3 +9,4 @@ collections:
     output: true
     output_ext: .html
     permalink: /resources/:path/
+  authors:

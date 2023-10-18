@@ -144,9 +144,16 @@ permalink: /training/
                                                 {% if res.resource.description %}
                                                     {{ res.resource.description | markdownify }}
                                                 {% endif %}
-                                                {% if res.resource.license %}
-                                                    {{ res.resource.license | prepend: "License: " | markdownify }}
-                                                {% endif %}
+                                                <div class="license-author">
+                                                    {% if res.resource.license %}
+                                                        {{ res.resource.license | prepend: "License: " | markdownify }}
+                                                    {% endif %}
+                                                    {% for author in site.authors %}
+                                                        {% if author.shortname == res.resource.author %}
+                                                        <a href="{{ author.source }}" class="button" target="_blank">{{ author.name }} &nbsp; <i class="fas fa-external-link-alt"></i></a>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
                                             </div>
                                             <div class="clearer"></div>
                                         </li>

@@ -7,5 +7,6 @@ resource:
     difficulty: 2
     cost: 1000
     license: 
+    author: dawa
     # marker
 ---
