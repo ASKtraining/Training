@@ -181,6 +181,18 @@
   width: fit-content !important;
   padding: 6px 10px !important;
 }
+
+.reference-item {
+  text-indent: -30px;
+  margin-left: 30px;
+}
+
+@media print {
+    .pagebreak { page-break-before: always; } /* page-break-after works, as well */
+    .dont-print {
+      visibility: hidden;
+    }
+}
     </style>
   </head>
   <body>

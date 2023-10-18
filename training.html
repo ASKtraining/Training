@@ -150,7 +150,7 @@ permalink: /training/
                                                     {% endif %}
                                                     {% for author in site.authors %}
                                                         {% if author.shortname == res.resource.author %}
-                                                        <a href="{{ author.source }}" class="button" target="_blank">{{ author.name }} &nbsp; <i class="fas fa-external-link-alt"></i></a>
+                                                        <a href="{{ author.source }}" class="button author" target="_blank" data-name="{{ author.name }}" data-source="{{ author.source }}" data-resource="{{ res.resource.name }}" data-shortname="{{ author.shortname }}" data-resource-url="{{ res.resource.url }}">{{ author.name }} &nbsp; <i class="fas fa-external-link-alt"></i></a>
                                                         {% endif %}
                                                     {% endfor %}
                                                 </div>
@@ -326,7 +326,7 @@ permalink: /training/
             
         </div>
         <div class="resource-overview">
-            <h2>Resources</h2>
+            <h3>Resources</h3>
             <table id="resource-table">
                 <tr>
                     <th class="quantity">Quantity</th>
@@ -372,7 +372,11 @@ permalink: /training/
                 <p>This feature is coming</p>
             </div>
         </div>
-        <div class="actions">
+        <div class="references pagebreak">
+            <h3>References</h3>
+            <ul id="reference-list"></ul>
+        </div>
+        <div class="actions dont-print">
             <button class="button print noPrint" onclick="window.print();"><i class="fas fa-print"></i> Print</button>
             <span class="btn-inactive button" data-tooltip="this feature is coming" data-tooltip-location="top"><i class="fas fa-save"></i> Save</span>
             <span class="btn-inactive button" data-tooltip="this feature is coming" data-tooltip-location="top"><i class="fas fa-file-download"></i> Download</span>

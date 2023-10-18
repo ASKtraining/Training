@@ -384,6 +384,7 @@ function runDynamicCalculationsOnAdd(evt) {
     calculateTime();
     calculateSummary();
     initiateTimeEdit();
+    updateAuthorList();
 }
 
 function calculateTime() {
@@ -763,6 +764,26 @@ function updateSelectableModulesList() {
                 mod.style.display = 'none';
             }
         }
+    }
+}
+
+/**
+ * Author list
+ */
+function updateAuthorList(){
+    let moduleListEl = document.getElementById('module-list-training');
+    let authorList =  moduleListEl.querySelectorAll('.author');
+    let newAuthorList = '';
+    let identifiedResources = [];
+    authorList.forEach((authorEl) => {
+        if (!identifiedResources.includes(authorEl.dataset.resource)) {
+            newAuthorList += `<li><p class="reference-item">${authorEl.dataset.name} (${authorEl.dataset.source}). <em>${authorEl.dataset.resource}</em>. ${authorEl.dataset.resourceUrl}.</p></li>`;
+            identifiedResources.push(authorEl.dataset.resource);
+        }
+    });
+    if (newAuthorList !== '') {
+        let referenceListEl = document.getElementById('reference-list');
+        referenceListEl.innerHTML = newAuthorList;
     }
 }
 
