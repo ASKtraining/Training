@@ -70,7 +70,21 @@ permalink: /training/
                 </div>
                 -->
 
-                <div class="content">
+                <div class="content module-content">
+                    <div class="edit-trainer-notes-popup">
+                        <div class="edit-title-and-description-body">
+                            <div class="edit-title-and-description-header">
+                                <p>Add your notes</p>
+                                <a class="close-notes-popup"><i class="fas fa-times-circle"></i></a>
+                            </div>
+                            <div class="edit-title-and-description-content">
+                                <form>
+                                    <textarea class="notes"></textarea>
+                                    <input class="submit-notes" type="button" value="Save changes">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <div class="options">
                         <a class="button add-module" src="#">Add Module</a>
                         <a class="info" href="#" data-tooltip="this feature is coming" data-tooltip-location="left"><i class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
@@ -79,6 +93,8 @@ permalink: /training/
                     <h2>{{ module.module.name }}</h2>
                     <p class="intro">Learning Objective:</p>
                     {% if module.module.description %}<p class="intro"> {{ module.module.description | markdownify }}</p>{% endif %}
+                    <p class="trainer-notes-display"></p>
+                    <a class="edit-trainer-notes-button edit intro">Add notes</a>
                     {% if module.module.license %}<p class="intro">License: {{ module.module.license | markdownify }}</p>{% endif %}
                     <div class="thumbnail"><img src="/assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
                     <div class="module-meta">
@@ -139,11 +155,27 @@ permalink: /training/
                                                 </div>
                                             </div>
                                             <div class="content">
+                                                <div class="edit-trainer-notes-popup">
+                                                    <div class="edit-title-and-description-body">
+                                                        <div class="edit-title-and-description-header">
+                                                            <p>Add your notes</p>
+                                                            <a class="close-notes-popup"><i class="fas fa-times-circle"></i></a>
+                                                        </div>
+                                                        <div class="edit-title-and-description-content">
+                                                            <form>
+                                                                <textarea class="notes"></textarea>
+                                                                <input class="submit-notes" type="button" value="Save changes">
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 {% if res.resource.url %}<a href="{{ res.resource.url }}" class="button" target="_blank">Source &nbsp; <i class="fas fa-external-link-alt"></i></a>{% endif %}
                                                 <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} <span class="duration-display">{% if res.resource.duration > 0 %}| {{ res.resource.duration }} minutes{% endif %}</span> | {{ res.resource.cost }} $</div>
                                                 {% if res.resource.description %}
                                                     {{ res.resource.description | markdownify }}
                                                 {% endif %}
+                                                <p class="trainer-notes-display"></p>
+                                                <a class="edit-trainer-notes-button edit">Add notes</a>
                                                 {% if res.resource.license %}
                                                     {{ res.resource.license | prepend: "License: " | markdownify }}
                                                 {% endif %}

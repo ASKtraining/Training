@@ -767,6 +767,50 @@ function updateSelectableModulesList() {
 }
 
 /**
+ * Allows user to add custom notes
+ */
+function initiateEditNotes(){
+    let editButtons = document.getElementsByClassName('edit-trainer-notes-button');
+    for (let editButton of editButtons) {
+        editButton.onclick = showEditNotes;
+    }
+    let submitButtons = document.getElementsByClassName('submit-notes');
+    for (let submitButton of submitButtons) {
+        submitButton.onclick = submitNotes;
+    }
+    let dismissButtons = document.getElementsByClassName('close-notes-popup');
+    for (let dismissButton of dismissButtons) {
+        dismissButton.onclick = dismissEditNotes;
+    }
+}
+
+function showEditNotes(){
+    let parentNode = this.parentNode;
+    let popupEl = parentNode.querySelector('.edit-trainer-notes-popup');
+    popupEl.style.transform = 'scale(1,1)';
+}
+
+function dismissEditNotes() {
+    let popupEl = this.parentNode.parentNode.parentNode;
+    popupEl.style.transform = 'scale(0,0)';
+}
+
+function submitNotes(){
+    let popupEl = this.parentNode.parentNode.parentNode.parentNode;
+    popupEl.style.transform = 'scale(0,0)';
+
+    let parentEl = popupEl.parentNode;
+    let displayEl = parentEl.querySelector('.trainer-notes-display');
+    let form = this.parentNode;
+    let newNote = getChildByClassName(form, 'notes').value;
+    if (newNote != '') {
+        displayEl.innerText = newNote;
+        let addNotesButton = parentEl.querySelector('.edit-trainer-notes-button');
+        addNotesButton.innerHTML = '<i class="far fa-edit"></i> Edit your notes';
+    }
+}
+
+/**
  * and here we go
  */
 window.onload = function () {
@@ -779,4 +823,5 @@ window.onload = function () {
     initiateMobileButtons();
     calculateTime();
     calculateSummary();
+    initiateEditNotes();
 }
