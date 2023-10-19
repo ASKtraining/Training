@@ -4,7 +4,7 @@ module:
     id: 'antifraud_oer_training'     
     url: 'https://github.com/ijokua/Antifraud-Bootcamp'    
     tag: 'Antifraud OER Training'    
-    description: "Seeks to avail and equip individuals with knowledgeand isight of online and offline fraud"
+    description: "Seeks to avail and equip individuals with knowledgeand insight of online and offline fraud"
     pic-url: Types_of_fraud.jpg
     duration: 45
     max-participants: 25
