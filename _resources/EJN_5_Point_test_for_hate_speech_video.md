@@ -8,6 +8,6 @@ resource:
     difficulty: 1   
     cost: 0      
     license:
-    author: ejn
+    authors: [ejn]
     # marker
 ---

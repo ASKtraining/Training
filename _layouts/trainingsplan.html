@@ -182,15 +182,50 @@
   padding: 6px 10px !important;
 }
 
-.reference-item {
-  text-indent: -30px;
+.author-list .author:not(:first-child):before {
+  content: ', ';
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+#reference-list {
+  transform: scale(0, 0);
+  transition: transform ease-in-out 100ms;
+}
+
+#reference-list h4 {
+  margin-bottom: 0.5rem;
+}
+
+#reference-list ul {
+  list-style-type: disc;
+  list-style-position: inside;
   margin-left: 30px;
+}
+
+#reference-button {
+  cursor: pointer;
+}
+
+#reference-button i {
+  font-size: 1.5rem;
+}
+
+#reference-title {
+  margin-bottom: 0;
 }
 
 @media print {
     .pagebreak { page-break-before: always; } /* page-break-after works, as well */
-    .dont-print {
+    .dont-print, #reference-button {
       visibility: hidden;
+    }
+    #reference-list {
+      transform: scale(1, 1);
     }
 }
     </style>

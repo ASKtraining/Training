@@ -773,18 +773,58 @@ function updateSelectableModulesList() {
 function updateAuthorList(){
     let moduleListEl = document.getElementById('module-list-training');
     let authorList =  moduleListEl.querySelectorAll('.author');
-    let newAuthorList = '';
+    let authorsWithResources = {};
     let identifiedResources = [];
+    let identifiedAuthors = [];
     authorList.forEach((authorEl) => {
         if (!identifiedResources.includes(authorEl.dataset.resource)) {
-            newAuthorList += `<li><p class="reference-item">${authorEl.dataset.name} (${authorEl.dataset.source}). <em>${authorEl.dataset.resource}</em>. ${authorEl.dataset.resourceUrl}.</p></li>`;
+            if (!identifiedAuthors.includes(authorEl.dataset.shortname)) {
+                authorsWithResources[authorEl.dataset.shortname] = {};
+                authorsWithResources[authorEl.dataset.shortname]['name'] = authorEl.dataset.name;
+                authorsWithResources[authorEl.dataset.shortname]['resources'] = [];
+                identifiedAuthors.push(authorEl.dataset.shortname);
+            }
+            let resource = {
+                name: authorEl.dataset.resource,
+                url: authorEl.dataset.resourceUrl,
+            };
+            authorsWithResources[authorEl.dataset.shortname]['resources'].push(resource);
             identifiedResources.push(authorEl.dataset.resource);
         }
     });
-    if (newAuthorList !== '') {
-        let referenceListEl = document.getElementById('reference-list');
-        referenceListEl.innerHTML = newAuthorList;
+    let html = '';
+    for (author in authorsWithResources) {
+        let authorHtml = `<h4>${authorsWithResources[author].name}</h4>`;
+        let resourceListEls = '';
+        for (resource in authorsWithResources[author].resources) {
+            resourceListEls += `<li><a href="${authorsWithResources[author].resources[resource].url}">${authorsWithResources[author].resources[resource].name}</a></li>`;
+        }
+        authorHtml += `<ul>${resourceListEls}</ul>`;
+        html += authorHtml;
     }
+    if (html !== '') {
+        let referenceListEl = document.getElementById('reference-list');
+        referenceListEl.innerHTML = html;
+    }
+}
+
+function initiateReferenceButton(){
+    let button = document.getElementById('reference-button');
+    button.onclick = expandAuthorList;
+}
+
+function expandAuthorList(){
+    let referenceListEl = document.getElementById('reference-list');
+    referenceListEl.style.transform = 'scale(1, 1)';
+    this.innerHTML = '<i class="fas fa-angle-up"></i>';
+    this.onclick = contractAuthorList;
+}
+
+function contractAuthorList(){
+    let referenceListEl = document.getElementById('reference-list');
+    referenceListEl.style.transform = 'scale(0, 0)';
+    this.innerHTML = '<i class="fas fa-angle-down"></i>';
+    this.onclick = expandAuthorList;
 }
 
 /**
@@ -800,4 +840,5 @@ window.onload = function () {
     initiateMobileButtons();
     calculateTime();
     calculateSummary();
+    initiateReferenceButton();
 }

@@ -7,7 +7,7 @@ resource:
     duration: 180     #in minutes
     difficulty: 3     #1-3, 1 is easyest
     cost: 0      #in $
-    author: asknet
+    authors: [asknet]
     # marker
 ---
 

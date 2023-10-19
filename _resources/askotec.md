@@ -8,6 +8,6 @@ resource:
     difficulty: 
     cost: 1000
     license: 
-    author: r0g
+    authors: ['r0g']
     # marker
 ---

@@ -144,16 +144,14 @@ permalink: /training/
                                                 {% if res.resource.description %}
                                                     {{ res.resource.description | markdownify }}
                                                 {% endif %}
-                                                <div class="license-author">
-                                                    {% if res.resource.license %}
-                                                        {{ res.resource.license | prepend: "License: " | markdownify }}
+                                                {% if res.resource.license %}
+                                                    {{ res.resource.license | prepend: "License: " | markdownify }}
+                                                {% endif %}
+                                                Authors: <span class="author-list">{% for author in site.authors %}
+                                                    {% if res.resource.authors contains author.shortname %}
+                                                        <a href="{{ author.source }}" class="author" target="_blank" data-name="{{ author.name }}" data-source="{{ author.source }}" data-resource="{{ res.resource.name }}" data-shortname="{{ author.shortname }}" data-resource-url="{{ res.resource.url }}" data-resource-id="{{ res.resource.id }}">{{ author.name }}</a>
                                                     {% endif %}
-                                                    {% for author in site.authors %}
-                                                        {% if author.shortname == res.resource.author %}
-                                                        <a href="{{ author.source }}" class="button author" target="_blank" data-name="{{ author.name }}" data-source="{{ author.source }}" data-resource="{{ res.resource.name }}" data-shortname="{{ author.shortname }}" data-resource-url="{{ res.resource.url }}">{{ author.name }} &nbsp; <i class="fas fa-external-link-alt"></i></a>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                </div>
+                                                {% endfor %}</span>
                                             </div>
                                             <div class="clearer"></div>
                                         </li>
@@ -373,7 +371,10 @@ permalink: /training/
             </div>
         </div>
         <div class="references pagebreak">
-            <h3>References</h3>
+            <div class="flex-between">
+                <h3 id="reference-title">References</h3>
+                <a id="reference-button"><i class="fas fa-angle-down"></i></a>
+            </div>
             <ul id="reference-list"></ul>
         </div>
         <div class="actions dont-print">

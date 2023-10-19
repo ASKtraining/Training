@@ -7,6 +7,6 @@ resource:
     difficulty: 2
     cost: 20
     license: 
-    author: r0g
+    authors: [r0g]
     # marker
 ---

@@ -8,6 +8,6 @@ resource:
     difficulty: 1
     cost: 1000
     license: CC-BY-SA 4.0
-    author: r0g
+    authors: [r0g]
     # marker
 ---
