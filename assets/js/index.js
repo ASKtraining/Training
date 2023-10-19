@@ -777,7 +777,7 @@ function updateAuthorList(){
     let identifiedResources = [];
     let identifiedAuthors = [];
     authorList.forEach((authorEl) => {
-        let authorInfo = convertMDLinkToString(authorEl.dataset.author);
+        let authorInfo = convertMDLinkToObject(authorEl.dataset.author);
         if (!identifiedResources.includes(authorEl.dataset.resource)) {
             if (!identifiedAuthors.includes(authorInfo.name)) {
                 authorsWithResources[authorInfo.name] = {};
@@ -785,7 +785,7 @@ function updateAuthorList(){
                 authorsWithResources[authorInfo.name]['resources'] = [];
                 identifiedAuthors.push(authorInfo.name);
             }
-            let license = convertMDLinkToString(authorEl.dataset.resourceLicense);
+            let license = convertMDLinkToObject(authorEl.dataset.resourceLicense);
             let resource = {
                 name: authorEl.dataset.resource,
                 url: authorEl.dataset.resourceUrl,
@@ -828,7 +828,7 @@ function updateAuthorList(){
  * @param {String} link markdown link
  * @returns {Object}
  */
-function convertMDLinkToString(link){
+function convertMDLinkToObject(link){
     let result = { name: '', url: '' };
     if (!link) return result;
     if(link[0] == '['){
