@@ -207,6 +207,10 @@
   margin-left: 30px;
 }
 
+.author-info {
+  margin-bottom: 1rem;
+}
+
 #reference-button {
   cursor: pointer;
 }
@@ -215,12 +219,12 @@
   font-size: 1.5rem;
 }
 
-#reference-title {
-  margin-bottom: 0;
-}
-
 #sidebar .breaks {
   bottom: 50px !important;
+}
+
+.display-print {
+  display: none;
 }
 
 @media print {
@@ -229,7 +233,10 @@
       visibility: hidden;
     }
     #reference-list {
-      transform: scale(1, 1);
+      transform: scale(1, 1) !important;
+    }
+    .display-print {
+      display: inline;
     }
 }
     </style>

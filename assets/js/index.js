@@ -781,12 +781,15 @@ function updateAuthorList(){
             if (!identifiedAuthors.includes(authorEl.dataset.shortname)) {
                 authorsWithResources[authorEl.dataset.shortname] = {};
                 authorsWithResources[authorEl.dataset.shortname]['name'] = authorEl.dataset.name;
+                authorsWithResources[authorEl.dataset.shortname]['url'] = authorEl.dataset.source;
                 authorsWithResources[authorEl.dataset.shortname]['resources'] = [];
                 identifiedAuthors.push(authorEl.dataset.shortname);
             }
+            let license = convertLicenseToString(authorEl.dataset.resourceLicense);
             let resource = {
                 name: authorEl.dataset.resource,
                 url: authorEl.dataset.resourceUrl,
+                license,
             };
             authorsWithResources[authorEl.dataset.shortname]['resources'].push(resource);
             identifiedResources.push(authorEl.dataset.resource);
@@ -794,18 +797,49 @@ function updateAuthorList(){
     });
     let html = '';
     for (author in authorsWithResources) {
-        let authorHtml = `<h4>${authorsWithResources[author].name}</h4>`;
+        let authorHtml = `<li class="author-info"><p><a href="${authorsWithResources[author].url}" target="_blank"><strong>${authorsWithResources[author].name}</strong></a><span class="display-print"> (${authorsWithResources[author].url})</span></p>`;
         let resourceListEls = '';
         for (resource in authorsWithResources[author].resources) {
-            resourceListEls += `<li><a href="${authorsWithResources[author].resources[resource].url}">${authorsWithResources[author].resources[resource].name}</a></li>`;
+            resourceListEls +=`<li><a href="${authorsWithResources[author].resources[resource].url}">${authorsWithResources[author].resources[resource].name}</a>`;
+            // Add resource link if it exists
+            if (authorsWithResources[author].resources[resource].url) {
+                resourceListEls += `<span class="display-print"> (${authorsWithResources[author].resources[resource].url})</span>`;
+            }
+            // Add license
+            resourceListEls += `. <a target="_blank" href="${authorsWithResources[author].resources[resource].license.url}">${authorsWithResources[author].resources[resource].license.name}</a>`;
+            // Add license url if it exists
+            if (authorsWithResources[author].resources[resource].license.url) {
+                resourceListEls+= `<span class="display-print"> (${authorsWithResources[author].resources[resource].license.url})</span>`;
+            }
+            // Add closing li tag
+            resourceListEls += `</li>`;
         }
-        authorHtml += `<ul>${resourceListEls}</ul>`;
+        authorHtml += `<ul>${resourceListEls}</ul></li>`;
         html += authorHtml;
     }
     if (html !== '') {
         let referenceListEl = document.getElementById('reference-list');
         referenceListEl.innerHTML = html;
     }
+}
+
+/**
+ * Creates an object with the license name and url from markdown
+ * @param {String} license markdown license
+ * @returns {Object}
+ */
+function convertLicenseToString(license){
+    let result = { name: '', url: '' };
+    if (!license) return result;
+    if(license[0] == '['){
+        let regex = /[\[\]\)]/g;
+        let licenseWithUrl = license.replace(regex, '').split('(');
+        result.name = licenseWithUrl[0];
+        result.url = licenseWithUrl[1];
+        return result;
+    }
+    result.name = license;
+    return result;
 }
 
 function initiateReferenceButton(){

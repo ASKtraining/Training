@@ -149,7 +149,7 @@ permalink: /training/
                                                 {% endif %}
                                                 Authors: <span class="author-list">{% for author in site.authors %}
                                                     {% if res.resource.authors contains author.shortname %}
-                                                        <a href="{{ author.source }}" class="author" target="_blank" data-name="{{ author.name }}" data-source="{{ author.source }}" data-resource="{{ res.resource.name }}" data-shortname="{{ author.shortname }}" data-resource-url="{{ res.resource.url }}" data-resource-id="{{ res.resource.id }}">{{ author.name }}</a>
+                                                        <a href="{{ author.source }}" class="author" target="_blank" data-name="{{ author.name }}" data-source="{{ author.source }}" data-resource="{{ res.resource.name }}" data-shortname="{{ author.shortname }}" data-resource-url="{{ res.resource.url }}" data-resource-id="{{ res.resource.id }}" data-resource-license="{{ res.resource.license }}">{{ author.name }}</a>
                                                     {% endif %}
                                                 {% endfor %}</span>
                                             </div>
