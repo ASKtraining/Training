@@ -79,7 +79,7 @@ permalink: /training/
                     <h2>{{ module.module.name }}</h2>
                     <p class="intro">Learning Objective:</p>
                     {% if module.module.description %}<p class="intro"> {{ module.module.description | markdownify }}</p>{% endif %}
-                    {% if module.module.license %}<p class="intro">License: {{ module.module.license | markdownify }}</p>{% endif %}
+                    {% if module.module.license %}{{ module.module.license | prepend: "License: " | markdownify }}{% endif %}
                     <div class="thumbnail"><img src="/assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
                     <div class="module-meta">
                         <div class="module-meta">
