@@ -777,27 +777,27 @@ function updateAuthorList(){
     let identifiedResources = [];
     let identifiedAuthors = [];
     authorList.forEach((authorEl) => {
+        let authorInfo = convertMDLinkToString(authorEl.dataset.author);
         if (!identifiedResources.includes(authorEl.dataset.resource)) {
-            if (!identifiedAuthors.includes(authorEl.dataset.shortname)) {
-                authorsWithResources[authorEl.dataset.shortname] = {};
-                authorsWithResources[authorEl.dataset.shortname]['name'] = authorEl.dataset.name;
-                authorsWithResources[authorEl.dataset.shortname]['url'] = authorEl.dataset.source;
-                authorsWithResources[authorEl.dataset.shortname]['resources'] = [];
-                identifiedAuthors.push(authorEl.dataset.shortname);
+            if (!identifiedAuthors.includes(authorInfo.name)) {
+                authorsWithResources[authorInfo.name] = {};
+                authorsWithResources[authorInfo.name]['url'] = authorInfo.url;
+                authorsWithResources[authorInfo.name]['resources'] = [];
+                identifiedAuthors.push(authorInfo.name);
             }
-            let license = convertLicenseToString(authorEl.dataset.resourceLicense);
+            let license = convertMDLinkToString(authorEl.dataset.resourceLicense);
             let resource = {
                 name: authorEl.dataset.resource,
                 url: authorEl.dataset.resourceUrl,
                 license,
             };
-            authorsWithResources[authorEl.dataset.shortname]['resources'].push(resource);
+            authorsWithResources[authorInfo.name]['resources'].push(resource);
             identifiedResources.push(authorEl.dataset.resource);
         }
     });
     let html = '';
     for (author in authorsWithResources) {
-        let authorHtml = `<li class="author-info"><p><a href="${authorsWithResources[author].url}" target="_blank"><strong>${authorsWithResources[author].name}</strong></a><span class="display-print"> (${authorsWithResources[author].url})</span></p>`;
+        let authorHtml = `<li class="author-info"><p><a href="${authorsWithResources[author].url}" target="_blank"><strong>${author}</strong></a><span class="display-print"> (${authorsWithResources[author].url})</span></p>`;
         let resourceListEls = '';
         for (resource in authorsWithResources[author].resources) {
             resourceListEls +=`<li><a href="${authorsWithResources[author].resources[resource].url}">${authorsWithResources[author].resources[resource].name}</a>`;
@@ -824,21 +824,21 @@ function updateAuthorList(){
 }
 
 /**
- * Creates an object with the license name and url from markdown
- * @param {String} license markdown license
+ * Creates an object with the name and url from a markdown link
+ * @param {String} link markdown link
  * @returns {Object}
  */
-function convertLicenseToString(license){
+function convertMDLinkToString(link){
     let result = { name: '', url: '' };
-    if (!license) return result;
-    if(license[0] == '['){
+    if (!link) return result;
+    if(link[0] == '['){
         let regex = /[\[\]\)]/g;
-        let licenseWithUrl = license.replace(regex, '').split('(');
-        result.name = licenseWithUrl[0];
-        result.url = licenseWithUrl[1];
+        let linkWithUrl = link.replace(regex, '').split('(');
+        result.name = linkWithUrl[0];
+        result.url = linkWithUrl[1];
         return result;
     }
-    result.name = license;
+    result.name = link;
     return result;
 }
 

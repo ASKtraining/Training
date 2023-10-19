@@ -8,6 +8,6 @@ resource:
     difficulty: 
     cost: 1000
     license: 
-    authors: ['r0g']
+    author: "[r0g_agency](https://openculture.agency/)"
     # marker
 ---

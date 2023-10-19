@@ -8,6 +8,6 @@ resource:
     difficulty: 2
     cost: 0      
     license: CC BY-SA 4.0
-    authors: [defyhatenow, r0g]
+    author: "[#defyhatenow](https://defyhatenow.org/)"
     # marker
 ---

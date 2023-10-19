@@ -7,6 +7,6 @@ resource:
     difficulty: 
     cost: 1
     license: 
-    authors: [asknet]
+    author: "[#ASKnet](https://asknet.community/)"
     # marker
 ---

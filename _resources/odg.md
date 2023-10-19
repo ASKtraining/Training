@@ -8,6 +8,6 @@ resource:
     difficulty: 1
     cost: 1
     license: CC BY-SA 4.0 
-    authors: [asknet]
+    author: "[#ASKnet](https://asknet.community/)"
     # marker
 ---
