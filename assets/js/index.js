@@ -771,6 +771,7 @@ function updateSelectableModulesList() {
  * Author list
  */
 function updateAuthorList(){
+    updateAuthorLinkTarget();
     let moduleListEl = document.getElementById('module-list-training');
     let authorList =  moduleListEl.querySelectorAll('.author');
     let authorsWithResources = {};
@@ -778,21 +779,23 @@ function updateAuthorList(){
     let identifiedAuthors = [];
     authorList.forEach((authorEl) => {
         let { author, resource, resourceUrl, resourceLicense } = authorEl.dataset;
-        let { name, url } = convertMDLinkToObject(author);
         if (!identifiedResources.includes(resource)) {
-            if (!identifiedAuthors.includes(name)) {
-                authorsWithResources[name] = {};
-                authorsWithResources[name]['url'] = url;
-                authorsWithResources[name]['resources'] = [];
-                identifiedAuthors.push(name);
-            }
             let license = convertMDLinkToObject(resourceLicense);
             let newResource = {
                 name: resource,
                 url: resourceUrl,
                 license,
             };
-            authorsWithResources[name]['resources'].push(newResource);
+            let authors = convertMultipleMDLinksToArray(author);
+            authors.forEach((singleAuthor) => {
+                if (!identifiedAuthors.includes(singleAuthor.name)) {
+                    authorsWithResources[singleAuthor.name] = {};
+                    authorsWithResources[singleAuthor.name]['url'] = singleAuthor.url;
+                    authorsWithResources[singleAuthor.name]['resources'] = [];
+                    identifiedAuthors.push(singleAuthor.name);
+                }
+                authorsWithResources[singleAuthor.name]['resources'].push(newResource);
+            });
             identifiedResources.push(resource);
         }
     });
@@ -850,6 +853,26 @@ function convertMDLinkToObject(link){
 }
 
 /**
+ * Converts multiple Markdown links separated by commas to array of { name, url } objects
+ * @param {String} links
+ * @returns {Array<Object>} 
+ */
+function convertMultipleMDLinksToArray(links){
+    let result = [];
+    if (links.includes(',')) {
+        let singleLinks = links.split(',');
+        singleLinks.forEach((link) => {
+            let obj = convertMDLinkToObject(link.trim());
+            result.push(obj);
+        });
+        return result;
+    }
+    let obj = convertMDLinkToObject(links);
+    result.push(obj);
+    return result;
+}
+
+/**
  * Initiates the button for expanding/contracting the author list
  */
 function initiateAuthorListToggleButton(){
@@ -875,6 +898,17 @@ function contractAuthorList(){
     referenceListEl.style.transform = 'scale(0, 0)';
     this.innerHTML = '<i class="fas fa-angle-down"></i>';
     this.onclick = expandAuthorList;
+}
+
+/**
+ * Updates the author links to open in a new tab
+ */
+function updateAuthorLinkTarget(){
+    let moduleList = document.getElementById('module-list-training');
+    let links = moduleList.querySelectorAll('.author-data a');
+    links.forEach((link) => {
+        link.setAttribute("target", "_blank");
+    });
 }
 
 /**
