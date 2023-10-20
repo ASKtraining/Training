@@ -842,11 +842,17 @@ function convertMDLinkToObject(link){
     return result;
 }
 
-function initiateReferenceButton(){
+/**
+ * Initiates the button for expanding/contracting the author list
+ */
+function initiateAuthorListToggleButton(){
     let button = document.getElementById('reference-button');
     button.onclick = expandAuthorList;
 }
 
+/**
+ * Expands the list of authors
+ */
 function expandAuthorList(){
     let referenceListEl = document.getElementById('reference-list');
     referenceListEl.style.transform = 'scale(1, 1)';
@@ -854,6 +860,9 @@ function expandAuthorList(){
     this.onclick = contractAuthorList;
 }
 
+/**
+ * Contracts the list of authors
+ */
 function contractAuthorList(){
     let referenceListEl = document.getElementById('reference-list');
     referenceListEl.style.transform = 'scale(0, 0)';
@@ -874,5 +883,5 @@ window.onload = function () {
     initiateMobileButtons();
     calculateTime();
     calculateSummary();
-    initiateReferenceButton();
+    initiateAuthorListToggleButton();
 }
