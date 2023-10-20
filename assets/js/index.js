@@ -777,39 +777,46 @@ function updateAuthorList(){
     let identifiedResources = [];
     let identifiedAuthors = [];
     authorList.forEach((authorEl) => {
-        let authorInfo = convertMDLinkToObject(authorEl.dataset.author);
-        if (!identifiedResources.includes(authorEl.dataset.resource)) {
-            if (!identifiedAuthors.includes(authorInfo.name)) {
-                authorsWithResources[authorInfo.name] = {};
-                authorsWithResources[authorInfo.name]['url'] = authorInfo.url;
-                authorsWithResources[authorInfo.name]['resources'] = [];
-                identifiedAuthors.push(authorInfo.name);
+        let { author, resource, resourceUrl, resourceLicense } = authorEl.dataset;
+        let { name, url } = convertMDLinkToObject(author);
+        if (!identifiedResources.includes(resource)) {
+            if (!identifiedAuthors.includes(name)) {
+                authorsWithResources[name] = {};
+                authorsWithResources[name]['url'] = url;
+                authorsWithResources[name]['resources'] = [];
+                identifiedAuthors.push(name);
             }
-            let license = convertMDLinkToObject(authorEl.dataset.resourceLicense);
-            let resource = {
-                name: authorEl.dataset.resource,
-                url: authorEl.dataset.resourceUrl,
+            let license = convertMDLinkToObject(resourceLicense);
+            let newResource = {
+                name: resource,
+                url: resourceUrl,
                 license,
             };
-            authorsWithResources[authorInfo.name]['resources'].push(resource);
-            identifiedResources.push(authorEl.dataset.resource);
+            authorsWithResources[name]['resources'].push(newResource);
+            identifiedResources.push(resource);
         }
     });
     let html = '';
     for (author in authorsWithResources) {
-        let authorHtml = `<li class="author-info"><p><a href="${authorsWithResources[author].url}" target="_blank"><strong>${author}</strong></a><span class="display-print"> (${authorsWithResources[author].url})</span></p>`;
+        // single author item that contains their name, url, and resources
+        let item = authorsWithResources[author];
+
+        let authorHtml = `<li class="author-info"><p><a href="${item.url}" target="_blank"><strong>${author}</strong></a><span class="display-print"> (${item.url})</span></p>`;
         let resourceListEls = '';
-        for (resource in authorsWithResources[author].resources) {
-            resourceListEls +=`<li><a href="${authorsWithResources[author].resources[resource].url}">${authorsWithResources[author].resources[resource].name}</a>`;
+        for (resource in item.resources) {
+            // Single resource item that includes the name, url, and license of the resource
+            let resourceItem = item.resources[resource];
+
+            resourceListEls +=`<li><a href="${resourceItem.url}">${resourceItem.name}</a>`;
             // Add resource link if it exists
-            if (authorsWithResources[author].resources[resource].url) {
-                resourceListEls += `<span class="display-print"> (${authorsWithResources[author].resources[resource].url})</span>`;
+            if (resourceItem.url) {
+                resourceListEls += `<span class="display-print"> (${resourceItem.url})</span>`;
             }
             // Add license
-            resourceListEls += `. <a target="_blank" href="${authorsWithResources[author].resources[resource].license.url}">${authorsWithResources[author].resources[resource].license.name}</a>`;
+            resourceListEls += `. <a target="_blank" href="${resourceItem.license.url}">${resourceItem.license.name}</a>`;
             // Add license url if it exists
-            if (authorsWithResources[author].resources[resource].license.url) {
-                resourceListEls+= `<span class="display-print"> (${authorsWithResources[author].resources[resource].license.url})</span>`;
+            if (resourceItem.license.url) {
+                resourceListEls+= `<span class="display-print"> (${resourceItem.license.url})</span>`;
             }
             // Add closing li tag
             resourceListEls += `</li>`;
@@ -833,9 +840,9 @@ function convertMDLinkToObject(link){
     if (!link) return result;
     if(link[0] == '['){
         let regex = /[\[\]\)]/g;
-        let linkWithUrl = link.replace(regex, '').split('(');
-        result.name = linkWithUrl[0];
-        result.url = linkWithUrl[1];
+        let [ name, url ] = link.replace(regex, '').split('(');
+        result.name = name;
+        result.url = url;
         return result;
     }
     result.name = link;
