@@ -803,10 +803,12 @@ function submitNotes(){
     let displayEl = parentEl.querySelector('.trainer-notes-display');
     let form = this.parentNode;
     let newNote = getChildByClassName(form, 'notes').value;
+    displayEl.innerText = newNote;
+    let addNotesButton = parentEl.querySelector('.edit-trainer-notes-button');
     if (newNote != '') {
-        displayEl.innerText = newNote;
-        let addNotesButton = parentEl.querySelector('.edit-trainer-notes-button');
         addNotesButton.innerHTML = '<i class="far fa-edit"></i> Edit your notes';
+    } else {
+        addNotesButton.innerHTML = 'Add additional notes';
     }
 }
 
