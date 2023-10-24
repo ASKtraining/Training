@@ -94,7 +94,7 @@ permalink: /training/
                     <p class="intro">Learning Objective:</p>
                     {% if module.module.description %}<p class="intro"> {{ module.module.description | markdownify }}</p>{% endif %}
                     <p class="trainer-notes-display"></p>
-                    <a class="edit-trainer-notes-button edit intro">Add notes</a>
+                    <a class="edit-trainer-notes-button edit intro">Add additional notes</a>
                     {% if module.module.license %}<p class="intro">License: {{ module.module.license | markdownify }}</p>{% endif %}
                     <div class="thumbnail"><img src="/assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
                     <div class="module-meta">
@@ -175,7 +175,7 @@ permalink: /training/
                                                     {{ res.resource.description | markdownify }}
                                                 {% endif %}
                                                 <p class="trainer-notes-display"></p>
-                                                <a class="edit-trainer-notes-button edit">Add notes</a>
+                                                <a class="edit-trainer-notes-button edit">Add additional notes</a>
                                                 {% if res.resource.license %}
                                                     {{ res.resource.license | prepend: "License: " | markdownify }}
                                                 {% endif %}
