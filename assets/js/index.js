@@ -43,7 +43,7 @@ function initiateSortable() {
             pull: 'clone'
         },
         sort: false,
-        onEnd: initiateTrashButton // we need this because on duplication the onclick event isn't copied
+        onEnd: updateClonedBreaks // we need this because cloning does not copy event listeners added using addEventListener() or those assigned to element properties (e.g., node.onclick = someFunction) (https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode)
     });
 
     let index = 0;
@@ -273,6 +273,22 @@ function closeTime(){
 }
 
 /**
+ * Updates a time or day break after it has been cloned
+ * @param {Event} evt The dragging event
+ */
+function updateClonedBreaks(evt){
+    let timebreak = evt.item;
+    let iconButton = timebreak.querySelector('.fa-edit');
+    iconButton.onclick = toggleTimeEditWindow;
+    let submitButton = timebreak.querySelector('.submit');
+    submitButton.onclick = submitTime;
+    let closeButton = timebreak.querySelector('.close');
+    closeButton.onclick = closeTime;
+    let trashButton = timebreak.querySelector('.trash');
+    trashButton.onclick = onClickDeleteOrMoveListElement;
+}
+
+/**
  * Mobile button initialisations
  */
 
@@ -383,7 +399,6 @@ function runDynamicCalculationsOnAdd(evt) {
     insertTimeBreaks(mod);
     calculateTime();
     calculateSummary();
-    initiateTimeEdit();
     updateAuthorList();
 }
 
