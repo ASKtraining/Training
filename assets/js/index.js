@@ -974,7 +974,7 @@ function submitNotes(){
     if (newNote != '') {
         addNotesButton.innerHTML = '<i class="far fa-edit"></i> Edit your notes';
     } else {
-        addNotesButton.innerHTML = 'Add additional notes';
+        addNotesButton.innerHTML = 'Add trainer notes';
     }
 }
 
@@ -1001,4 +1001,5 @@ window.onload = function () {
     calculateTime();
     calculateSummary();
     initiateAuthorListToggleButton();
+    initiateEditNotes();
 }
