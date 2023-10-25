@@ -831,7 +831,9 @@ function updateAuthorList(){
                 resourceListEls += `<span class="display-print"> (${resourceItem.url})</span>`;
             }
             // Add license
-            resourceListEls += `. <a target="_blank" href="${resourceItem.license.url}">${resourceItem.license.name}</a>`;
+            if (resourceItem.license.name) {
+                resourceListEls += `. License: <a target="_blank" href="${resourceItem.license.url}">${resourceItem.license.name}</a>`;
+            }
             // Add license url if it exists
             if (resourceItem.license.url) {
                 resourceListEls+= `<span class="display-print"> (${resourceItem.license.url})</span>`;
