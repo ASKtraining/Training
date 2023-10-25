@@ -235,20 +235,22 @@ function submitTime(){
         || currClassName.includes(CLASS_TIMEBREAK)
         || currClassName.includes(CLASS_RESOURCE)){
             currentElement.dataset.duration = duration;
-            let displayEl = getChildByClassName(currentElement, 'duration-display');
-            if (parseInt(duration) > 0) {
-                displayEl.innerText = `| ${duration} minutes`;
-            } else {
-                displayEl.innerText = '';
+            if (currentElement.className.includes('resource')) {
+                let displayEl = currentElement.querySelector('.duration-display');
+                if (parseInt(duration) > 0) {
+                    displayEl.innerText = `| ${duration} minutes`;
+                } else {
+                    displayEl.innerText = '';
+                }
             }
             if(currClassName.includes(CLASS_TRAININGSTART)
             || currClassName.includes(CLASS_DAYBREAK)){
                 currentElement.dataset.start = start;
             }
             if((titleEl != null && titleEl.value != '') 
-            && currClassName.includes(CLASS_TRAININGSTART)
+            && (currClassName.includes(CLASS_TRAININGSTART)
             || currClassName.includes(CLASS_DAYBREAK)
-            || currClassName.includes(CLASS_TIMEBREAK)){
+            || currClassName.includes(CLASS_TIMEBREAK))){
                 let titleNode = getChildByClassName(currentElement, 'break-title');
                 titleNode.innerText = titleEl.value;
             }
