@@ -838,5 +838,4 @@ window.onload = function () {
     initiateMobileButtons();
     calculateTime();
     calculateSummary();
-    initiateEditNotes();
 }
