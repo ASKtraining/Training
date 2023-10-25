@@ -8,5 +8,6 @@ resource:
     difficulty: 1
     cost: 1
     license: CC BY-SA 4.0
+    author: '[Migrant Media Network](https://migrantmedia.network/)'
     # marker
 ---

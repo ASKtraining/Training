@@ -399,6 +399,7 @@ function runDynamicCalculationsOnAdd(evt) {
     insertTimeBreaks(mod);
     calculateTime();
     calculateSummary();
+    updateAuthorList();
 }
 
 function calculateTime() {
@@ -782,6 +783,152 @@ function updateSelectableModulesList() {
 }
 
 /**
+ * Author list
+ */
+function updateAuthorList(){
+    updateAuthorLinkTarget();
+    let moduleListEl = document.getElementById('module-list-training');
+    let authorList =  moduleListEl.querySelectorAll('.author');
+    let authorsWithResources = {};
+    let identifiedResources = [];
+    let identifiedAuthors = [];
+    authorList.forEach((authorEl) => {
+        let { author, resource, resourceUrl, resourceLicense } = authorEl.dataset;
+        if (!identifiedResources.includes(resource)) {
+            let license = convertMDLinkToObject(resourceLicense);
+            let newResource = {
+                name: resource,
+                url: resourceUrl,
+                license,
+            };
+            let authors = convertMultipleMDLinksToArray(author);
+            authors.forEach((singleAuthor) => {
+                if (!identifiedAuthors.includes(singleAuthor.name)) {
+                    authorsWithResources[singleAuthor.name] = {};
+                    authorsWithResources[singleAuthor.name]['url'] = singleAuthor.url;
+                    authorsWithResources[singleAuthor.name]['resources'] = [];
+                    identifiedAuthors.push(singleAuthor.name);
+                }
+                authorsWithResources[singleAuthor.name]['resources'].push(newResource);
+            });
+            identifiedResources.push(resource);
+        }
+    });
+    let html = '';
+    for (author in authorsWithResources) {
+        // single author item that contains their name, url, and resources
+        let item = authorsWithResources[author];
+
+        let authorHtml = `<li class="author-info"><p><a href="${item.url}" target="_blank"><strong>${author}</strong></a><span class="display-print"> (${item.url})</span></p>`;
+        let resourceListEls = '';
+        for (resource in item.resources) {
+            // Single resource item that includes the name, url, and license of the resource
+            let resourceItem = item.resources[resource];
+
+            resourceListEls +=`<li><a href="${resourceItem.url}">${resourceItem.name}</a>`;
+            // Add resource link if it exists
+            if (resourceItem.url) {
+                resourceListEls += `<span class="display-print"> (${resourceItem.url})</span>`;
+            }
+            // Add license
+            if (resourceItem.license.name) {
+                resourceListEls += `. License: <a target="_blank" href="${resourceItem.license.url}">${resourceItem.license.name}</a>`;
+            }
+            // Add license url if it exists
+            if (resourceItem.license.url) {
+                resourceListEls+= `<span class="display-print"> (${resourceItem.license.url})</span>`;
+            }
+            // Add closing li tag
+            resourceListEls += `</li>`;
+        }
+        authorHtml += `<ul>${resourceListEls}</ul></li>`;
+        html += authorHtml;
+    }
+    if (html !== '') {
+        let referenceListEl = document.getElementById('reference-list');
+        referenceListEl.innerHTML = html;
+    }
+}
+
+/**
+ * Creates an object with the name and url from a markdown link
+ * @param {String} link markdown link
+ * @returns {Object}
+ */
+function convertMDLinkToObject(link){
+    let result = { name: '', url: '' };
+    if (!link) return result;
+    if(link[0] == '['){
+        let regex = /[\[\]\)]/g;
+        let [ name, url ] = link.replace(regex, '').split('(');
+        result.name = name;
+        result.url = url;
+        return result;
+    }
+    result.name = link;
+    return result;
+}
+
+/**
+ * Converts multiple Markdown links separated by commas to array of { name, url } objects
+ * @param {String} links
+ * @returns {Array<Object>} 
+ */
+function convertMultipleMDLinksToArray(links){
+    let result = [];
+    if (links.includes(',')) {
+        let singleLinks = links.split(',');
+        singleLinks.forEach((link) => {
+            let obj = convertMDLinkToObject(link.trim());
+            result.push(obj);
+        });
+        return result;
+    }
+    let obj = convertMDLinkToObject(links);
+    result.push(obj);
+    return result;
+}
+
+/**
+ * Initiates the button for expanding/contracting the author list
+ */
+function initiateAuthorListToggleButton(){
+    let button = document.getElementById('reference-button');
+    button.onclick = expandAuthorList;
+}
+
+/**
+ * Expands the list of authors
+ */
+function expandAuthorList(){
+    let referenceListEl = document.getElementById('reference-list');
+    referenceListEl.style.transform = 'scale(1, 1)';
+    this.innerHTML = '<i class="fas fa-angle-up"></i>';
+    this.onclick = contractAuthorList;
+}
+
+/**
+ * Contracts the list of authors
+ */
+function contractAuthorList(){
+    let referenceListEl = document.getElementById('reference-list');
+    referenceListEl.style.transform = 'scale(0, 0)';
+    this.innerHTML = '<i class="fas fa-angle-down"></i>';
+    this.onclick = expandAuthorList;
+}
+
+/**
+ * Updates the author links to open in a new tab
+ */
+function updateAuthorLinkTarget(){
+    let moduleList = document.getElementById('module-list-training');
+    let links = moduleList.querySelectorAll('.author-data a');
+    links.forEach((link) => {
+        link.setAttribute("target", "_blank");
+    });
+}
+
+/**
  * Allows user to add custom notes
  */
 function initiateEditNotes(){
@@ -827,7 +974,7 @@ function submitNotes(){
     if (newNote != '') {
         addNotesButton.innerHTML = '<i class="far fa-edit"></i> Edit your notes';
     } else {
-        addNotesButton.innerHTML = 'Add additional notes';
+        addNotesButton.innerHTML = 'Add trainer notes';
     }
 }
 
@@ -853,4 +1000,6 @@ window.onload = function () {
     initiateMobileButtons();
     calculateTime();
     calculateSummary();
+    initiateAuthorListToggleButton();
+    initiateEditNotes();
 }

@@ -98,7 +98,8 @@ permalink: /training/
                     {% if module.module.description %}<p class="intro"> {{ module.module.description | markdownify }}</p>{% endif %}
                     <p class="trainer-notes-display"></p>
                     <a class="edit-trainer-notes-button edit intro">Add trainer notes</a>
-                    {% if module.module.license %}<p class="intro">License: {{ module.module.license | markdownify }}</p>{% endif %}
+                    <p />
+                    {% if module.module.license %}{{ module.module.license | prepend: "License: " | markdownify }}{% endif %}
                     <div class="thumbnail"><img src="/assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
                     <div class="module-meta">
                         <div class="module-meta">
@@ -181,10 +182,22 @@ permalink: /training/
                                                     {{ res.resource.description | markdownify }}
                                                 {% endif %}
                                                 <p class="trainer-notes-display"></p>
-                                                <a class="edit-trainer-notes-button edit">Add additional notes</a>
+                                                <a class="edit-trainer-notes-button edit">Add trainer notes</a>
+                                                <p />
                                                 {% if res.resource.license %}
                                                     {{ res.resource.license | prepend: "License: " | markdownify }}
                                                 {% endif %}
+                                                {% if res.resource.author %}
+                                                    <div class="author-data">
+                                                        {{ res.resource.author | prepend: "Author(s): " | markdownify }}
+                                                        <span class="author" data-author="{{ res.resource.author }}" data-resource="{{ res.resource.name }}" data-resource-url="{{ res.resource.url }}" data-resource-license="{{ res.resource.license }}"></span>
+                                                    </div>
+                                                {% endif %}
+                                                <!-- Authors: <span class="author-list">{% for author in site.authors %}
+                                                    {% if res.resource.authors contains author.shortname %}
+                                                        <a href="{{ author.source }}" class="author" target="_blank" data-name="{{ author.name }}" data-source="{{ author.source }}" data-resource="{{ res.resource.name }}" data-shortname="{{ author.shortname }}" data-resource-url="{{ res.resource.url }}" data-resource-id="{{ res.resource.id }}" data-resource-license="{{ res.resource.license }}">{{ author.name }}</a>
+                                                    {% endif %}
+                                                {% endfor %}</span> -->
                                             </div>
                                             <div class="clearer"></div>
                                         </li>
@@ -357,7 +370,7 @@ permalink: /training/
             
         </div>
         <div class="resource-overview">
-            <h2>Resources</h2>
+            <h3>Resources</h3>
             <table id="resource-table">
                 <tr>
                     <th class="quantity">Quantity</th>
@@ -403,7 +416,14 @@ permalink: /training/
                 <p>This feature is coming</p>
             </div>
         </div>
-        <div class="actions">
+        <div class="references pagebreak">
+            <div class="flex-between">
+                <h3 id="reference-title">References</h3>
+                <a id="reference-button"><i class="fas fa-angle-down"></i></a>
+            </div>
+            <ul id="reference-list"></ul>
+        </div>
+        <div class="actions dont-print">
             <button class="button print noPrint" onclick="window.print();"><i class="fas fa-print"></i> Print</button>
             <span class="btn-inactive button" data-tooltip="this feature is coming" data-tooltip-location="top"><i class="fas fa-save"></i> Save</span>
             <span class="btn-inactive button" data-tooltip="this feature is coming" data-tooltip-location="top"><i class="fas fa-file-download"></i> Download</span>

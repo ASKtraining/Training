@@ -8,5 +8,6 @@ resource:
     difficulty: 1  
     cost: 0
     license: CC BY-SA 4.0
+    author: '[Timm Wille](https://openculture.agency/team/)'
     # marker
 ---
