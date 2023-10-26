@@ -43,7 +43,7 @@ function initiateSortable() {
             pull: 'clone'
         },
         sort: false,
-        onEnd: initiateTrashButton // we need this because on duplication the onclick event isn't copied
+        onEnd: updateClonedBreaks // we need this because cloning does not copy event listeners added using addEventListener() or those assigned to element properties (e.g., node.onclick = someFunction) (https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode)
     });
 
     let index = 0;
@@ -235,14 +235,22 @@ function submitTime(){
         || currClassName.includes(CLASS_TIMEBREAK)
         || currClassName.includes(CLASS_RESOURCE)){
             currentElement.dataset.duration = duration;
+            if (currentElement.className.includes('resource')) {
+                let displayEl = currentElement.querySelector('.duration-display');
+                if (parseInt(duration) > 0) {
+                    displayEl.innerText = `| ${duration} minutes`;
+                } else {
+                    displayEl.innerText = '';
+                }
+            }
             if(currClassName.includes(CLASS_TRAININGSTART)
             || currClassName.includes(CLASS_DAYBREAK)){
                 currentElement.dataset.start = start;
             }
             if((titleEl != null && titleEl.value != '') 
-            && currClassName.includes(CLASS_TRAININGSTART)
+            && (currClassName.includes(CLASS_TRAININGSTART)
             || currClassName.includes(CLASS_DAYBREAK)
-            || currClassName.includes(CLASS_TIMEBREAK)){
+            || currClassName.includes(CLASS_TIMEBREAK))){
                 let titleNode = getChildByClassName(currentElement, 'break-title');
                 titleNode.innerText = titleEl.value;
             }
@@ -264,6 +272,22 @@ function initiateCloseButton(){
 
 function closeTime(){
     this.parentNode.parentNode.style.display = '';
+}
+
+/**
+ * Updates a time or day break after it has been cloned
+ * @param {Event} evt The dragging event
+ */
+function updateClonedBreaks(evt){
+    let timebreak = evt.item;
+    let iconButton = timebreak.querySelector('.fa-edit');
+    iconButton.onclick = toggleTimeEditWindow;
+    let submitButton = timebreak.querySelector('.submit');
+    submitButton.onclick = submitTime;
+    let closeButton = timebreak.querySelector('.close');
+    closeButton.onclick = closeTime;
+    let trashButton = timebreak.querySelector('.trash');
+    trashButton.onclick = onClickDeleteOrMoveListElement;
 }
 
 /**
@@ -377,6 +401,7 @@ function runDynamicCalculationsOnAdd(evt) {
     insertTimeBreaks(mod);
     calculateTime();
     calculateSummary();
+    updateAuthorList();
 }
 
 function calculateTime() {
@@ -760,6 +785,211 @@ function updateSelectableModulesList() {
 }
 
 /**
+ * Author list
+ */
+function updateAuthorList(){
+    updateAuthorLinkTarget();
+    let moduleListEl = document.getElementById('module-list-training');
+    let authorList =  moduleListEl.querySelectorAll('.author');
+    let authorsWithResources = {};
+    let identifiedResources = [];
+    let identifiedAuthors = [];
+    authorList.forEach((authorEl) => {
+        let { author, resource, resourceUrl, resourceLicense } = authorEl.dataset;
+        if (!identifiedResources.includes(resource)) {
+            let license = convertMDLinkToObject(resourceLicense);
+            let newResource = {
+                name: resource,
+                url: resourceUrl,
+                license,
+            };
+            let authors = convertMultipleMDLinksToArray(author);
+            authors.forEach((singleAuthor) => {
+                if (!identifiedAuthors.includes(singleAuthor.name)) {
+                    authorsWithResources[singleAuthor.name] = {};
+                    authorsWithResources[singleAuthor.name]['url'] = singleAuthor.url;
+                    authorsWithResources[singleAuthor.name]['resources'] = [];
+                    identifiedAuthors.push(singleAuthor.name);
+                }
+                authorsWithResources[singleAuthor.name]['resources'].push(newResource);
+            });
+            identifiedResources.push(resource);
+        }
+    });
+    let html = '';
+    for (author in authorsWithResources) {
+        // single author item that contains their name, url, and resources
+        let item = authorsWithResources[author];
+
+        let authorHtml = `<li class="author-info"><p><a href="${item.url}" target="_blank"><strong>${author}</strong></a><span class="display-print"> (${item.url})</span></p>`;
+        let resourceListEls = '';
+        for (resource in item.resources) {
+            // Single resource item that includes the name, url, and license of the resource
+            let resourceItem = item.resources[resource];
+
+            resourceListEls +=`<li><a href="${resourceItem.url}">${resourceItem.name}</a>`;
+            // Add resource link if it exists
+            if (resourceItem.url) {
+                resourceListEls += `<span class="display-print"> (${resourceItem.url})</span>`;
+            }
+            // Add license
+            if (resourceItem.license.name) {
+                resourceListEls += `. License: <a target="_blank" href="${resourceItem.license.url}">${resourceItem.license.name}</a>`;
+            }
+            // Add license url if it exists
+            if (resourceItem.license.url) {
+                resourceListEls+= `<span class="display-print"> (${resourceItem.license.url})</span>`;
+            }
+            // Add closing li tag
+            resourceListEls += `</li>`;
+        }
+        authorHtml += `<ul>${resourceListEls}</ul></li>`;
+        html += authorHtml;
+    }
+    if (html !== '') {
+        let referenceListEl = document.getElementById('reference-list');
+        referenceListEl.innerHTML = html;
+    }
+}
+
+/**
+ * Creates an object with the name and url from a markdown link
+ * @param {String} link markdown link
+ * @returns {Object}
+ */
+function convertMDLinkToObject(link){
+    let result = { name: '', url: '' };
+    if (!link) return result;
+    if(link[0] == '['){
+        let regex = /[\[\]\)]/g;
+        let [ name, url ] = link.replace(regex, '').split('(');
+        result.name = name;
+        result.url = url;
+        return result;
+    }
+    result.name = link;
+    return result;
+}
+
+/**
+ * Converts multiple Markdown links separated by commas to array of { name, url } objects
+ * @param {String} links
+ * @returns {Array<Object>} 
+ */
+function convertMultipleMDLinksToArray(links){
+    let result = [];
+    if (links.includes(',')) {
+        let singleLinks = links.split(',');
+        singleLinks.forEach((link) => {
+            let obj = convertMDLinkToObject(link.trim());
+            result.push(obj);
+        });
+        return result;
+    }
+    let obj = convertMDLinkToObject(links);
+    result.push(obj);
+    return result;
+}
+
+/**
+ * Initiates the button for expanding/contracting the author list
+ */
+function initiateAuthorListToggleButton(){
+    let button = document.getElementById('reference-button');
+    button.onclick = expandAuthorList;
+}
+
+/**
+ * Expands the list of authors
+ */
+function expandAuthorList(){
+    let referenceListEl = document.getElementById('reference-list');
+    referenceListEl.style.transform = 'scale(1, 1)';
+    this.innerHTML = '<i class="fas fa-angle-up"></i>';
+    this.onclick = contractAuthorList;
+}
+
+/**
+ * Contracts the list of authors
+ */
+function contractAuthorList(){
+    let referenceListEl = document.getElementById('reference-list');
+    referenceListEl.style.transform = 'scale(0, 0)';
+    this.innerHTML = '<i class="fas fa-angle-down"></i>';
+    this.onclick = expandAuthorList;
+}
+
+/**
+ * Updates the author links to open in a new tab
+ */
+function updateAuthorLinkTarget(){
+    let moduleList = document.getElementById('module-list-training');
+    let links = moduleList.querySelectorAll('.author-data a');
+    links.forEach((link) => {
+        link.setAttribute("target", "_blank");
+    });
+}
+
+/**
+ * Allows user to add custom notes
+ */
+function initiateEditNotes(){
+    let editButtons = document.getElementsByClassName('edit-trainer-notes-button');
+    for (let editButton of editButtons) {
+        editButton.onclick = showEditNotes;
+    }
+    let submitButtons = document.getElementsByClassName('submit-notes');
+    for (let submitButton of submitButtons) {
+        submitButton.onclick = submitNotes;
+    }
+    let dismissButtons = document.getElementsByClassName('close-notes-popup');
+    for (let dismissButton of dismissButtons) {
+        dismissButton.onclick = dismissEditNotes;
+    }
+    let resetButtons = document.getElementsByClassName('reset-notes');
+    for (let resetButton of resetButtons) {
+        resetButton.onclick = clearNote;
+    }
+}
+
+function showEditNotes(){
+    let parentNode = this.parentNode;
+    let popupEl = parentNode.querySelector('.edit-trainer-notes-popup');
+    popupEl.style.transform = 'scale(1,1)';
+}
+
+function dismissEditNotes() {
+    let popupEl = this.parentNode.parentNode.parentNode;
+    popupEl.style.transform = 'scale(0,0)';
+}
+
+function submitNotes(){
+    let popupEl = this.parentNode.parentNode.parentNode.parentNode.parentNode;
+    popupEl.style.transform = 'scale(0,0)';
+
+    let parentEl = popupEl.parentNode;
+    let displayEl = parentEl.querySelector('.trainer-notes-display');
+    let form = this.parentNode.parentNode;
+    let newNote = getChildByClassName(form, 'notes').value;
+    displayEl.innerText = newNote;
+    let addNotesButton = parentEl.querySelector('.edit-trainer-notes-button');
+    if (newNote != '') {
+        addNotesButton.innerHTML = '<i class="far fa-edit"></i> Edit your notes';
+    } else {
+        addNotesButton.innerHTML = 'Add trainer notes';
+    }
+}
+
+/**
+ * Clears the input textfield for the note. It does not save the changes.
+ */
+function clearNote(){
+    let form = this.parentNode.parentNode;
+    let inputEl = form.querySelector('.notes');
+    inputEl.value = "";
+}
+
+/**
  * and here we go
  */
 window.onload = function () {
@@ -772,4 +1002,6 @@ window.onload = function () {
     initiateMobileButtons();
     calculateTime();
     calculateSummary();
+    initiateAuthorListToggleButton();
+    initiateEditNotes();
 }

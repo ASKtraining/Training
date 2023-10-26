@@ -70,7 +70,24 @@ permalink: /training/
                 </div>
                 -->
 
-                <div class="content">
+                <div class="content module-content">
+                    <div class="edit-trainer-notes-popup">
+                        <div class="edit-title-and-description-body">
+                            <div class="edit-title-and-description-header">
+                                <p>Add your notes</p>
+                                <a class="close-notes-popup"><i class="fas fa-times-circle"></i></a>
+                            </div>
+                            <div class="edit-title-and-description-content">
+                                <form>
+                                    <textarea class="notes"></textarea>
+                                    <div class="flex-start-center">
+                                        <input class="reset-notes" type="button" value="Reset">
+                                        <input class="submit-notes" type="button" value="Save changes">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <div class="options">
                         <a class="button add-module" src="#">Add Module</a>
                         <a class="info" href="#" data-tooltip="this feature is coming" data-tooltip-location="left"><i class="fas fa-info-circle"></i></a> <a class="trash" href="#"><i class="fas fa-trash-alt"></i></a>
@@ -79,7 +96,10 @@ permalink: /training/
                     <h2>{{ module.module.name }}</h2>
                     <p class="intro">Learning Objective:</p>
                     {% if module.module.description %}<p class="intro"> {{ module.module.description | markdownify }}</p>{% endif %}
-                    {% if module.module.license %}<p class="intro">License: {{ module.module.license | markdownify }}</p>{% endif %}
+                    <p class="trainer-notes-display"></p>
+                    <a class="edit-trainer-notes-button edit intro">Add trainer notes</a>
+                    <p />
+                    {% if module.module.license %}{{ module.module.license | prepend: "License: " | markdownify }}{% endif %}
                     <div class="thumbnail"><img src="/assets/img/modules/{{ module.module.pic-url }}" class="thumbnail"></div>
                     <div class="module-meta">
                         <div class="module-meta">
@@ -139,14 +159,45 @@ permalink: /training/
                                                 </div>
                                             </div>
                                             <div class="content">
+                                                <div class="edit-trainer-notes-popup">
+                                                    <div class="edit-title-and-description-body">
+                                                        <div class="edit-title-and-description-header">
+                                                            <p>Add your notes</p>
+                                                            <a class="close-notes-popup"><i class="fas fa-times-circle"></i></a>
+                                                        </div>
+                                                        <div class="edit-title-and-description-content">
+                                                            <form>
+                                                                <textarea class="notes"></textarea>
+                                                                <div class="flex-start-center">
+                                                                    <input class="reset-notes" type="button" value="Reset">
+                                                                    <input class="submit-notes" type="button" value="Save changes">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 {% if res.resource.url %}<a href="{{ res.resource.url }}" class="button" target="_blank">Source &nbsp; <i class="fas fa-external-link-alt"></i></a>{% endif %}
-                                                <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} | {{ res.resource.duration }} minutes | {{ res.resource.cost }} $</div>
+                                                <div><strong>{{ res.resource.name }}</strong> | {{ diff_text }} <span class="duration-display">{% if res.resource.duration > 0 %}| {{ res.resource.duration }} minutes{% endif %}</span> | {{ res.resource.cost }} $</div>
                                                 {% if res.resource.description %}
                                                     {{ res.resource.description | markdownify }}
                                                 {% endif %}
+                                                <p class="trainer-notes-display"></p>
+                                                <a class="edit-trainer-notes-button edit">Add trainer notes</a>
+                                                <p />
                                                 {% if res.resource.license %}
                                                     {{ res.resource.license | prepend: "License: " | markdownify }}
                                                 {% endif %}
+                                                {% if res.resource.author %}
+                                                    <div class="author-data">
+                                                        {{ res.resource.author | prepend: "Author(s): " | markdownify }}
+                                                        <span class="author" data-author="{{ res.resource.author }}" data-resource="{{ res.resource.name }}" data-resource-url="{{ res.resource.url }}" data-resource-license="{{ res.resource.license }}"></span>
+                                                    </div>
+                                                {% endif %}
+                                                <!-- Authors: <span class="author-list">{% for author in site.authors %}
+                                                    {% if res.resource.authors contains author.shortname %}
+                                                        <a href="{{ author.source }}" class="author" target="_blank" data-name="{{ author.name }}" data-source="{{ author.source }}" data-resource="{{ res.resource.name }}" data-shortname="{{ author.shortname }}" data-resource-url="{{ res.resource.url }}" data-resource-id="{{ res.resource.id }}" data-resource-license="{{ res.resource.license }}">{{ author.name }}</a>
+                                                    {% endif %}
+                                                {% endfor %}</span> -->
                                             </div>
                                             <div class="clearer"></div>
                                         </li>
@@ -176,7 +227,7 @@ permalink: /training/
                         <form>
                             <input type="text" class="title" placeholder="Time Break">
                             <label>Duration:</label>
-                            <input type="number" class="duration" placeholder="15" min="0" max="59">
+                            <input type="number" class="duration" placeholder="15" min="0">
                             <span>minutes</span>
                             <input class="submit button" type="button" value="Save">
                             <input class="close" type="button" value="X">
@@ -319,7 +370,7 @@ permalink: /training/
             
         </div>
         <div class="resource-overview">
-            <h2>Resources</h2>
+            <h3>Resources</h3>
             <table id="resource-table">
                 <tr>
                     <th class="quantity">Quantity</th>
@@ -365,7 +416,14 @@ permalink: /training/
                 <p>This feature is coming</p>
             </div>
         </div>
-        <div class="actions">
+        <div class="references pagebreak">
+            <div class="flex-between">
+                <h3 id="reference-title">References</h3>
+                <a id="reference-button"><i class="fas fa-angle-down"></i></a>
+            </div>
+            <ul id="reference-list"></ul>
+        </div>
+        <div class="actions dont-print">
             <button class="button print noPrint" onclick="window.print();"><i class="fas fa-print"></i> Print</button>
             <span class="btn-inactive button" data-tooltip="this feature is coming" data-tooltip-location="top"><i class="fas fa-save"></i> Save</span>
             <span class="btn-inactive button" data-tooltip="this feature is coming" data-tooltip-location="top"><i class="fas fa-file-download"></i> Download</span>

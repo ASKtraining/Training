@@ -8,5 +8,6 @@ resource:
     difficulty: 1   
     cost: 0      
     license:
+    author: "[Ethical Journalism Network](https://ethicaljournalismnetwork.org/)"
     # marker
 ---

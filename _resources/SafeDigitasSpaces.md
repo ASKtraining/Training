@@ -8,5 +8,6 @@ resource:
     difficulty: 2
     cost: 0 
     license: CC BY-SA 4.0
+    author: "[r0g_agency](https://openculture.agency/)"
     # marker
 ---

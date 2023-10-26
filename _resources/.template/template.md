@@ -8,5 +8,6 @@ resource:
     difficulty:     #1-3, 1 is easyest
     cost: 1000      #in $ (dont leave empty, but type 0 instead)
     license: #e.g. CC BY-SA 4.0
+    author: #add the author/organisation name in here, use [markdown](URL) formatting to link to website/reference. You can add also multiple authors via '[author 1](link1), [author 2](link2)'
     # marker
 ---
