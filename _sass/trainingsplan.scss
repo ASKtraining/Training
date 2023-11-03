@@ -22,10 +22,6 @@ a:link,
 a:visited
     text-decoration: none
 
-a:hover,
-a:focus,
-a:active
-
 p
     line-height: 1.3em
     margin: 0 0 7px 0
@@ -70,7 +66,7 @@ body.index
     padding: 0 20px 0 370px
     z-index: 1
     .edit
-        display:inline
+        display: inline
         background: $color-element-background-inactive
         color: $color-element-font
         font-size: 0.5em
